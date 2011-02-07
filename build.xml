@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="jtor">
+
+	<property name="appname" value="${ant.project.name}"/>
+	<property name="deployDir" location="${basedir}/deploy" />
+	<property name="build" location="${basedir}/build" />
+	<property name="org" value="Advanced Power"/>
+	<property name="lib" location="${basedir}/lib"/>
+	
+	<!-- We're not using a build server, so use version.txt to set the version property -->
+	<property name="version.txt" location="${basedir}/version.txt" />
+
+	<loadfile property="version" srcfile="${version.txt}">
+		<filterchain>
+			<striplinebreaks />
+		</filterchain>
+	</loadfile>
+	
+	<property name="versionedApp" value="${appname}-${version}"/>
+	
+	  <path id="classpath">
+        <fileset dir="${lib}">
+          <include name="*.jar"/>
+        </fileset>
+	  </path>
+
+	
+	<target name="all" depends="build, publish"/>
+	
+	<target name="build" depends="clean, compile, jar"/>
+
+	<target name="clean">
+		<delete dir="${deployDir}" />
+		<delete dir="${build}"/>
+		<mkdir dir="${deployDir}" />
+		<mkdir dir="${build}"/>
+	</target>
+		
+	<target name="compile">
+		<javac srcdir="src"
+         destdir="build" source="1.5" target="1.5">
+		      <classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+			<jar jarfile="${deployDir}/${versionedApp}.jar" basedir="${build}" >
+				<manifest>
+			    	<attribute name="Built-By" value="${user.name}"/>
+				    <attribute name="Implementation-Title" value="${appname}"/>
+				    <attribute name="Implementation-Version" value="${version}"/>
+				    <attribute name="Implementation-Vendor" value="${org}"/>
+			    </manifest>
+			</jar>
+	  </target>
+	
+	<target name="publish">
+		<property name="dist" value="${deployDir}/${versionedApp}"/>
+		<delete dir="${dist}" />
+		<mkdir dir="${dist}"/>
+		<copy todir="${dist}">
+			<fileset dir="${basedir}" includes="*.txt"/>
+			<fileset dir="${basedir}" includes="*.xml"/>
+		</copy>
+		<copy todir="${dist}/src">
+			<fileset dir="src" />
+		</copy>
+		<copy todir="${dist}/test">
+			<fileset dir="test" />
+		</copy>
+		<copy todir="${dist}/lib">
+			<fileset dir="lib" />
+			<fileset dir="${deployDir}" includes="${versionedApp}.jar"/>
+		</copy>
+		<copy file="${deployDir}/${versionedApp}.jar" todir="${dist}/lib"/>
+		<zip destfile="${deployDir}/${versionedApp}.zip" basedir="${deployDir}" includes="${versionedApp}/**" />
+			
+	</target>
+	
+</project> 
