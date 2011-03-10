@@ -77,4 +77,20 @@
 			
 	</target>
 	
+	<target name="doc">
+		<javadoc packagenames="com.advancedpwr.*"
+	           sourcepath="src"
+	           defaultexcludes="yes"
+	           destdir="docs/api"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="Test API">
+	    <doctitle><![CDATA[<h1>Java Test Object Recorder</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Copyright &#169; 2011 Advanced Power Co. All Rights Reserved.</i>]]></bottom>
+	    <tag name="todo" scope="all" description="To do:"/>
+	    <link href="http://download.oracle.com/javase/6/docs/api/"/>
+	  </javadoc>
+	</target>
+	
 </project> 
