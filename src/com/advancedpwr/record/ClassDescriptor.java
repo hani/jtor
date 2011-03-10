@@ -15,6 +15,12 @@
  */
 package com.advancedpwr.record;
 
+/**
+ * A simple interface to provide the class name and package to the {@link ClassWriter}.
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on Mar 26, 2010
+ *
+ */
 public interface ClassDescriptor
 {
 	String getClassName();

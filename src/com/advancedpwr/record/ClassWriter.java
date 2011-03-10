@@ -19,8 +19,10 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Set;
 
-/*
- * A PrintWriter with convenience methods for creating Java class output.
+/**
+ * <code>ClassWriter</code> wraps a {@link PrintWriter} with convenience methods for creating Java source code output.
+ * 
+ *  @author Matthew Avery, mavery@advancedpwr.com on Mar 26, 2010
  */
 public abstract class ClassWriter
 {

@@ -22,9 +22,50 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.advancedpwr.record.AbstractRecorder;
+import com.advancedpwr.record.ObjectRecorder;
 import com.thoughtworks.xstream.XStream;
 
-
+/**
+ * An {@link ObjectRecorder} that records the <i>state</i> of an object tree using the <a href="http://xstream.codehaus.org/">XStream</a> project.
+ * The object tree is serialized to XML at recording time and Java factory class is created to rehydrate the object tree at test time.
+ * <p>
+ * Recording example:
+ * </p>
+ *<p><blockquote><pre>
+	Person person = new Person();
+	person.setName( "Jim" );
+	Person dad = new Person();
+	dad.setName( "John" );
+	person.setDad( dad );
+	
+	XstreamRecorder recorder = new XstreamRecorder();
+	recorder.setSourceDirectory( "generated" );
+	recorder.record( person );
+ * </pre></blockquote><p>
+ * 
+ * The above example will record the object tree of the "person" instance as a Java class:
+ * 
+ * <p><blockquote><pre>
+	public Person buildPerson()
+	{
+		XStream xstream = new XStream();
+		InputStream in = getClass().getResourceAsStream( "/com/examples/generated/PersonFactory.xml" );
+		return (Person)xstream.fromXML( in );
+	}
+ * </pre></blockquote><p>
+ * 
+ * To reconstruct the instance of "person" in a unit test:
+ * 
+ * <p><blockquote><pre>
+  	Person person = new PersonFactory().buildPerson();
+ * </pre></blockquote><p>
+ * 
+ * The <code>XstreamRecorder</code> is capable of recording arbitrary object trees and is "instance aware".  This class
+ * requires the XStream 1.3.1 jar and the objenesis 1.2 jar.
+ *  
+ * @author Matthew Avery, mavery@advancedpwr.com on Jun 22, 2010
+ *
+ */
 public class XstreamRecorder extends AbstractRecorder
 {
 	protected FileWriter fieldXmlFileWriter;

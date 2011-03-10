@@ -18,7 +18,14 @@ package com.advancedpwr.record;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-
+/**
+ * <code>AccessPath</code> represents the code path leading to the access of an object in the {@link InstanceTree}
+ * 
+ * Instances of <code>AccessPath</code> are inspected by an {@link ObjectRecorder} at class generation time to determine
+ * how to reconstruct the object tree.
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on May 29, 2010
+ */
 public class AccessPath
 {
 	protected InstanceTree fieldInstanceTree;

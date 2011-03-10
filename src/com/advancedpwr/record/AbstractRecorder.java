@@ -20,6 +20,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+/**
+ * <code>AbstractRecorder</code> is the common base class for recorders.  This class provides
+ * some convenience methods for specifying the output directory for recorded classes.  It also
+ * provides the default {@link ClassDescriptor} for the superclass {@link ClassWriter}.
+ * 
+ * It is not necessary for future class recorders to extend AbstractRecorder.  This abstract class
+ * exists for convenience only.
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
+ */
 public abstract class AbstractRecorder extends ClassWriter implements ObjectRecorder
 {
 

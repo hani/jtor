@@ -16,6 +16,8 @@
 package com.advancedpwr.record;
 
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 import com.advancedpwr.record.methods.BaseMethodBuilder;
@@ -24,6 +26,66 @@ import com.advancedpwr.record.methods.Factory;
 import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 
+/**
+ * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file.  The <code>BeanRecorder</code>
+ * is limited in capability.  This recorder uses reflection to inspect an object tree for Java Bean style setter / getter
+ * accessor methods, therefore it is only capable of reconstructing an object tree through that convention.  Many web service
+ * return data structures adhere to the Java Bean accessor convention, so this class may be of use in recording a web service response
+ * for use in unit testing.
+ * <p>
+ * Recording example:
+ * </p>
+ *<p><blockquote><pre>
+	Person person = new Person();
+	person.setName( "Jim" );
+	Person dad = new Person();
+	dad.setName( "John" );
+	person.setDad( dad );
+	
+	BeanRecorder recorder = new BeanRecorder();
+	recorder.setSourceDirectory( "generated" );
+	recorder.record( person );
+ * </pre></blockquote><p>
+ * 
+ * The above example will record the object tree of the "person" instance as a Java class:
+ * 
+ * <p><blockquote><pre>
+  	public class PersonFactory
+	{
+	
+		protected Person person;
+	
+		public Person buildPerson()
+		{
+			person = new Person();
+			person.setDad( buildDad_1_1() );
+			person.setName( "Jim" );
+			return person;
+		}
+	
+		protected Person dad_1_1;
+	
+		protected Person buildDad_1_1()
+		{
+			dad_1_1 = new Person();
+			dad_1_1.setName( "John" );
+			return dad_1_1;
+		}
+	
+	}
+ * </pre></blockquote><p>
+ * 
+ * To reconstruct the instance of "person" in a unit test:
+ * 
+ * <p><blockquote><pre>
+  	Person person = new PersonFactory().buildPerson();
+ * </pre></blockquote><p>
+ * 
+ * The BeanRecorder is "instance aware" and supports {@link Collection} and {@link Map} objects.
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on Jun 22, 2010
+ *
+ */
 public class BeanRecorder extends AbstractRecorder
 {
 	protected InstanceTree fieldInstanceTree;

@@ -20,6 +20,12 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * An {@link AccessPath} representing object access through Java Bean convention setter / getter accessor methods.
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on May 29, 2010
+ *
+ */
 public class AccessorMethodPath extends AccessPath
 {
 

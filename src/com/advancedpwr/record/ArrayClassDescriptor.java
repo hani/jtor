@@ -15,6 +15,16 @@
  */
 package com.advancedpwr.record;
 
+/**
+ * A {@link ClassDescriptor} for array factories.  If the object to be recorded is a Java array, this
+ * class descriptor will create an appropriately named class.
+ * 
+ * For example, if the target object to be recorded is an array of <code>com.example.Person</code> objects, this 
+ * {@link ClassDescriptor} will generate a class name of "PersonArrayFactory" in the package "com.example.generated".
+ * 
+ * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
+ *
+ */
 public class ArrayClassDescriptor extends DefaultClassDescriptor
 {
 
