@@ -42,11 +42,16 @@ public class XstreamRecorderTest extends TestCase
 		recorder.setDescriptor( desc );
 	}
 	
-	public void testRecordPerson()
+	public void XtestRecordPersonJavadocExample()
 	{
-		initDescriptor();
-		Person person = Person.createExamplePerson();
-//		recorder.setKeyName( "firstperson" );
+		Person person = new Person();
+		person.setName( "Jim" );
+		Person dad = new Person();
+		dad.setName( "John" );
+		person.setDad( dad );
+		
+		XstreamRecorder recorder = new XstreamRecorder();
+		recorder.setSourceDirectory( "generated" );
 		recorder.record( person );
 	}
 

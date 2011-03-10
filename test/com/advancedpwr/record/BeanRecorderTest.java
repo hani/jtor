@@ -136,5 +136,18 @@ public class BeanRecorderTest extends AbstractRecorderTest
 		recorder.addBuilderFactory( new URLBuilderFactory() );
 		assertEquals( 19, recorder.getFactoryBuilder().getFactories().size() );
 	}
+	
+	public void XtestRecordPersonJavadocExample()
+	{
+		Person person = new Person();
+		person.setName( "Jim" );
+		Person dad = new Person();
+		dad.setName( "John" );
+		person.setDad( dad );
+		
+		BeanRecorder recorder = new BeanRecorder();
+		recorder.setSourceDirectory( "generated" );
+		recorder.record( person );
+	}
 
 }
