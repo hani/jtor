@@ -1,0 +1,65 @@
+body {
+	font-family: sans-serif;
+	line-height: 140%;
+}
+
+h3 {
+	margin-top: 2em;
+	font-size: 100%;
+}
+
+h2 {
+	margin-top: 1em;
+	font-size: 120%;
+}
+
+/* layout */
+#projectinfo {
+	margin-left: 5px;
+}
+
+div.left {
+	float: left;
+	width: 22%;
+}
+
+div.right {
+	float: left;
+	width: 74%;
+	margin-left: 2%;
+}
+
+#header {
+	display: block;
+	text-align: center;
+	width: 80%;
+}
+
+/* footer */
+#footer {
+	clear: both;
+	display: block;
+	font-size: 80%;
+	text-align: center;
+}
+
+a img {
+	border-style: none;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+/* decorations */
+.bar {
+	background-color: #99FF00;
+	text-align: center;
+}
+
+.title {
+	background-color: #CCFF00;
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 25px;
+	margin: 5px;
+}
