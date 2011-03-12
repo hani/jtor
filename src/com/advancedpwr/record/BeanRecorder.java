@@ -43,7 +43,7 @@ import com.advancedpwr.record.methods.MethodBuilderFactory;
 	person.setDad( dad );
 	
 	BeanRecorder recorder = new BeanRecorder();
-	recorder.setSourceDirectory( "generated" );
+	recorder.setDestination( "generated" );
 	recorder.record( person );
  * </pre></blockquote><p>
  * 

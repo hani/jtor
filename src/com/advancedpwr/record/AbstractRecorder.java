@@ -81,14 +81,24 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		return fieldSourceDirectory;
 	}
 
-	public void setSourceDirectory( File testDirectory )
+	/**
+	 * Set the generated output directory as a <{@link File}
+	 * 
+	 * @param directory
+	 */
+	public void setDestination( File testDirectory )
 	{
 		fieldSourceDirectory = testDirectory;
 	}
 	
-	public void setSourceDirectory( String inFileName )
+	/**
+	 * Set the generated output directory as the name of a <{@link File}.
+	 * 
+	 * @param directory
+	 */
+	public void setDestination( String inFileName )
 	{
-		setSourceDirectory( new File( inFileName ) );
+		setDestination( new File( inFileName ) );
 	}
 
 	protected ClassDescriptor createDefaultDescriptor()

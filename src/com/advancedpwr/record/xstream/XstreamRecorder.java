@@ -39,7 +39,7 @@ import com.thoughtworks.xstream.XStream;
 	person.setDad( dad );
 	
 	XstreamRecorder recorder = new XstreamRecorder();
-	recorder.setSourceDirectory( "generated" );
+	recorder.setDestination( "generated" );
 	recorder.record( person );
  * </pre></blockquote><p>
  * 
