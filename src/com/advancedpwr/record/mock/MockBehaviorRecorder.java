@@ -309,7 +309,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 
 	protected boolean isPublic( Object result )
 	{
-		return Modifier.isPublic( result.getClass().getModifiers() );
+		return Modifier.isPublic( result.getClass().getModifiers() ) || hasPreferedInterface( result.getClass() );
 	}
 	
 	protected boolean canInstrumentArray( Object result )
