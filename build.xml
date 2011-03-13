@@ -77,7 +77,14 @@
 			
 	</target>
 	
+	<taskdef name="java2html" classname="com.java2html.Java2HTMLTask"/>
+	
 	<target name="doc">
+		<delete dir="docs/api" />
+		<delete dir="docs/sample_output" />
+		<delete dir="docs/source" />
+		<delete dir="docs/test_coverage" />
+		
 		<javadoc packagenames="com.advancedpwr.*"
 	           sourcepath="src"
 	           defaultexcludes="yes"
@@ -91,6 +98,33 @@
 	    <tag name="todo" scope="all" description="To do:"/>
 	    <link href="http://download.oracle.com/javase/6/docs/api/"/>
 	  </javadoc>
+		
+		<java2html title="Java Test Object Recorder" 
+			simple="no"
+	        tabsize="4"
+			marginsize="3"
+			header="true"
+			footer="false"
+			destination="docs/source">
+			<fileset dir="src">
+				<include name="**/*.java"/>
+			</fileset>
+			<javadoc localRef="docs/api" httpRef="http://jtor.sourceforge.net/docs/api/"/>
+		</java2html>
+			
+		<java2html title="Sample Output from Unit Tests" 
+			simple="no"
+	        tabsize="4"
+			marginsize="3"
+			header="true"
+			footer="false"
+			destination="docs/sample_output">
+			<fileset dir="generated">
+				<include name="**/*.java"/>
+			</fileset>
+			<javadoc localRef="docs/api" httpRef="http://jtor.sourceforge.net/docs/api/"/>
+		</java2html>
+	
 	</target>
 	
 </project> 
