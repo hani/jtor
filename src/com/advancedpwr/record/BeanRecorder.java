@@ -118,7 +118,7 @@ public class BeanRecorder extends AbstractRecorder
 
 	protected void closeFile()
 	{
-		if ( getSourceDirectory() != null )
+		if ( getDestination() != null )
 		{
 			close( getJavaFileWriter() );
 		}
@@ -181,7 +181,7 @@ public class BeanRecorder extends AbstractRecorder
 	
 	public PrintWriter getPrintWriter()
 	{
-		if ( fieldPrintWriter == null && getSourceDirectory() != null )
+		if ( fieldPrintWriter == null && getDestination() != null )
 		{
 			setWriter( getJavaFileWriter() );
 		}

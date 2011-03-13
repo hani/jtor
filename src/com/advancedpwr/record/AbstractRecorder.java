@@ -33,7 +33,7 @@ import java.io.Writer;
 public abstract class AbstractRecorder extends ClassWriter implements ObjectRecorder
 {
 
-	protected File fieldSourceDirectory;
+	protected File fieldDestinationDirectory;
 	protected FileWriter fieldJavaFileWriter;
 
 	protected FileWriter createFileWriter( final File inFile )
@@ -61,7 +61,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 
 	protected File parentDirectory()
 	{
-		File parent = new File( getSourceDirectory(), packagePath() );
+		File parent = new File( getDestination(), packagePath() );
 		parent.mkdirs();
 		return parent;
 	}
@@ -76,23 +76,23 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		return getPackageName().replaceAll( "[.]", "/" );
 	}
 
-	public File getSourceDirectory()
+	public File getDestination()
 	{
-		return fieldSourceDirectory;
+		return fieldDestinationDirectory;
 	}
 
 	/**
-	 * Set the generated output directory as a <{@link File}
+	 * Set the generated output directory as a {@link File}
 	 * 
 	 * @param directory
 	 */
 	public void setDestination( File testDirectory )
 	{
-		fieldSourceDirectory = testDirectory;
+		fieldDestinationDirectory = testDirectory;
 	}
 	
 	/**
-	 * Set the generated output directory as the name of a <{@link File}.
+	 * Set the generated output directory as the name of a {@link File}.
 	 * 
 	 * @param directory
 	 */

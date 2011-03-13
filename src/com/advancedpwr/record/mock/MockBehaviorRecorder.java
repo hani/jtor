@@ -363,7 +363,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 		writeObjectBuilderMethod();
 		closeBrace();
 		closeFile();
-		System.out.println( "Finished recording " + getSourceDirectory().getAbsolutePath() + File.separator + getDescriptor().toString() );
+		System.out.println( "Finished recording " + getDestination().getAbsolutePath() + File.separator + getDescriptor().toString() );
 		return getObject();
 	}
 
