@@ -17,21 +17,20 @@ package com.advancedpwr.record.xstream;
 
 import java.io.File;
 
-import junit.framework.TestCase;
-
+import com.advancedpwr.record.AbstractRecorderTest;
 import com.advancedpwr.record.SimpleClassDescriptor;
 import com.advancedpwr.record.examples.Person;
 
-public class XstreamRecorderTest extends TestCase
+public class XstreamRecorderTest extends AbstractRecorderTest
 {
 	XstreamRecorder recorder;
 
-	protected void setUp() throws Exception
+	protected void setUp()
 	{
-		super.setUp();
+		setWriteFiles();
 		recorder = new XstreamRecorder();
-
-		recorder.setSourceDirectory( new File( "test") );
+		configureRecorder( recorder );
+		initDescriptor();
 	}
 
 	private void initDescriptor()
@@ -42,16 +41,13 @@ public class XstreamRecorderTest extends TestCase
 		recorder.setDescriptor( desc );
 	}
 	
-	public void XtestRecordPersonJavadocExample()
+	public void testRecordPerson()
 	{
 		Person person = new Person();
 		person.setName( "Jim" );
 		Person dad = new Person();
 		dad.setName( "John" );
 		person.setDad( dad );
-		
-		XstreamRecorder recorder = new XstreamRecorder();
-		recorder.setSourceDirectory( "generated" );
 		recorder.record( person );
 	}
 

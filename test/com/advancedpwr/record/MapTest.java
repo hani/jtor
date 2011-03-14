@@ -45,6 +45,7 @@ public class MapTest extends AbstractRecorderTest
 		MapContainer container = new MapContainer();
 		container.setPerson( person );
 		container.setMap( family );
+		
 		recorder.record( container );
 		assertResult( "package com.advancedpwr.record.examples.generated;\n" + 
 				"\n" + 
@@ -138,8 +139,13 @@ public class MapTest extends AbstractRecorderTest
 		family.put( person.getDad().getName(), person.getDad() );
 		family.put( "alias", person );
 		
+		// Don't want to try and write a class into the "java.util" package.
+		SimpleClassDescriptor desc = new SimpleClassDescriptor();
+		desc.setPackageName( "com.advancedpwr.java.util.generated" );
+		desc.setClassName( "LinkedHashMapFactory" );
+		recorder.setDescriptor( desc );
 		recorder.record( family );
-		assertResult( "package java.util.generated;\n" + 
+		assertResult( "package com.advancedpwr.java.util.generated;\n" + 
 				"\n" + 
 				"import java.util.LinkedHashMap;\n" + 
 				"import com.advancedpwr.record.examples.Person;\n" + 

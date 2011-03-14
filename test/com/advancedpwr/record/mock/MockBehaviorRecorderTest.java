@@ -19,7 +19,7 @@ import com.advancedpwr.record.SimpleClassDescriptor;
 import com.advancedpwr.record.examples.Being;
 import com.advancedpwr.record.examples.Family;
 import com.advancedpwr.record.examples.Person;
-import com.advancedpwr.record.examples.generated.PersonFactory;
+//import com.advancedpwr.record.examples.generated.PersonFactory;
 
 public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 {
@@ -565,7 +565,7 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 	public void XtestRecordJavadocExample()
 	{
 		MockBehaviorRecorder recorder = new MockBehaviorRecorder();
-		recorder.setSourceDirectory( "generated" );
+		recorder.setDestination( "generated" );
 		
 		Person person = new Person();
 		
@@ -588,17 +588,17 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 		
 	}
 	
-	public void XtestPlaybackJavadocExample()
-	{
-		Person person = new PersonFactory().buildPerson();
-		
-		person.setName( "Joe" );
-		assertEquals( "Joe", person.getName() );
-		assertEquals( "dad", person.getDad().getName() );
-		assertEquals( "dad", person.getDad().getName() );
-		
-		Person mom = new Person();
-		mom.setName( "mom" );
-		person.setMom( mom );
-	}
+//	public void XtestPlaybackJavadocExample()
+//	{
+//		Person person = new PersonFactory().buildPerson();
+//		
+//		person.setName( "Joe" );
+//		assertEquals( "Joe", person.getName() );
+//		assertEquals( "dad", person.getDad().getName() );
+//		assertEquals( "dad", person.getDad().getName() );
+//		
+//		Person mom = new Person();
+//		mom.setName( "mom" );
+//		person.setMom( mom );
+//	}
 }

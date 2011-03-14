@@ -84,7 +84,7 @@ public class BeanRecorderTest extends AbstractRecorderTest
 	public void testGetPrintWriter()
 	{
 		recorder.fieldPrintWriter = null;
-		recorder.setSourceDirectory( (File)null );
+		recorder.setDestination( (File)null );
 		assertNull( recorder.getPrintWriter() );
 		
 		recorder.setWriter( result );
@@ -94,10 +94,10 @@ public class BeanRecorderTest extends AbstractRecorderTest
 	public void testGetPrintWriter_file()
 	{
 		recorder.fieldPrintWriter = null;
-		recorder.setSourceDirectory( (File)null );
+		recorder.setDestination( (File)null );
 		assertNull( recorder.getPrintWriter() );
 		
-		recorder.setSourceDirectory( new File("test") );
+		recorder.setDestination( new File("generated") );
 		recorder.setObject( new Person() );
 		assertNotNull( recorder.getPrintWriter() );
 	}
@@ -124,7 +124,7 @@ public class BeanRecorderTest extends AbstractRecorderTest
 			}
 			
 		};
-		recorder.setSourceDirectory( "test" );
+		recorder.setDestination( "generated" );
 		assertEquals( 0, set.size() );
 		recorder.closeFile();
 		assertEquals( 1, set.size() );
@@ -146,7 +146,7 @@ public class BeanRecorderTest extends AbstractRecorderTest
 		person.setDad( dad );
 		
 		BeanRecorder recorder = new BeanRecorder();
-		recorder.setSourceDirectory( "generated" );
+		recorder.setDestination( "generated" );
 		recorder.record( person );
 	}
 

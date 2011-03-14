@@ -16,7 +16,6 @@
 package com.advancedpwr.record;
 
 import java.io.FileWriter;
-import java.io.StringWriter;
 
 import junit.framework.TestCase;
 
@@ -33,12 +32,12 @@ public abstract class AbstractRecorderTest extends TestCase
 		configureRecorder( recorder );
 	}
 
-	public void configureRecorder( final BeanRecorder inRecorder )
+	public void configureRecorder( final AbstractRecorder inRecorder )
 	{
 		result = new MultiWriter();
 		if ( writeFiles() )
 		{
-			inRecorder.setSourceDirectory( "generated" );
+			inRecorder.setDestination( "generated" );
 			result = new MultiWriter()
 			{
 
