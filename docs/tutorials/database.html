@@ -1,0 +1,23 @@
+<h3 class="bar">Record and play back a database interaction</h3>
+<p>Use the <a href="?page=MockBehaviorRecorder.html">MockBehaviorRecorder</a> to record a SQL database call.
+  The <a href="?page=MockBehaviorRecorder.html">MockBehaviorRecorder</a> is pre-configured to use
+   <a href="?page=tutorials/preferred_interfaces.html">preferred interfaces</a> for java.sql.* 
+  interfaces, e.g. Connection, PreparedStatement, ResultSet.</p>
+  
+<p>The <a href="?page=MockBehaviorRecorder.html">MockBehaviorRecorder</a> works by instrumenting an object, listening to 
+method calls, and recording those interactions as EasyMock mock objects in the resulting factory.</p>
+
+<p>To record a SQL database call, first instrument the java.sql.Connection class:</p>
+
+<p>
+<pre>
+		MockBehaviorRecorder recorder = new MockBehaviorRecorder();
+		Connection realConnection = createRealSqlConnection();
+		Connection instrumentedConnection = recorder.record( realConnection );
+</pre>
+</p>
+
+<p>Next we use the <i>instrumented</i> Connection just like we would use the real Connection:</p>
+
+
+
