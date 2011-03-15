@@ -39,13 +39,14 @@ public class MockRecordingInvocationHandler implements InvocationHandler
 	
 	public Object invoke( Object proxy, Method method, Object[] args ) throws Throwable
 	{
-		debug( "Invoking method " + getSource().getClass().getSimpleName() + "." + method.getName() );
+		debug( "Invoking method " + getSource().getClass().getSimpleName() + "." + method.getName() + "()" );
 		getTree().addDeclaredExceptions( method.getExceptionTypes() );
 		Object[] instrumentedArgs = instrumentArguments( method, args );
 		Object result;
 		try
 		{
 			method.setAccessible( true );
+			debug( "Proxy: " + proxy.getClass() + ", Source: " + getSource().getClass() );
 			result = method.invoke( getSource(), instrumentedArgs );
 		}
 		catch ( InvocationTargetException ite )
