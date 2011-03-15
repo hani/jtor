@@ -450,4 +450,22 @@ public class ArrayTest extends AbstractMockRecorderTest
 				"}\n");
 		
 	}
+	
+	public void testArrayPrimitive()
+	{
+		int[] array = { 5, 4, 3, 2, 1};
+		int[] newArray = recorder.record( array );
+		assertEquals( 4, newArray[1]);
+	}
+	
+	public void testCanInstrumentArray()
+	{
+		int[] array = { 5, 4, 3, 2, 1};
+		assertFalse( recorder.canInstrumentArray( null ) );
+		assertFalse( recorder.canInstrumentArray( array ) );
+		Person person = Person.createExamplePerson();
+		Person[] folks = new Person[]{ person.getDad(), person.getMom() };
+		assertTrue( recorder.canInstrumentArray( folks ) );
+		
+	}
 }

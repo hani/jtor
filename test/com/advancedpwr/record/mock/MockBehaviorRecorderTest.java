@@ -20,6 +20,7 @@ import com.advancedpwr.record.examples.Being;
 import com.advancedpwr.record.examples.Family;
 import com.advancedpwr.record.examples.Person;
 //import com.advancedpwr.record.examples.generated.PersonFactory;
+import com.advancedpwr.record.examples.PersonMaker;
 
 public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 {
@@ -560,6 +561,15 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 				"	}\n" + 
 				"}\n" + 
 				"" );
+	}
+	
+	public void testInterfacesArePublic()
+	{
+		Being privatePerson = PersonMaker.createPrivatePerson();
+		
+		assertFalse( recorder.isPublic( privatePerson ) );
+		recorder.addPreferredInterface( Being.class );
+		assertTrue( recorder.isPublic( privatePerson ) );
 	}
 	
 	public void XtestRecordJavadocExample()
