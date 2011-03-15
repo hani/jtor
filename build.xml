@@ -27,7 +27,7 @@
 	
 	<target name="all" depends="build, publish"/>
 	
-	<target name="build" depends="clean, compile, jar"/>
+	<target name="build" depends="clean, compile, jar, publish"/>
 
 	<target name="clean">
 		<delete dir="${deployDir}" />
@@ -83,7 +83,6 @@
 		<delete dir="docs/api" />
 		<delete dir="docs/sample_output" />
 		<delete dir="docs/source" />
-		<delete dir="docs/test_coverage" />
 		
 		<javadoc packagenames="com.advancedpwr.*"
 	           sourcepath="src"
