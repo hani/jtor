@@ -165,7 +165,7 @@ public class InstanceTree
 	
 	protected void addArrayAccessPaths()
 	{
-		if ( objectClass().isArray() )
+		if ( objectClass().isArray() && !objectClass().getComponentType().isPrimitive() )
 		{
 			Object[] array = (Object[]) getObject();
 		
