@@ -16,7 +16,6 @@
 package com.advancedpwr.record.mock;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collection;
@@ -235,7 +234,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 			debug( "Not able to instrument object " + inObject );
 			return inObject;
 		}
-		debug( "Instrumenting " + inObject );
+		debug( "Instrumenting " + inObject.getClass() );
 		initializeInstanceTree( inObject );
 		
 		Class objectClass = inObject.getClass();
@@ -358,7 +357,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 		writeObjectBuilderMethod();
 		closeBrace();
 		closeFile();
-		System.out.println( "Finished recording " + getDestination().getAbsolutePath() + File.separator + getDescriptor().toString() );
+		debug( "Finished recording " + getDestination().getAbsolutePath() + File.separator + getDescriptor().toString() );
 		return getObject();
 	}
 
