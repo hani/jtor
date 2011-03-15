@@ -314,7 +314,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 	
 	protected boolean canInstrumentArray( Object result )
 	{
-		return result != null && result.getClass().isArray();
+		return result != null && result.getClass().isArray() && !result.getClass().getComponentType().isPrimitive();
 	}
 	
 	protected <T> T[] instrumentedArray( T[] inArray )
@@ -347,11 +347,6 @@ public class MockBehaviorRecorder extends BeanRecorder
 		{
 			fieldInstanceTree = createInstanceTree( inObject );
 		}
-	}
-
-	protected boolean isObjectMethod( Method method )
-	{
-		return "hashCode".equals( method.getName() ) || "equals".equals( method.getName() ) ;
 	}
 
 	public Object endRecording()

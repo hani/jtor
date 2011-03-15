@@ -77,11 +77,6 @@ public class MockRecordingInvocationHandler implements InvocationHandler
 		return instrumentedArgs;
 	}
 
-	protected boolean canInstrument( Object result )
-	{
-		return getRecorder().canInstrument( result );
-	}
-
 	protected <T> T[] instrumentedArray( T[] inArray )
 	{
 		return getRecorder().instrumentedArray( inArray );
