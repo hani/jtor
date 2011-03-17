@@ -20,7 +20,7 @@ public class StringBuilder extends AbstractPrimitiveBuilder
 	
 	public String resultBuilder()
 	{
-		return "\"" + result() + "\""; 
+		return "\"" + result().replaceAll( "\n", "\\\\n" ) + "\""; 
 	}
 
 
