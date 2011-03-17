@@ -31,7 +31,8 @@ public class StringRecorderTest extends AbstractRecorderTest
 	{
 		StringExample stringExample = new StringExample();
 		stringExample.setString( "a string" );
-		stringExample.setString2( "another string" );
+		stringExample.setString2( "another string\n" +
+								  "two lines long" );
 		
 		recorder.record( stringExample );
 		assertResult( "package com.advancedpwr.record.examples.generated;\n" + 
