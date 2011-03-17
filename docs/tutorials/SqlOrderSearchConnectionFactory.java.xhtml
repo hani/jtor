@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<style type="text/css">
+td.java, td.java-ln {vertical-align:top;}
+tt.java, tt.java-ln, pre.java, pre.java-ln {line-height:1em; margin-bottom:0em;}
+td.java-ln { text-align:right; }
+tt.java-ln, pre.java-ln { color:#888888 }
+/* Background       */ span.java0  { font-size: 10pt; color:#ffffff; }
+/* Line numbers       */ span.java1  { font-size: 10pt; color:#808080; }
+/* Multi-line comments       */ span.java2  { font-size: 10pt; color:#3f7f5f; }
+/* Single-line comments       */ span.java3  { font-size: 10pt; color:#3f7f5f; }
+/* Keywords       */ span.java4  { font-size: 10pt; color:#7f0055; font-weight:bold; }
+/* Strings       */ span.java5  { font-size: 10pt; color:#2a00ff; }
+/* Character constants       */ span.java6  { font-size: 10pt; color:#990000; }
+/* Numeric constants       */ span.java7  { font-size: 10pt; color:#990000; }
+/* Parenthesis       */ span.java8  { font-size: 10pt; color:#000000; }
+/* Primitive Types       */ span.java9  { font-size: 10pt; color:#7f0055; font-weight:bold; }
+/* Others       */ span.java10  { font-size: 10pt; color:#000000; }
+/* Javadoc keywords       */ span.java11  { font-size: 10pt; color:#7f9fbf; }
+/* Javadoc HTML tags       */ span.java12  { font-size: 10pt; color:#7f7f9f; }
+/* Javadoc links       */ span.java13  { font-size: 10pt; color:#3f3fbf; }
+/* Javadoc others       */ span.java14  { font-size: 10pt; color:#3f5fbf; }
+/* Undefined       */ span.java15  { font-size: 10pt; color:#ff6100; }
+/* Annotation       */ span.java16  { font-size: 10pt; color:#646464; }
+</style>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title></title>
+</head>
+<body>
+<div class="java"><code class="java"><span class="java4">package </span><span class="java10">com.tutorial.database.generated;<br />
+<br />
+</span><span class="java4">import </span><span class="java10">java.sql.Connection;<br />
+</span><span class="java4">import </span><span class="java10">java.sql.SQLException;<br />
+</span><span class="java4">import </span><span class="java10">java.sql.PreparedStatement;<br />
+</span><span class="java4">import </span><span class="java10">java.sql.ResultSet;<br />
+</span><span class="java4">import </span><span class="java10">java.sql.Timestamp;<br />
+</span><span class="java4">import </span><span class="java10">java.math.BigDecimal;<br />
+</span><span class="java4">import </span><span class="java10">com.advancedpwr.record.mock.MockFactory;<br />
+<br />
+</span><span class="java4">public class </span><span class="java10">SqlOrderSearchConnectionFactory </span><span class="java4">extends </span><span class="java10">MockFactory<br />
+</span><span class="java8">{<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Connection connection;<br />
+<br />
+&#xA0; </span><span class="java4">public </span><span class="java10">Connection buildConnection</span><span class="java8">() </span><span class="java4">throws </span><span class="java10">SQLException<br />
+&#xA0; </span><span class="java8">{<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">if </span><span class="java8">( </span><span class="java10">connection != </span><span class="java4">null </span><span class="java8">) <br />
+&#xA0;&#xA0;&#xA0; {<br />
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">connection;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">connection = createStrictMock</span><span class="java8">( </span><span class="java10">Connection.</span><span class="java4">class </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">connection.isClosed</span><span class="java8">() )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">false </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">connection.prepareStatement</span><span class="java8">( </span><span class="java5">&#34;select * from tl_orders where name like ? or id like ? or company like ? or specification like ? or paypalid like ? or ebayid like ? or amazonid like ? or note like ? or Address1 like ? or Address2 like ? or City like ? or StateRegion like ? or Email like ? or ebayusername like ? or miscellaneous like ? order by paymentdate desc&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildPreparedStatement_2_1</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">connection.isClosed</span><span class="java8">() )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">false </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; connection.close</span><span class="java8">()</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; replay</span><span class="java8">( </span><span class="java10">connection </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">connection;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">PreparedStatement preparedstatement_2_1;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">PreparedStatement buildPreparedStatement_2_1</span><span class="java8">() </span><span class="java4">throws </span><span class="java10">SQLException<br />
+&#xA0; </span><span class="java8">{<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">if </span><span class="java8">( </span><span class="java10">preparedstatement_2_1 != </span><span class="java4">null </span><span class="java8">) <br />
+&#xA0;&#xA0;&#xA0; {<br />
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">preparedstatement_2_1;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">preparedstatement_2_1 = createStrictMock</span><span class="java8">( </span><span class="java10">PreparedStatement.</span><span class="java4">class </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">1</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">2</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">3</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">4</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">5</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">6</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">7</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">8</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">9</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">10</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">11</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">12</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">13</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">14</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; preparedstatement_2_1.setString</span><span class="java8">( </span><span class="java7">15</span><span class="java10">,</span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">preparedstatement_2_1.executeQuery</span><span class="java8">() )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildResultSet_21_2</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; replay</span><span class="java8">( </span><span class="java10">preparedstatement_2_1 </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">preparedstatement_2_1;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">ResultSet resultset_21_2;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">ResultSet buildResultSet_21_2</span><span class="java8">() </span><span class="java4">throws </span><span class="java10">SQLException<br />
+&#xA0; </span><span class="java8">{<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">if </span><span class="java8">( </span><span class="java10">resultset_21_2 != </span><span class="java4">null </span><span class="java8">) <br />
+&#xA0;&#xA0;&#xA0; {<br />
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">resultset_21_2;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">resultset_21_2 = createStrictMock</span><span class="java8">( </span><span class="java10">ResultSet.</span><span class="java4">class </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.next</span><span class="java8">() )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">true </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Name&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;James T Kirk&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;LastModified&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildTimestamp_25_3</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Address1&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;NCC 1701&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Address2&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">null </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;City&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;Enterprise&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Company&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;UFP&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Email&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;james.t.kirk@enterprise.com&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;EbayUserName&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">null </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Phone&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;5551234444&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Postal&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;70007&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;StateRegion&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;IL&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Amount&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildBigDecimal_43_3</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;EBayId&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Id&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java7">16400 </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Miscellaneous&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">null </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Note&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;OrderDate&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildTimestamp_25_3</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;PaymentDate&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildTimestamp_51_3</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;PaymentType&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;Amazon&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;PayPalId&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">null </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;AmazonId&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;104-9127098-2444444&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Specification&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;D620 1.6GHZ/1GB/60GB/DVD+CDRW amazon&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;Status&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;SHIPPED&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;ShippedDate&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java10">buildTimestamp_62_3</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.getObject</span><span class="java8">( </span><span class="java5">&#34;TrackingNumber&#34; </span><span class="java8">) )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java5">&#34;1Z20AR764251799999&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; expect</span><span class="java8">( </span><span class="java10">resultset_21_2.next</span><span class="java8">() )</span><span class="java10">.andReturn</span><span class="java8">( </span><span class="java4">false </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; replay</span><span class="java8">( </span><span class="java10">resultset_21_2 </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">resultset_21_2;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp timestamp_25_3;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp buildTimestamp_25_3</span><span class="java8">()<br />
+&#xA0; {<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">timestamp_25_3 = </span><span class="java4">new </span><span class="java10">Timestamp</span><span class="java8">( </span><span class="java7">1298006291000l </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">timestamp_25_3;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">BigDecimal bigdecimal_43_3;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">BigDecimal buildBigDecimal_43_3</span><span class="java8">()<br />
+&#xA0; {<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">if </span><span class="java8">( </span><span class="java10">bigdecimal_43_3 != </span><span class="java4">null </span><span class="java8">) <br />
+&#xA0;&#xA0;&#xA0; {<br />
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">bigdecimal_43_3;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java8">}<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">bigdecimal_43_3 = createStrictMock</span><span class="java8">( </span><span class="java10">BigDecimal.</span><span class="java4">class </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; replay</span><span class="java8">( </span><span class="java10">bigdecimal_43_3 </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">bigdecimal_43_3;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp timestamp_51_3;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp buildTimestamp_51_3</span><span class="java8">()<br />
+&#xA0; {<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">timestamp_51_3 = </span><span class="java4">new </span><span class="java10">Timestamp</span><span class="java8">( </span><span class="java7">1297840793000l </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">timestamp_51_3;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp timestamp_62_3;<br />
+<br />
+&#xA0; </span><span class="java4">protected </span><span class="java10">Timestamp buildTimestamp_62_3</span><span class="java8">()<br />
+&#xA0; {<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">timestamp_62_3 = </span><span class="java4">new </span><span class="java10">Timestamp</span><span class="java8">( </span><span class="java7">1296622800000l </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java4">return </span><span class="java10">timestamp_62_3;<br />
+&#xA0; </span><span class="java8">}<br />
+<br />
+}</span></code></div></body>
+</html>
