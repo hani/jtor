@@ -31,7 +31,7 @@ public class StringRecorderTest extends AbstractRecorderTest
 	{
 		StringExample stringExample = new StringExample();
 		stringExample.setString( "a string" );
-		stringExample.setString2( "another string\n" +
+		stringExample.setString2( "another string\r\n" +
 								  "two lines long" );
 		
 		recorder.record( stringExample );
@@ -48,7 +48,7 @@ public class StringRecorderTest extends AbstractRecorderTest
 				"	{\n" + 
 				"		stringexample = new StringExample();\n" + 
 				"		stringexample.setString( \"a string\" );\n" +
-				"		stringexample.setString2( \"another string\" );\n" + 
+				"		stringexample.setString2( \"another string\\r\\ntwo lines long\" );\n" + 
 				"		return stringexample;\n" + 
 				"	}\n" +
 				"\n" + 
