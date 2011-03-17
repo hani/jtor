@@ -42,7 +42,7 @@ import com.advancedpwr.record.methods.MethodBuilderFactory;
 	public void testRecordJavadocExample()
 	{
 		MockBehaviorRecorder recorder = new MockBehaviorRecorder();
-		recorder.setDestination( "generated" );
+		recorder.setDestination( "recordings" );
 		
 		Person person = new Person();
 		
