@@ -25,7 +25,10 @@ import com.advancedpwr.record.methods.URLBuilderFactory;
 
 public class BeanRecorderTest extends AbstractRecorderTest
 {
-
+	protected void setUp()
+	{
+		super.setUp();
+	}
 	
 	public void testSetObject()
 	{
@@ -132,11 +135,33 @@ public class BeanRecorderTest extends AbstractRecorderTest
 	
 	public void testAddBuilder()
 	{
-		assertEquals( 18, recorder.getFactoryBuilder().getFactories().size() );
-		recorder.addBuilderFactory( new URLBuilderFactory() );
 		assertEquals( 19, recorder.getFactoryBuilder().getFactories().size() );
+		recorder.addBuilderFactory( new URLBuilderFactory() );
+		assertEquals( 20, recorder.getFactoryBuilder().getFactories().size() );
 	}
 	
+	public void testRecord_Object()
+	{
+		Object object = new Object();
+		
+		recorder.record( object );
+		
+		assertResult( "package java.lang.generated;\n" + 
+				"\n" + 
+				"\n" + 
+				"public class ObjectFactory\n" + 
+				"{\n" + 
+				"\n" + 
+				"	protected Object object;\n" + 
+				"\n" + 
+				"	public Object buildObject()\n" + 
+				"	{\n" + 
+				"		object = new Object();\n" + 
+				"		return object;\n" + 
+				"	}\n" + 
+				"\n" + 
+				"}\n" );
+	}
 	public void XtestRecordPersonJavadocExample()
 	{
 		Person person = new Person();

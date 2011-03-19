@@ -423,6 +423,19 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 				"	}\n" + 
 				"}\n");
 	}
+	
+//	public void testRecord_Object()
+//	{
+//		Object object = new Object();
+//		
+//		Object instrumented = recorder.record( object );
+//		assertTrue( instrumented.equals( object ) );
+//		// this is a bug.  Need to mock hashCode() as well
+////		assertEquals( object, instrumented );
+//		recorder.endRecording();
+//		assertResult( "" );
+//	}
+	
 	// This is a known issue and I'm not sure how to handle it correctly.
 	public void XtestRecordRestricted() 
 	{

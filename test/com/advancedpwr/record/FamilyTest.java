@@ -15,6 +15,8 @@
  */
 package com.advancedpwr.record;
 
+import java.util.Locale;
+
 import com.advancedpwr.record.examples.Family;
 import com.advancedpwr.record.examples.Person;
 
@@ -30,11 +32,13 @@ public class FamilyTest extends AbstractRecorderTest
 	{
 		Person person = Person.createExamplePerson();
 		Family family = new Family(person.getDad(), person.getMom());
+		family.setLocale( Locale.CANADA );
 		recorder.record( family );
 		assertResult( "package com.advancedpwr.record.examples.generated;\n" + 
 				"\n" + 
 				"import com.advancedpwr.record.examples.Family;\n" + 
 				"import com.advancedpwr.record.examples.Person;\n" + 
+				"import java.util.Locale;\n" + 
 				"\n" + 
 				"public class FamilyFactory\n" + 
 				"{\n" + 
@@ -45,7 +49,8 @@ public class FamilyTest extends AbstractRecorderTest
 				"	{\n" + 
 				"		family = new Family();\n" + 
 				"		family.setDad( buildDad_1_1() );\n" + 
-				"		family.setMom( buildMom_5_1() );\n" + 
+				"		family.setLocale( buildLocale_5_1() );\n" + 
+				"		family.setMom( buildMom_6_1() );\n" + 
 				"		return family;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -68,13 +73,25 @@ public class FamilyTest extends AbstractRecorderTest
 				"		return dad_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_5_1;\n" + 
+				"	protected Locale locale_5_1;\n" + 
 				"\n" + 
-				"	protected Person buildMom_5_1()\n" + 
+				"	protected Locale buildLocale_5_1()\n" + 
 				"	{\n" + 
-				"		mom_5_1 = new Person();\n" + 
-				"		mom_5_1.setName( \"mom\" );\n" + 
-				"		return mom_5_1;\n" + 
+				"		if ( locale_5_1 != null ) \n" + 
+				"		{\n" + 
+				"			return locale_5_1;\n" + 
+				"		}\n" + 
+				"		locale_5_1 = new Locale( \"en\", \"CA\" );\n" + 
+				"		return locale_5_1;\n" + 
+				"	}\n" + 
+				"\n" + 
+				"	protected Person mom_6_1;\n" + 
+				"\n" + 
+				"	protected Person buildMom_6_1()\n" + 
+				"	{\n" + 
+				"		mom_6_1 = new Person();\n" + 
+				"		mom_6_1.setName( \"mom\" );\n" + 
+				"		return mom_6_1;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"}\n" );

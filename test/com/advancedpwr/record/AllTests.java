@@ -26,18 +26,19 @@ public class AllTests
 		//		AbstractRecorderTest.setWriteFiles();
 		TestSuite suite = new TestSuite( "Test for com.advancedpwr.record" );
 		//$JUnit-BEGIN$
-		suite.addTestSuite( ArrayTest.class );
-		suite.addTestSuite( DateCalendarTest.class );
-		suite.addTestSuite( WrappedIOTest.class );
+		suite.addTestSuite( FamilyTest.class );
+		suite.addTestSuite( StringRecorderTest.class );
+		suite.addTestSuite( BeanRecorderTest.class );
 		suite.addTestSuite( MapTest.class );
+		suite.addTestSuite( ArrayTest.class );
+		suite.addTestSuite( DefaultClassDescriptorTest.class );
+		suite.addTestSuite( ClassWriterTest.class );
+		suite.addTestSuite( ListInstanceTest.class );
+		suite.addTestSuite( InstanceTreeTest.class );
 		suite.addTestSuite( AccessPathTest.class );
 		suite.addTestSuite( ListRecorderTest.class );
-		suite.addTestSuite( InstanceTreeTest.class );
-		suite.addTestSuite( BeanRecorderTest.class );
-		suite.addTestSuite( StringRecorderTest.class );
-		suite.addTestSuite( ListInstanceTest.class );
-		suite.addTestSuite( ClassWriterTest.class );
-		suite.addTestSuite( DefaultClassDescriptorTest.class );
+		suite.addTestSuite( DateCalendarTest.class );
+		suite.addTestSuite( WrappedIOTest.class );
 		suite.addTestSuite( DescentTest.class );
 		//$JUnit-END$
 		return suite;

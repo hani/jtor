@@ -16,7 +16,6 @@
 package com.advancedpwr.record;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +23,11 @@ import java.util.Vector;
 
 import junit.framework.TestCase;
 
+import com.advancedpwr.record.examples.BadPerson;
 import com.advancedpwr.record.examples.ListExample;
 import com.advancedpwr.record.examples.ListExampleFactory;
 import com.advancedpwr.record.examples.Person;
+import com.advancedpwr.record.inspect.Inspector;
 
 public class InstanceTreeTest extends TestCase
 {
@@ -101,26 +102,31 @@ public class InstanceTreeTest extends TestCase
 
 	public void testInvoke_exception() throws Exception
 	{
-		Person person = new Person()
-		{
-			public List getChildren()
-			{
-				throw new RuntimeException( "bad stuff" );
-			}
-		};
+		Person person = new BadPerson();
 
-		tree = new InstanceTree( new Person() );
-		tree.setObject( person );
-
-		Method method = person.getClass().getMethod( "getChildren", new Class[]{} );
 		try
 		{
-			tree.invoke( method );
+			tree = new InstanceTree( person );
 			fail( "should have thrown an exception");
 		}
 		catch ( RecorderException e )
 		{
 			assertTrue( e.getCause() instanceof InvocationTargetException );
 		}
+	}
+	
+	public void testAddInspector()
+	{
+		tree = new InstanceTree( new Person() );
+		assertEquals( 4, tree.getInspectors().size() );
+		tree.addInspector( new Inspector()
+		{
+			
+			public void inspect( InstanceTree inTree )
+			{
+			}
+		} );
+		
+		assertEquals( 5, tree.getInspectors().size() );
 	}
 }

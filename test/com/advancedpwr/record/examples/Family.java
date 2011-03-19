@@ -15,8 +15,12 @@
  */
 package com.advancedpwr.record.examples;
 
+import java.util.Locale;
+
 public class Family implements Being
 {
+	protected Locale fieldLocale;
+	
 	public Family()
 	{
 		
@@ -79,5 +83,15 @@ public class Family implements Being
 	{
 		inPerson.setName( "jerk" );
 		throw new Exception("Bad stuff");
+	}
+
+	public Locale getLocale()
+	{
+		return fieldLocale;
+	}
+
+	public void setLocale( Locale locale )
+	{
+		fieldLocale = locale;
 	}
 }
