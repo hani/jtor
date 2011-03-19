@@ -12,73 +12,69 @@ columns of a database table of orders.  First we must instantiate and configure 
 generated factory class:</p>
 
 <p>
-<pre>
-	MockBehaviorRecorder recorder = new MockBehaviorRecorder();
-	
-	//Set the output directory for generated source code
-	recorder.setDestination( "recordings" );
-	
-	//Set a class descriptor, otherwise the recorder will default to "java.sql.generated.ConnectionFactory"
-	SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
-	descriptor.setPackageName( "com.tampalaptops.search.generated" );
-	descriptor.setClassName( "SqlOrderSearchConnectionFactory" );
-	recorder.setDescriptor( descriptor );
-</pre>
+
+<div class="java"><code class="java"><span class="java10">MockBehaviorRecorder recorder = </span><span class="java4">new </span><span class="java10">MockBehaviorRecorder</span><span class="java8">()</span><span class="java10">;<br />
+<br />
+</span><span class="java3">//Set the output directory for generated source code<br />
+</span><span class="java10">recorder.setDestination</span><span class="java8">( </span><span class="java5">&#34;recordings&#34; </span><span class="java8">)</span><span class="java10">;<br />
+<br />
+</span><span class="java3">//Set a class descriptor, otherwise the recorder will default to &#34;java.sql.generated.ConnectionFactory&#34;<br />
+</span><span class="java10">SimpleClassDescriptor descriptor = </span><span class="java4">new </span><span class="java10">SimpleClassDescriptor</span><span class="java8">()</span><span class="java10">;<br />
+descriptor.setPackageName</span><span class="java8">( </span><span class="java5">&#34;com.tampalaptops.search.generated&#34; </span><span class="java8">)</span><span class="java10">;<br />
+descriptor.setClassName</span><span class="java8">( </span><span class="java5">&#34;SqlOrderSearchConnectionFactory&#34; </span><span class="java8">)</span><span class="java10">;<br />
+recorder.setDescriptor</span><span class="java8">( </span><span class="java10">descriptor </span><span class="java8">)</span><span class="java10">;</span></code></div>
 </p>
 
 <p>Next we want to instrument the java.sql.Connection class, then use the <i>instrumented</i> Connection just like we would use the real Connection. </p>
 
 <p>
-<pre>
-	SqlOrderSearch search = new SqlOrderSearch();
-	Connection connection = search.createConnection();
-	Connection instrumentedConnection = recorder.record( connection );
-	search.setConnection( instrumentedConnection );
-	
-	search.setSearchText( "Kirk" );
-	List orderDetails = search.searchDetails();
-</pre>
+
+<div class="java"><code class="java"><span class="java10">SqlOrderSearch search = </span><span class="java4">new </span><span class="java10">SqlOrderSearch</span><span class="java8">()</span><span class="java10">;<br />
+Connection connection = search.createConnection</span><span class="java8">()</span><span class="java10">;<br />
+Connection instrumentedConnection = recorder.record</span><span class="java8">( </span><span class="java10">connection </span><span class="java8">)</span><span class="java10">;<br />
+search.setConnection</span><span class="java8">( </span><span class="java10">instrumentedConnection </span><span class="java8">)</span><span class="java10">;<br />
+<br />
+search.setSearchText</span><span class="java8">( </span><span class="java5">&#34;Kirk&#34; </span><span class="java8">)</span><span class="java10">;<br />
+List orderDetails = search.searchDetails</span><span class="java8">()</span><span class="java10">;</span></code></div>
+
 </p>
 
 <p>Behind the scenes, SqlOrderSearch is doing real work with java.sql.* interaces, such as PreparedStatement and ResultSet,
 something like:
 <p>
 
-<pre>
-	PreparedStatement statement = getConnection().prepareStatement( "select * from orders where name like ?" );
-	statement.setString( 1, "%Kirk%" );
-	ResultSet resultSet = statement.executeQuery();
-	List names = new ArrayList();
-	while( resultSet.next() )
-	{
-		names.add( resultSet.getString( "name" ) );
-	}
-	getConnection().close();
-</pre>
+<div class="java"><code class="java"><span class="java10">PreparedStatement statement = getConnection</span><span class="java8">()</span><span class="java10">.prepareStatement</span><span class="java8">( </span><span class="java5">&#34;select * from orders where name like ?&#34; </span><span class="java8">)</span><span class="java10">;<br />
+statement.setString</span><span class="java8">( </span><span class="java7">1</span><span class="java10">, </span><span class="java5">&#34;%Kirk%&#34; </span><span class="java8">)</span><span class="java10">;<br />
+ResultSet resultSet = statement.executeQuery</span><span class="java8">()</span><span class="java10">;<br />
+List names = </span><span class="java4">new </span><span class="java10">ArrayList</span><span class="java8">()</span><span class="java10">;<br />
+</span><span class="java4">while</span><span class="java8">( </span><span class="java10">resultSet.next</span><span class="java8">() )<br />
+{<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">names.add</span><span class="java8">( </span><span class="java10">resultSet.getString</span><span class="java8">( </span><span class="java5">&#34;name&#34; </span><span class="java8">) )</span><span class="java10">;<br />
+</span><span class="java8">}<br />
+</span><span class="java10">getConnection</span><span class="java8">()</span><span class="java10">.close</span><span class="java8">()</span><span class="java10">;</span></code></div>
 </p>
 
 <p>Finally, we must tell the recorder that we are finished recording so that it can write out our factory:</p>
 
 <p>
-<pre>
-	recorder.endRecording();
-</pre>
+<div class="java"><code class="java"><span class="java10">recorder.endRecording</span><span class="java8">()</span><span class="java10">;</span></code></div>
 </p>
 
 <p>Which will produce a factory, in this case <a href="?page=tutorials/sqlfactory.html">com.tampalaptops.search.generated.SqlOrderSearchConnectionFactory</a>
 that can be used in a unit test to produce a <i>mock</i> Connection that will emulate and verify the database interaction as EasyMock objects:</p>
 
 <p>
+
+<div class="java"><code class="java"><span class="java4">public </span><span class="java9">void </span><span class="java10">testSearch</span><span class="java8">() </span><span class="java4">throws </span><span class="java10">Exception<br />
+</span><span class="java8">{<br />
+&#xA0;&#xA0;&#xA0; </span><span class="java10">SqlOrderSearch search = </span><span class="java4">new </span><span class="java10">SqlOrderSearch</span><span class="java8">()</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; search.setConnection</span><span class="java8">( </span><span class="java4">new </span><span class="java10">SqlOrderSearchConnectionFactory</span><span class="java8">()</span><span class="java10">.buildConnection</span><span class="java8">() )</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; search.setSearchText</span><span class="java8">( </span><span class="java5">&#34;Kirk&#34; </span><span class="java8">)</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; List orderDetails = search.searchDetails</span><span class="java8">()</span><span class="java10">;<br />
+&#xA0;&#xA0;&#xA0; assertEquals</span><span class="java8">( </span><span class="java7">1</span><span class="java10">, orderDetails.size</span><span class="java8">() )</span><span class="java10">;<br />
+</span><span class="java8">}</span></code></div>
 <pre>
-	public void testSearch() throws Exception
-	{
-		SqlOrderSearch search = new SqlOrderSearch();
-		search.setConnection( new SqlOrderSearchConnectionFactory().buildConnection() );
-		search.setSearchText( "Kirk" );
-		List orderDetails = search.searchDetails();
-		assertEquals( 1, orderDetails.size() );
-	}
-</pre>
+
 </p>
 
 <p>Note that the EasyMock mock objects are going to verify all interactions with the java.sql.* interfaces internal to

@@ -1,0 +1,73 @@
+
+
+<h3 class="bar">How to customize object creation</h3>
+<p>The <a href="?page=BeanRecorder.html">BeanRecorder</a> can be customized to produce a factory
+capable of instantiating objects using alternate code. By default, objects will be instantiated
+using the default constructor, but if a default constructor does not exist, it is necessary to
+provide the BeanRecorder with a customized method builder that is able to write the "builder" method
+required to instantiate the object.
+
+<p>The <a href="?page=MockBehaviorRecorder.html">MockBehaviorRecorder</a> extends <a
+	href="?page=BeanRecorder.html">BeanRecorder</a> and can be customized using the same approach.</p>
+<p>For this tutorial, we are going to attempt to record an instance of java.util.Locale which
+does not have a default constructor. The class LocaleHolder is a java bean convention class that has
+Locale field and accessor methods.</p>
+
+<p>
+<div class="java"><code class="java"><span class="java0"> </span><span class="java10">LocaleHolder
+holder = </span><span class="java4">new </span><span class="java10">LocaleHolder</span><span class="java8">()</span><span
+	class="java10">;<br />
+holder.setLocale</span><span class="java8">( </span><span class="java10">Locale.CANADA </span><span
+	class="java8">)</span><span class="java10">;<br />
+<br />
+BeanRecorder recorder = </span><span class="java4">new </span><span class="java10">BeanRecorder</span><span
+	class="java8">()</span><span class="java10">;<br />
+recorder.setDestination</span><span class="java8">( </span><span class="java5">&#34;recordings&#34;
+</span><span class="java8">)</span><span class="java10">;<br />
+recorder.record</span><span class="java8">( </span><span class="java10">holder </span><span class="java8">)</span><span
+	class="java10">;</span></code></div>
+</p>
+
+<p>We quickly discover that the resulting LocaleHolderFactory will not compile:</p>
+
+<iframe src="tutorials/LocaleHolderFactory_bad.java.xhtml" width="100%" height="520px"
+	frameborder="0"></iframe>
+
+<p>To fix this problem, we first need to create a customized method builder:</p>
+
+<iframe src="source/com/advancedpwr/record/methods/LocaleBuilder.java.html" width="100%"
+	height="360px" frameborder="0"></iframe>
+
+<p>Next we need a method builder Factory that knows when to use this builder:</p>
+
+<iframe src="source/com/advancedpwr/record/methods/LocaleBuilderFactory.java.html" width="100%"
+	height="400px" frameborder="0"></iframe>
+
+<p>Finally, add the builder Factory to the recorder before recording:</p>
+
+<p>
+<div class="java"><code class="java"><span class="java0"> </span><span class="java10">LocaleHolder
+holder = </span><span class="java4">new </span><span class="java10">LocaleHolder</span><span class="java8">()</span><span
+	class="java10">;<br />
+holder.setLocale</span><span class="java8">( </span><span class="java10">Locale.CANADA </span><span
+	class="java8">)</span><span class="java10">;<br />
+<br />
+BeanRecorder recorder = </span><span class="java4">new </span><span class="java10">BeanRecorder</span><span
+	class="java8">()</span><span class="java10">;<br />
+recorder.setDestination</span><span class="java8">( </span><span class="java5">&#34;recordings&#34;
+</span><span class="java8">)</span><span class="java10">;<br />
+recorder.addBuilderFactory</span><span class="java8">( </span><span class="java4">new </span><span
+	class="java10">LocaleBuilderFactory</span><span class="java8">() )</span><span class="java10">;<br />
+recorder.record</span><span class="java8">( </span><span class="java10">holder </span><span class="java8">)</span><span
+	class="java10">;</span></code></div>
+</p>
+
+<p>Which produces the resulting LocaleHolderFactory:</p>
+
+<iframe src="tutorials/LocaleHolderFactory.java.xhtml" width="100%" height="580px" frameborder="0"></iframe>
+
+<p>Note that the <a href="?page=BeanRecorder.html">BeanRecorder</a> is pre-configured to include
+the LocaleBuilderFactory.</p>
+
+<p>See the <a href="?page=tutorials/URLBuilderFactory.html">URLBuilderFactory</a> and <a
+	href="?page=tutorials/URLBuilder.html">URLBuilder</a> for another good example.</p>
