@@ -110,6 +110,8 @@
 			</fileset>
 			<javadoc localRef="docs/api" httpRef="http://jtor.sourceforge.net/docs/api/"/>
 		</java2html>
+		
+		<copy file="docs/java2html.css" tofile="docs/source/stylesheet.css" overwrite="yes"/>
 			
 		<java2html title="Sample Output from Unit Tests" 
 			simple="no"
@@ -123,7 +125,46 @@
 			</fileset>
 			<javadoc localRef="docs/api" httpRef="http://jtor.sourceforge.net/docs/api/"/>
 		</java2html>
+		
+		<copy file="docs/java2html.css" tofile="docs/sample_output/stylesheet.css" overwrite="yes"/>
 	
+
+	</target>
+	
+	<!-- directory that contains emma.jar and emma_ant.jar: -->
+	  <property name="emma.dir" value="/home/avery/opt/apache-ant-1.7.1/lib" />
+
+	  <!-- path element used by EMMA taskdef below: -->
+	  <path id="emma.lib" >
+	    <pathelement location="${emma.dir}/emma.jar" />
+	    <pathelement location="${emma.dir}/emma_ant.jar" />
+	  </path>
+
+	  <!-- this loads <emma> and <emmajava> custom tasks: -->
+	  <taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+	
+	  <path id="coverage_classpath">
+	      <fileset dir="${lib}">
+	        <include name="*.jar"/>
+	      </fileset>
+			<pathelement location="build"/>
+	  </path>
+	
+	<target name="coverage">
+		<javac srcdir="src:test"
+		         destdir="build" source="1.5" target="1.5" debug="on">
+				      <classpath refid="classpath"/>
+				</javac>
+	    <emmajava enabled="true" libclasspathref="emma.lib" 
+	              fullmetadata="yes" sourcepath="src:test"
+	              classname="com.advancedpwr.TestMain"
+	              classpathref="coverage_classpath"
+	    >
+
+	      <!-- <emmajava> option extensions [see the reference manual for
+	           complete details]: -->
+	      <html outfile="docs/test_coverage/index.html"  />
+	    </emmajava>
 	</target>
 	
 </project> 
