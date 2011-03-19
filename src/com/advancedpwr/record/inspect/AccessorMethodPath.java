@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import com.advancedpwr.record.AccessPath;
 
 /**
  * An {@link AccessPath} representing object access through Java Bean convention setter / getter accessor methods.

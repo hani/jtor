@@ -16,7 +16,7 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.MapPutPath;
+import com.advancedpwr.record.inspect.MapPutPath;
 
 public class MapBuilder extends AbstractMultiBuilder
 {

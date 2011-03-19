@@ -104,6 +104,7 @@ public class MethodBuilderFactory
 		list.add( new IntBuilderFactory() );
 		list.add( new LongBuilderFactory() );
 		list.add( new ArrayBuilderFactory() );
+		list.add( new LocaleBuilderFactory() );
 		list.add( new URLBuilderFactory() );
 		list.add( new DateBuilderFactory() );
 		list.add( new CalendarBuilderFactory() );

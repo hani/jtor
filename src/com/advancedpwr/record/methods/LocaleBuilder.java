@@ -13,13 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.methods;
 
-
-public class ArrayMethodComparator extends ParameterTypeComparator
+public class LocaleBuilder extends BaseMethodBuilder
 {
-	protected boolean isParameterType( Class inClass )
+	
+	protected void writeInstance()
 	{
-		return inClass.isArray();
+		writeIfNotNullReturnInstance();
+		String[] parts = result().split( "_" );
+		writeLine( instanceName() + " = new " + instanceType() + "( \"" + parts[0] + "\", \"" + parts[1] + "\" )" );
+	}
+
+	protected String result()
+	{
+		return getAccessPath().getResult().toString();
 	}
 }

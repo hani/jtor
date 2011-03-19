@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
-import java.util.Collection;
+import java.lang.reflect.Method;
+import java.util.Comparator;
 
-public class CollectionMethodComparator extends ParameterTypeComparator
+public class MethodNameComparator implements Comparator<Method>
 {
-	protected boolean isParameterType( Class c1 )
+
+	public int compare( Method m1, Method m2 )
 	{
-		return Collection.class.isAssignableFrom( c1 );
+		return m1.getName().compareTo( m2.getName() );
 	}
+
 }

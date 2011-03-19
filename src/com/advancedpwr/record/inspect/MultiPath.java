@@ -13,17 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
-import java.lang.reflect.Method;
-import java.util.Comparator;
+import com.advancedpwr.record.AccessPath;
 
-public class MethodNameComparator implements Comparator<Method>
+public class MultiPath extends AccessPath
 {
+	protected String fieldInstanceName;
 
-	public int compare( Method m1, Method m2 )
+	public String getInstanceName()
 	{
-		return m1.getName().compareTo( m2.getName() );
+		return fieldInstanceName;
 	}
 
+	public void setInstanceName( String listInstanceName )
+	{
+		fieldInstanceName = listInstanceName;
+	}
+
+	public String nameRoot()
+	{
+		return getInstanceName() + suffix();
+	}
+	
 }

@@ -23,6 +23,11 @@ import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.inspect.ArrayInspector;
+import com.advancedpwr.record.inspect.BeanInspector;
+import com.advancedpwr.record.inspect.CollectionInspector;
+import com.advancedpwr.record.inspect.InspectorList;
+import com.advancedpwr.record.inspect.MapInspector;
 
 public class BehaviorInstanceTree extends InstanceTree
 {
@@ -38,13 +43,13 @@ public class BehaviorInstanceTree extends InstanceTree
 		fieldPreferredInterface = preferredInterface;
 	}
 
-	protected void inspectObject()
+	protected InspectorList initializeInspectorList()
 	{
-//		addCollectionAccessPaths();
-//		addMapAccessPaths();
-		addArrayAccessPaths();
+		InspectorList inspectors = new InspectorList();
+		inspectors.add( new ArrayInspector() );
+		return inspectors;
 	}
-
+	
 	public BehaviorInstanceTree( Object object )
 	{
 		super( object );

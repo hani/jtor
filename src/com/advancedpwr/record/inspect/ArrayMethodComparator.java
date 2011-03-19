@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
-import java.util.Map;
+import com.advancedpwr.record.ParameterTypeComparator;
 
-public class MapMethodComparator extends ParameterTypeComparator
+
+public class ArrayMethodComparator extends ParameterTypeComparator
 {
-
 	protected boolean isParameterType( Class inClass )
 	{
-		return Map.class.isAssignableFrom( inClass );
+		return inClass.isArray();
 	}
-
 }

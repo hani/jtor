@@ -16,25 +16,27 @@
 package com.advancedpwr.record;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
+import com.advancedpwr.record.inspect.ArrayInspector;
+import com.advancedpwr.record.inspect.BeanInspector;
+import com.advancedpwr.record.inspect.CollectionInspector;
+import com.advancedpwr.record.inspect.Inspector;
+import com.advancedpwr.record.inspect.InspectorList;
+import com.advancedpwr.record.inspect.MapInspector;
 
 public class InstanceTree
 {
 	protected Object fieldObject;
 	protected Method fieldCurrentMethod;
-	protected List<AccessPath> fieldAccessPaths;
+	protected AccessPathList fieldAccessPaths;
 	protected int depth;
 	protected InstanceTree fieldParent;
 	protected InstanceTreeFactory fieldFactory;
+	protected InspectorList fieldInspectors;
 	
 	protected int fieldIndex;
 	
@@ -67,7 +69,7 @@ public class InstanceTree
 		fieldParent = parent;
 	}
 
-	protected Method getCurrentMethod()
+	public Method getCurrentMethod()
 	{
 		return fieldCurrentMethod;
 	}
@@ -97,48 +99,37 @@ public class InstanceTree
 	
 	protected void inspectObject()
 	{
-		List<Method> methods = sortedMethods();
-		for ( Method method : methods )
+		for ( Inspector inspector : getInspectors() )
 		{
-			setCurrentMethod( method );
-			addMethodAccessPath();
-		}
-		addCollectionAccessPaths();
-		addMapAccessPaths();
-		addArrayAccessPaths();
-		
-	}
-
-	protected List<Method> sortedMethods()
-	{
-		Method[] methods = objectClass().getMethods();
-		List list = Arrays.asList( methods );
-		Collections.sort( list, new MethodNameComparator() );
-		Collections.sort( list, new CollectionMethodComparator() );
-		Collections.sort( list, new MapMethodComparator() );
-		Collections.sort( list, new ArrayMethodComparator() );
-		return list;
-	}
-
-	protected void addMapAccessPaths()
-	{
-		if ( Map.class.isAssignableFrom( objectClass() ) )
-		{
-			Map map = (Map) getObject();
-			for ( Iterator iterator = map.entrySet().iterator(); iterator.hasNext(); )
-			{
-				Map.Entry entry = (Map.Entry) iterator.next();
-				
-				MapPutPath path = new MapPutPath();
-				path.setKeyTree( createInstanceTree( entry.getKey() ) );
-				path.setValueTree( createInstanceTree( entry.getValue() ) );
-				path.setInstanceName( currentInstanceName() );
-				getAccessPaths().add( path );
-			}
+			inspector.inspect( this );
 		}
 	}
+	
+	public InspectorList getInspectors()
+	{
+		if ( fieldInspectors == null )
+		{
+			fieldInspectors = initializeInspectorList();
+		}
+		return fieldInspectors;
+	}
 
-	protected String currentInstanceName()
+	protected InspectorList initializeInspectorList()
+	{
+		InspectorList inspectors = new InspectorList();
+		inspectors.add(  new BeanInspector() );
+		inspectors.add( new CollectionInspector() );
+		inspectors.add( new MapInspector() );
+		inspectors.add( new ArrayInspector() );
+		return inspectors;
+	}
+	
+	public void addInspector( Inspector inspector )
+	{
+		getInspectors().add( inspector );
+	}
+
+	public String currentInstanceName()
 	{
 		if ( getParent().equals( this ) )
 		{
@@ -147,74 +138,12 @@ public class InstanceTree
 		return getParent().getCurrentMethod().getName().replaceFirst( "set", "" ) + "_" + depth;
 	}
 
-	protected void addCollectionAccessPaths()
-	{
-		if ( Collection.class.isAssignableFrom( objectClass() ) )
-		{
-			Collection collection = (Collection) getObject();
-			for ( Iterator iterator = collection.iterator(); iterator.hasNext(); )
-			{
-				Object member = iterator.next();
-				MultiPath path = new MultiPath();
-				path.setTree( createInstanceTree( member ) );
-				path.setInstanceName( currentInstanceName() );
-				getAccessPaths().add( path );
-			}
-		}
-	}
-	
-	protected void addArrayAccessPaths()
-	{
-		if ( objectClass().isArray() && !objectClass().getComponentType().isPrimitive() )
-		{
-			Object[] array = (Object[]) getObject();
-		
-			for ( int i = 0; i < array.length; i++ )
-			{
-				Object member = array[i];
-				MultiPath path = new MultiPath();
-				path.setTree( createInstanceTree( member ) );
-				path.setInstanceName( objectClass().getComponentType().getSimpleName() );
-				getAccessPaths().add( path );
-			}
-		}
-	}
-
 	public Class<? extends Object> objectClass()
 	{
 		return getObject().getClass();
 	}
 
-	protected void addMethodAccessPath()
-	{
-		if ( isSetter() && hasGetterMethod() )
-		{
-			Method getter = getterMethod();
-			Object result = invoke( getter );
-			if ( result != null )
-			{
-				addAccessPathForResult( result );
-			}
-		}
-	}
-	
-	protected void addAccessPathForResult( Object result )
-	{
-		AccessPath accessor = createAccessorMethodPath( result );
-		getAccessPaths().add( accessor );
-	}
-	
-	protected AccessPath createAccessorMethodPath( Object result )
-	{
-		AccessorMethodPath accessor = new AccessorMethodPath();
-		accessor.setSetter( getCurrentMethod() );
-		InstanceTree tree = createInstanceTree( result );
-		accessor.setTree( tree );
-		debug( "created accessor " + accessor + " for result " + result );
-		return accessor;
-	}
-	
-	protected InstanceTree createInstanceTree( Object result )
+	public InstanceTree createInstanceTree( Object result )
 	{
 		return getFactory().createInstanceTree( result, this );
 	}
@@ -224,71 +153,16 @@ public class InstanceTree
 		return new InstanceTree( result, this );
 	}
 	
-	protected void debug( String inString )
-	{
-//		System.out.println( inString );
-	}
-	
-	public List<AccessPath> getAccessPaths()
+	public AccessPathList getAccessPaths()
 	{
 		if ( fieldAccessPaths == null )
 		{
-			fieldAccessPaths = new ArrayList<AccessPath>();
+			fieldAccessPaths = new AccessPathList();
 		}
 		return fieldAccessPaths;
 	}
 
-	protected Object invoke( Method getter )
-	{
-		try
-		{
-			 return getter.invoke( getObject() );
-		}
-		catch ( Exception e )
-		{
-			throw new RecorderException( e );
-		}
-		
-	}
 
-	protected boolean isSetter()
-	{
-		Method method = getCurrentMethod();
-		return Modifier.isPublic( method.getModifiers() )  && method.getName().startsWith( "set" ) && method.getParameterTypes().length == 1;
-	}
-	
-	protected String getterName()
-	{
-		if( boolean.class.equals( getCurrentMethod().getParameterTypes()[0] ) )
-		{
-			return getCurrentMethod().getName().replaceFirst( "set", "is" );
-		}
-		return getCurrentMethod().getName().replaceFirst( "set", "get" );
-	}
-	
-	protected Method getterMethod()
-	{
-		Method[] methods = objectClass().getMethods();
-		for ( int i = 0; i < methods.length; i++ )
-		{
-			Method method = methods[i];
-			if ( isGetter( method ) )
-			{
-				return method;
-			}
-		}
-		return null;
-	}
-
-	protected boolean isGetter( Method method )
-	{
-		return method.getName().equals( getterName() ) && method.getParameterTypes().length == 0;
-	}
-	
-	protected boolean hasGetterMethod()
-	{
-		return getterMethod() != null;
-	}
 	
 	
 	public Object getObject()

@@ -13,25 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.methods;
 
-public class MultiPath extends AccessPath
+import java.util.Locale;
+
+import com.advancedpwr.record.AccessPath;
+
+public class LocaleBuilderFactory implements Factory 
 {
-	protected String fieldInstanceName;
-
-	public String getInstanceName()
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
 	{
-		return fieldInstanceName;
-	}
-
-	public void setInstanceName( String listInstanceName )
-	{
-		fieldInstanceName = listInstanceName;
-	}
-
-	public String nameRoot()
-	{
-		return getInstanceName() + suffix();
+		return Locale.class.equals( inClass );
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	{
+		return new LocaleBuilder();
+	}
 }

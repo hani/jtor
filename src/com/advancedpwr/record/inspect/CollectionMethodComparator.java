@@ -13,25 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
-public class MapPutPath extends MultiPath
+import java.util.Collection;
+
+import com.advancedpwr.record.ParameterTypeComparator;
+
+public class CollectionMethodComparator extends ParameterTypeComparator
 {
-	protected InstanceTree fieldKeyTree;
-
-	public InstanceTree getKeyTree()
+	protected boolean isParameterType( Class c1 )
 	{
-		return fieldKeyTree;
+		return Collection.class.isAssignableFrom( c1 );
 	}
-
-	public void setKeyTree( InstanceTree keyTree )
-	{
-		fieldKeyTree = keyTree;
-	}
-
-	public void setValueTree( InstanceTree inTree )
-	{
-		setTree( inTree );
-	}
-
 }
