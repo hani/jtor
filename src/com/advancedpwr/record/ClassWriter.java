@@ -125,6 +125,20 @@ public abstract class ClassWriter
 	{
 		fieldDescriptor = descriptor;
 	}
+	/**
+	 * This method is a "short cut" to easily set the ClassDescriptor
+	 * @param The fully qualified class name
+	 */
+	public void setClassName( String inName )
+	{
+		int lastDotIndex = inName.lastIndexOf( '.' );
+		String packageName = inName.substring( 0, lastDotIndex );
+		String className = inName.substring( lastDotIndex + 1 );
+		SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
+		descriptor.setClassName( className );
+		descriptor.setPackageName( packageName );
+		setDescriptor( descriptor );
+	}
 
 	protected void writeClassDeclaration()
 	{
