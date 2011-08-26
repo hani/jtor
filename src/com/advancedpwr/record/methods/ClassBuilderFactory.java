@@ -17,7 +17,7 @@ package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
 
-public class ClassBuilderFactory implements Factory 
+public class ClassBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
@@ -30,7 +30,7 @@ public class ClassBuilderFactory implements Factory
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
 		return new ClassBuilder();
 	}

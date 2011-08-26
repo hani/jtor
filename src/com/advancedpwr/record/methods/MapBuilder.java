@@ -28,14 +28,14 @@ public class MapBuilder extends AbstractMultiBuilder
 			if ( result instanceof MapPutPath )
 			{
 				MapPutPath path = (MapPutPath)result;
-				BaseMethodBuilder keyBuilder = createKeyBuilder( path );
-				BaseMethodBuilder builder = createCachedInstanceMethodBuilder( result );
+				BuildMethodWriter keyBuilder = createKeyBuilder( path );
+				BuildMethodWriter builder = createCachedInstanceMethodBuilder( result );
 				writeLine( instanceName() + ".put( " + keyBuilder.resultBuilder() + ", " + builder.resultBuilder() + " )" );
 			}
 		}
 	}
 
-	protected BaseMethodBuilder createKeyBuilder( MapPutPath path )
+	protected BuildMethodWriter createKeyBuilder( MapPutPath path )
 	{
 		AccessPath accessPath = new AccessPath();
 		accessPath.setTree( path.getKeyTree() );

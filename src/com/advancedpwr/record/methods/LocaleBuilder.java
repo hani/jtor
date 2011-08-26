@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.methods;
 
-public class LocaleBuilder extends BaseMethodBuilder
+public class LocaleBuilder extends BuildMethodWriter
 {
 	
 	protected void writeInstance()

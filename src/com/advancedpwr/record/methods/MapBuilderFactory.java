@@ -19,7 +19,7 @@ import java.util.Map;
 
 import com.advancedpwr.record.AccessPath;
 
-public class MapBuilderFactory implements Factory 
+public class MapBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
@@ -32,7 +32,7 @@ public class MapBuilderFactory implements Factory
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
 		return new MapBuilder();
 	}

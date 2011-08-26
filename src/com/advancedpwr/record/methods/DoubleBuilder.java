@@ -15,10 +15,29 @@
  */
 package com.advancedpwr.record.methods;
 
-public class DoubleBuilder extends AbstractPrimitiveBuilder
+import com.advancedpwr.record.AccessPath;
+
+public class DoubleBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  result() + "d"; 
+		return  "new Double( " + result() + ")"; 
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
+	{
+		return double.class.isAssignableFrom( inClass )
+			|| Double.class.isAssignableFrom( inClass );
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return new DoubleBuilder();
 	}
 }

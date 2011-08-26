@@ -26,7 +26,7 @@ public class ArrayBuilder extends AbstractMultiBuilder
 		int index = 0;
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
 		{
-			BaseMethodBuilder builder = createCachedInstanceMethodBuilder( result );
+			BuildMethodWriter builder = createCachedInstanceMethodBuilder( result );
 			writeLine( instanceName() + "[" + index++ + "] = " + builder.resultBuilder() );
 		}
 	}

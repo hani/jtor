@@ -15,10 +15,29 @@
  */
 package com.advancedpwr.record.methods;
 
-public class ShortBuilder extends AbstractPrimitiveBuilder
+import com.advancedpwr.record.AccessPath;
+
+public class ShortBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  "(short)" +result(); 
+		return  "new Short( (short)" +result() + ")"; 
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
+	{
+		return short.class.isAssignableFrom( inClass )
+			|| Short.class.isAssignableFrom( inClass );
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return new ShortBuilder();
 	}
 }

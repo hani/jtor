@@ -15,10 +15,29 @@
  */
 package com.advancedpwr.record.methods;
 
-public class LongBuilder extends AbstractPrimitiveBuilder
+import com.advancedpwr.record.AccessPath;
+
+public class LongBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  result() + "l"; 
+		return  "new Long( " + result() + ")"; 
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
+	{
+		return long.class.isAssignableFrom( inClass )
+			|| Long.class.isAssignableFrom( inClass );
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return this;
 	}
 }

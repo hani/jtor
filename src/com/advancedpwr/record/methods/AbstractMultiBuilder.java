@@ -20,7 +20,7 @@ import java.util.List;
 
 import com.advancedpwr.record.AccessPath;
 
-public abstract class AbstractMultiBuilder extends BaseMethodBuilder
+public abstract class AbstractMultiBuilder extends BuildMethodWriter
 {
 	protected MethodBuilderFactory fieldCacheFactory;
 	
@@ -35,9 +35,9 @@ public abstract class AbstractMultiBuilder extends BaseMethodBuilder
 		return fieldCacheFactory;
 	}
 	
-	protected BaseMethodBuilder createCachedInstanceMethodBuilder( AccessPath result )
+	protected BuildMethodWriter createCachedInstanceMethodBuilder( AccessPath result )
 	{
-		BaseMethodBuilder builder = getFactory().createMethodBuilder( result );
+		BuildMethodWriter builder = getFactory().createMethodBuilder( result );
 		if ( getCacheFactory().contains( result ) )
 		{
 			builder = getCacheFactory().createMethodBuilder( result );
@@ -47,7 +47,7 @@ public abstract class AbstractMultiBuilder extends BaseMethodBuilder
 		return builder;
 	}
 
-	protected void cache( BaseMethodBuilder inBuilder )
+	protected void cache( BuildMethodWriter inBuilder )
 	{
 		if ( getCacheFactory().contains( inBuilder.getAccessPath() ) )
 		{
@@ -58,7 +58,7 @@ public abstract class AbstractMultiBuilder extends BaseMethodBuilder
 		for ( Iterator iterator = paths.iterator(); iterator.hasNext(); )
 		{
 			AccessPath accessPath = (AccessPath) iterator.next();
-			BaseMethodBuilder builder = getCacheFactory().createMethodBuilder( accessPath );
+			BuildMethodWriter builder = getCacheFactory().createMethodBuilder( accessPath );
 			cache( builder );
 		}
 	}

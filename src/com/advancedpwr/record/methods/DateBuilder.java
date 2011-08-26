@@ -17,7 +17,7 @@ package com.advancedpwr.record.methods;
 
 import java.util.Date;
 
-public class DateBuilder extends BaseMethodBuilder
+public class DateBuilder extends BuildMethodWriter
 {
 
 

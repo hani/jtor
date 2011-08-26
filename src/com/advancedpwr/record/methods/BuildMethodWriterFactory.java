@@ -17,14 +17,14 @@ package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
 
-public class BaseMethodBuilderFactory extends AbstractDefaultFactory
+public class BuildMethodWriterFactory extends AbstractDefaultFactory
 {
 
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
-		return new BaseMethodBuilder();
+		return new BuildMethodWriter();
 	}
 }

@@ -15,10 +15,29 @@
  */
 package com.advancedpwr.record.methods;
 
-public class ByteBuilder extends AbstractPrimitiveBuilder
+import com.advancedpwr.record.AccessPath;
+
+public class ByteBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  "(byte)" +result(); 
+		return  "new Byte( (byte)" +result() + ")"; 
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
+	{
+		return byte.class.isAssignableFrom( inClass )
+			|| Byte.class.isAssignableFrom( inClass );
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return new ByteBuilder();
 	}
 }

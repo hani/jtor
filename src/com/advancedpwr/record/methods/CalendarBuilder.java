@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 import com.advancedpwr.record.AccessPath;
 
-public class CalendarBuilder extends BaseMethodBuilder
+public class CalendarBuilder extends BuildMethodWriter
 {
 
 
@@ -29,7 +29,7 @@ public class CalendarBuilder extends BaseMethodBuilder
 		{
 			if ( "setTimeInMillis".equals( result.pathName() ) )
 			{
-				BaseMethodBuilder builder = createMethodBuilder( result );
+				BuildMethodWriter builder = createMethodBuilder( result );
 				writeLine( builder.populator( instanceName() ) );
 			}
 		}

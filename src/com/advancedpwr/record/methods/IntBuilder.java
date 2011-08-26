@@ -15,10 +15,29 @@
  */
 package com.advancedpwr.record.methods;
 
-public class IntBuilder extends AbstractPrimitiveBuilder
+import com.advancedpwr.record.AccessPath;
+
+public class IntBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  result(); 
+		return  "new Integer( " + result() + ")"; 
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
+	 */
+	public boolean accept( Class inClass )
+	{
+		return int.class.isAssignableFrom( inClass )
+			|| Integer.class.isAssignableFrom( inClass );
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
+	 */
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return new IntBuilder();
 	}
 }

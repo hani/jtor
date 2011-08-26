@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.methods;
 
-public abstract class AbstractDefaultFactory implements Factory
+public abstract class AbstractDefaultFactory implements MethodWriterFactory
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)

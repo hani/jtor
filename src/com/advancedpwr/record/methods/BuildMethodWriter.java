@@ -26,7 +26,7 @@ import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.ClassWriter;
 import com.advancedpwr.record.InstanceTree;
 
-public class BaseMethodBuilder
+public class BuildMethodWriter
 {
 
 	protected AccessPath fieldAccessPath;
@@ -116,7 +116,7 @@ public class BaseMethodBuilder
 	{
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
 		{
-			BaseMethodBuilder builder = createMethodBuilder( result );
+			BuildMethodWriter builder = createMethodBuilder( result );
 			builder.buildMethod();
 		}
 	}
@@ -144,7 +144,7 @@ public class BaseMethodBuilder
 	{
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
 		{
-			BaseMethodBuilder builder = createMethodBuilder( result );
+			BuildMethodWriter builder = createMethodBuilder( result );
 			writeLine( builder.populator( instanceName() ) );
 		}
 	}
@@ -159,9 +159,9 @@ public class BaseMethodBuilder
 		return getAccessPath().getInstanceTree();
 	}
 	
-	protected BaseMethodBuilder createMethodBuilder( AccessPath result )
+	protected BuildMethodWriter createMethodBuilder( AccessPath result )
 	{
-		BaseMethodBuilder builder = getFactory().createMethodBuilder( result );
+		BuildMethodWriter builder = getFactory().createMethodBuilder( result );
 		builder.setClassWriter( getClassWriter() );
 		return builder;
 	}

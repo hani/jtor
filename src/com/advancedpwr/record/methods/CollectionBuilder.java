@@ -17,14 +17,14 @@ package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
 
-public class CollectionBuilder extends BaseMethodBuilder
+public class CollectionBuilder extends BuildMethodWriter
 {
 
 	protected void writePopulators()
 	{
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
 		{
-			BaseMethodBuilder builder = createMethodBuilder( result );
+			BuildMethodWriter builder = createMethodBuilder( result );
 			writeLine( instanceName() + ".add( " + builder.resultBuilder() + " )" );
 		}
 	}

@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.methods;
 
-public class URLBuilder extends BaseMethodBuilder
+public class URLBuilder extends BuildMethodWriter
 {
 	
 	protected void writeInstance()

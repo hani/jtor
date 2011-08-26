@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 import com.advancedpwr.record.AccessPath;
 
-public class CalendarBuilderFactory implements Factory 
+public class CalendarBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
@@ -32,7 +32,7 @@ public class CalendarBuilderFactory implements Factory
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
 		return new CalendarBuilder();
 	}

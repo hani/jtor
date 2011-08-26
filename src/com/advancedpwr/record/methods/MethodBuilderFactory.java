@@ -28,11 +28,11 @@ public class MethodBuilderFactory
 
 	protected List fieldFactories;
 
-	protected Factory fieldDefaultFactory;
+	protected MethodWriterFactory fieldDefaultFactory;
 	
-	public BaseMethodBuilder createMethodBuilder( AccessPath inAccessPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inAccessPath )
 	{
-		BaseMethodBuilder builder = constructRegisteredBuilder( inAccessPath );
+		BuildMethodWriter builder = constructRegisteredBuilder( inAccessPath );
 		if ( contains( inAccessPath ) )
 		{
 //			System.out.println( inAccessPath );
@@ -45,9 +45,9 @@ public class MethodBuilderFactory
 		return builder;
 	}
 
-	protected BaseMethodBuilder get( AccessPath inAccessPath )
+	protected BuildMethodWriter get( AccessPath inAccessPath )
 	{
-		return (BaseMethodBuilder) getBuilderCache().get( inAccessPath.getInstanceTree() );
+		return (BuildMethodWriter) getBuilderCache().get( inAccessPath.getInstanceTree() );
 	}
 
 	protected boolean contains( AccessPath result )
@@ -55,7 +55,7 @@ public class MethodBuilderFactory
 		return get( result ) != null;
 	}
 
-	public void storeBuilder( BaseMethodBuilder inBuilder )
+	public void storeBuilder( BuildMethodWriter inBuilder )
 	{
 		getBuilderCache().put( inBuilder.getInstanceTree(), inBuilder );
 	}
@@ -70,7 +70,7 @@ public class MethodBuilderFactory
 		return fieldBuilderCache;
 	}
 
-	public List<Factory> getFactories()
+	public List<MethodWriterFactory> getFactories()
 	{
 		if ( fieldFactories == null )
 		{
@@ -79,48 +79,50 @@ public class MethodBuilderFactory
 		return fieldFactories;
 	}
 
-	public void addBuilderFactory( Factory inFactory )
+	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
 		getFactories().add( inFactory );
 	}
-	protected List<Factory> createFactories()
+	protected List<MethodWriterFactory> createFactories()
 	{
-		List<Factory> list = new ArrayList<Factory>();
+		List<MethodWriterFactory> list = new ArrayList<MethodWriterFactory>();
 		list.add( new ObjectBuilderFactory()
 		{
-			public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+			public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 			{
 				return getDefaultFactory().createMethodBuilder( inPath );
 			}	
 		});
 		list.add( new NullBuilderFactory() );
 		list.add( new StringBuilderFactory() );
-		list.add( new ShortBuilderFactory() );
-		list.add( new BooleanBuilderFactory() );
-		list.add( new ByteBuilderFactory() );
-		list.add( new CharBuilderFactory() );
-		list.add( new DoubleBuilderFactory() );
-		list.add( new FloatBuilderFactory() );
-		list.add( new IntBuilderFactory() );
-		list.add( new LongBuilderFactory() );
+		list.add( new ShortBuilder() );
+		list.add( new BooleanBuilder() );
+		list.add( new ByteBuilder() );
+		list.add( new CharBuilder() );
+		list.add( new DoubleBuilder() );
+		list.add( new FloatBuilder() );
+		list.add( new IntBuilder() );
+		list.add( new LongBuilder() );
 		list.add( new ArrayBuilderFactory() );
 		list.add( new LocaleBuilderFactory() );
 		list.add( new URLBuilderFactory() );
 		list.add( new DateBuilderFactory() );
 		list.add( new CalendarBuilderFactory() );
 		list.add( new ClassBuilderFactory() );
+		list.add( new BigDecimalBuilder() );
+		list.add( new BigIntegerBuilder() );
 		return list;
 	}
 	
-	protected BaseMethodBuilder constructRegisteredBuilder( AccessPath inAccessPath )
+	protected BuildMethodWriter constructRegisteredBuilder( AccessPath inAccessPath )
 	{
-		Factory factory = findFactory( inAccessPath );
+		MethodWriterFactory factory = findFactory( inAccessPath );
 		return factory.createMethodBuilder( inAccessPath );
 	}
 
-	protected Factory findFactory( AccessPath inAccessPath )
+	protected MethodWriterFactory findFactory( AccessPath inAccessPath )
 	{
-		for ( Factory factory : getFactories() )
+		for ( MethodWriterFactory factory : getFactories() )
 		{
 			if ( factory.accept( inAccessPath.getParameterClass() ) )
 			{
@@ -130,7 +132,7 @@ public class MethodBuilderFactory
 		return getDefaultFactory();
 	}
 
-	public Factory getDefaultFactory()
+	public MethodWriterFactory getDefaultFactory()
 	{
 		if ( fieldDefaultFactory == null )
 		{
@@ -139,14 +141,14 @@ public class MethodBuilderFactory
 		return fieldDefaultFactory;
 	}
 
-	public void setDefaultFactory( Factory defaultFactory )
+	public void setDefaultFactory( MethodWriterFactory defaultFactory )
 	{
 		fieldDefaultFactory = defaultFactory;
 	}
 
-	protected Factory createDefaultFactory()
+	protected MethodWriterFactory createDefaultFactory()
 	{
-		return new BaseMethodBuilderFactory();
+		return new BuildMethodWriterFactory();
 	}
 
 }

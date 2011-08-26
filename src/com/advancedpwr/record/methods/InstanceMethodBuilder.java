@@ -16,16 +16,16 @@
 package com.advancedpwr.record.methods;
 
 
-public class InstanceMethodBuilder extends BaseMethodBuilder
+public class InstanceMethodBuilder extends BuildMethodWriter
 {
-	protected BaseMethodBuilder fieldBuilder;
+	protected BuildMethodWriter fieldBuilder;
 	
-	public BaseMethodBuilder getBuilder()
+	public BuildMethodWriter getBuilder()
 	{
 		return fieldBuilder;
 	}
 
-	public void setBuilder( BaseMethodBuilder firstInstance )
+	public void setBuilder( BuildMethodWriter firstInstance )
 	{
 		fieldBuilder = firstInstance;
 	}

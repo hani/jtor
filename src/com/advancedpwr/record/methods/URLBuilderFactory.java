@@ -19,7 +19,7 @@ import java.net.URL;
 
 import com.advancedpwr.record.AccessPath;
 
-public class URLBuilderFactory implements Factory 
+public class URLBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
@@ -32,7 +32,7 @@ public class URLBuilderFactory implements Factory
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
 		return new URLBuilder();
 	}

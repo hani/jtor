@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.methods;
 
-public abstract class AbstractPrimitiveBuilder extends BaseMethodBuilder
+public abstract class AbstractPrimitiveBuilder extends BuildMethodWriter
 {
 	@Override
 	public void buildMethod()
