@@ -20,13 +20,13 @@ import java.util.Iterator;
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.methods.BuildMethodWriter;
 
-public class MockMethodBuilder extends BuildMethodWriter
+public class NiceMockMethodBuilder extends BuildMethodWriter
 {
 
 	protected void writeInstance()
 	{
 		writeIfNotNullReturnInstance();
-		writeLine( instanceName() + " = createStrictMock( " + instanceType() + ".class )");
+		writeLine( instanceName() + " = createNiceMock( " + instanceType() + ".class )");
 	}
 	
 	protected void writePopulators()
@@ -38,7 +38,7 @@ public class MockMethodBuilder extends BuildMethodWriter
 				continue;
 			}
 			BuildMethodWriter builder = createMethodBuilder( result );
-			String methodCall = instanceName() + "." + result.pathName() + "(" + buildArguments( result ) +")";
+			String methodCall = instanceName() + "." + result.pathName() + "(" + buildArguments( result ) +").anyTimes()";
 			if ( isVoidReturnType( result ) )
 			{
 				if ( isException( result ) )
@@ -59,7 +59,7 @@ public class MockMethodBuilder extends BuildMethodWriter
 				}
 				else
 				{
-					writeLine( "expect( " + methodCall + " ).andReturn( " + builder.resultBuilder() + " )" );
+					writeLine( "expect( " + methodCall + " ).andReturn( " + builder.resultBuilder() + " ).anyTimes()" );
 				}
 			}
 		}

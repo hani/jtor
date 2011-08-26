@@ -20,9 +20,9 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import com.advancedpwr.record.methods.BaseMethodBuilder;
+import com.advancedpwr.record.methods.BuildMethodWriter;
 import com.advancedpwr.record.methods.CollectionBuilderFactory;
-import com.advancedpwr.record.methods.Factory;
+import com.advancedpwr.record.methods.MethodWriterFactory;
 import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 
@@ -129,14 +129,14 @@ public class BeanRecorder extends AbstractRecorder
 	{
 		AccessPath result = new AccessPath();
 		result.setTree( getInstanceTree() );
-		BaseMethodBuilder builder = createMethodBuilder( result );
+		BuildMethodWriter builder = createMethodBuilder( result );
 		builder.setScopePublic();
 		builder.buildMethod();
 	}
 
-	protected BaseMethodBuilder createMethodBuilder( AccessPath result )
+	protected BuildMethodWriter createMethodBuilder( AccessPath result )
 	{
-		BaseMethodBuilder builder = getFactoryBuilder().createMethodBuilder( result );
+		BuildMethodWriter builder = getFactoryBuilder().createMethodBuilder( result );
 		builder.setClassWriter( this );
 		return builder;
 	}
@@ -174,7 +174,7 @@ public class BeanRecorder extends AbstractRecorder
 		return factory;
 	}
 	
-	public void addBuilderFactory( Factory inFactory )
+	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
 		getFactoryBuilder().addBuilderFactory( inFactory );
 	}

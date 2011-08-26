@@ -20,14 +20,14 @@ import java.util.Map;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.methods.AbstractDefaultFactory;
-import com.advancedpwr.record.methods.BaseMethodBuilder;
+import com.advancedpwr.record.methods.BuildMethodWriter;
 
 public class MockMethodBuilderFactory extends AbstractDefaultFactory
 {
 	
 	protected Map fieldBuilderCache;
 
-	public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 	{
 		if ( contains( inPath ) )
 		{
@@ -39,9 +39,9 @@ public class MockMethodBuilderFactory extends AbstractDefaultFactory
 		return builder;
 	}
 
-	protected BaseMethodBuilder get( AccessPath inAccessPath )
+	protected BuildMethodWriter get( AccessPath inAccessPath )
 	{
-		return (BaseMethodBuilder) getBuilderCache().get( inAccessPath.getInstanceTree() );
+		return (BuildMethodWriter) getBuilderCache().get( inAccessPath.getInstanceTree() );
 	}
 
 	protected boolean contains( AccessPath result )

@@ -95,7 +95,7 @@ public class MockRecordingInvocationHandler implements InvocationHandler
 	
 	protected boolean isObjectMethod( Method method )
 	{
-		return "hashCode".equals( method.getName() ) || "equals".equals( method.getName() )  || "toString".equals( method.getName() ) ;
+		return "hashCode".equals( method.getName() ) || "equals".equals( method.getName() )  || "toString".equals( method.getName() ) || "finalize".equals( method.getName() );
 	}
 
 	protected MockBehaviorRecorder getRecorder()
