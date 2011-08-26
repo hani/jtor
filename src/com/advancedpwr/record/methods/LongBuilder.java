@@ -21,7 +21,7 @@ public class LongBuilder extends AbstractPrimitiveBuilder implements MethodWrite
 {
 	public String resultBuilder()
 	{
-		return  "new Long( " + result() + ")"; 
+		return  "new Long( " + result() + " )"; 
 	}
 	
 	/* (non-Javadoc)

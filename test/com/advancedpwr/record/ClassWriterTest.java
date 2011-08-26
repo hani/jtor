@@ -92,5 +92,11 @@ public class ClassWriterTest extends TestCase
 		}
 	}
 	
+	public void testSetClassName()
+	{
+		writer.setClassName( "com.company.BusinessFactory" );
+		assertEquals( "com.company", writer.getDescriptor().getPackageName() );
+		assertEquals( "BusinessFactory", writer.getDescriptor().getClassName() );
+	}
 	
 }

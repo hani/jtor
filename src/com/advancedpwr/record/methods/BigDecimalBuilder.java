@@ -23,7 +23,7 @@ public class BigDecimalBuilder extends AbstractPrimitiveBuilder implements Metho
 {
 	public String resultBuilder()
 	{
-		return  "new BigDecimal( " + result() + ")"; 
+		return  "new BigDecimal( " + result() + " )"; 
 	}
 	
 	/* (non-Javadoc)

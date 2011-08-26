@@ -27,14 +27,14 @@ import com.advancedpwr.record.examples.Person;
 
 public class MethodBuilderTest extends TestCase
 {
-	BaseMethodBuilder builder;
+	BuildMethodWriter builder;
 	StringWriter out;
 	
 	protected void setUp() throws Exception
 	{
 		super.setUp();
 		
-		builder = new BaseMethodBuilder();
+		builder = new BuildMethodWriter();
 		ClassWriter classWriter = new BeanRecorder();
 		out = new StringWriter();
 		classWriter.setWriter( out );

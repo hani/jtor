@@ -32,7 +32,7 @@ public class AbstractDefaultFactoryTest extends TestCase
 		AbstractDefaultFactory factory = new AbstractDefaultFactory()
 		{
 			
-			public BaseMethodBuilder createMethodBuilder( AccessPath inPath )
+			public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 			{
 				return null;
 			}

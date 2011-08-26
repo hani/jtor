@@ -135,9 +135,9 @@ public class BeanRecorderTest extends AbstractRecorderTest
 	
 	public void testAddBuilder()
 	{
-		assertEquals( 19, recorder.getFactoryBuilder().getFactories().size() );
+		assertEquals( 21, recorder.getFactoryBuilder().getFactories().size() );
 		recorder.addBuilderFactory( new URLBuilderFactory() );
-		assertEquals( 20, recorder.getFactoryBuilder().getFactories().size() );
+		assertEquals( 22, recorder.getFactoryBuilder().getFactories().size() );
 	}
 	
 	public void testRecord_Object()

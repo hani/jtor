@@ -21,9 +21,17 @@ public class BooleanBuilder extends AbstractPrimitiveBuilder implements MethodWr
 {
 	public String resultBuilder()
 	{
-		return  result(); 
+		if ( booleanResult() )
+		{
+			return " Boolean.TRUE";
+		}
+		return  "Boolean.FALSE";
 	}
 	
+	protected Boolean booleanResult()
+	{
+		return (Boolean)getAccessPath().getResult();
+	}
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */

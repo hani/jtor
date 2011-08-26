@@ -97,7 +97,7 @@ public class ListInstanceTest extends AbstractMockRecorderTest
 				"			return arraylist_1_1;\n" + 
 				"		}\n" + 
 				"		arraylist_1_1 = createStrictMock( ArrayList.class );\n" + 
-				"		expect( arraylist_1_1.get( 0 ) ).andReturn( buildPerson_2_2() );\n" + 
+				"		expect( arraylist_1_1.get( new Integer( 0 ) ) ).andReturn( buildPerson_2_2() );\n" + 
 				"		replay( arraylist_1_1 );\n" + 
 				"		return arraylist_1_1;\n" + 
 				"	}\n" + 

@@ -23,7 +23,7 @@ public class BigIntegerBuilder extends AbstractPrimitiveBuilder implements Metho
 {
 	public String resultBuilder()
 	{
-		return  "new BigInteger( " + result() + ")"; 
+		return  "new BigInteger( " + result() + " )"; 
 	}
 	
 	/* (non-Javadoc)

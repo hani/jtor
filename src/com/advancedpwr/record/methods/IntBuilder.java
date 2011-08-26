@@ -21,7 +21,7 @@ public class IntBuilder extends AbstractPrimitiveBuilder implements MethodWriter
 {
 	public String resultBuilder()
 	{
-		return  "new Integer( " + result() + ")"; 
+		return  "new Integer( " + result() + " )"; 
 	}
 	
 	/* (non-Javadoc)

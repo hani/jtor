@@ -65,6 +65,6 @@ public abstract class AbstractRecorderTest extends TestCase
 	
 	public void assertResult( String inString )
 	{
-		assertEquals( inString, result.toString().replaceAll( "\r\n", "\n" ) );
+		assertEquals( inString.replaceAll( "\r\n", "\n" ), result.toString().replaceAll( "\r\n", "\n" ) );
 	}
 }

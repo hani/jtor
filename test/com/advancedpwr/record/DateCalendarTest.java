@@ -90,7 +90,7 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"	protected Calendar buildBirthday_10_2()\n" + 
 				"	{\n" + 
 				"		birthday_10_2 = GregorianCalendar.getInstance();\n" + 
-				"		birthday_10_2.setTimeInMillis( 123456789l );\n" + 
+				"		birthday_10_2.setTimeInMillis( new Long( 123456789 ) );\n" + 
 				"		return birthday_10_2;\n" + 
 				"	}\n" + 
 				"\n" + 
