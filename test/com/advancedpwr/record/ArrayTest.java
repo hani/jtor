@@ -64,18 +64,18 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
 				"		person_1_1.setName( \"dad\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"	protected Person person_5_1;\n" + 
@@ -133,7 +133,7 @@ public class ArrayTest extends AbstractRecorderTest
 				"		personArray[1] = buildPerson_5_1();\n" + 
 				"		personArray[2] = buildPerson_7_1();\n" + 
 				"		personArray[3] = buildPerson_9_1();\n" + 
-				"		personArray[4] = dad_10_2;\n" + 
+				"		personArray[4] = person_10_2;\n" + 
 				"		return personArray;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -142,18 +142,18 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
 				"		person_1_1.setName( \"dad\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"	protected Person person_5_1;\n" + 
@@ -181,41 +181,42 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_9_1()\n" + 
 				"	{\n" + 
 				"		person_9_1 = new Person();\n" + 
-				"		person_9_1.setDad( buildDad_10_2() );\n" + 
-				"		person_9_1.setMom( buildMom_13_2() );\n" + 
+				"		person_9_1.setDad( buildPerson_10_2() );\n" + 
+				"		person_9_1.setMom( buildPerson_13_2() );\n" + 
 				"		person_9_1.setName( \"son\" );\n" + 
 				"		return person_9_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_10_2;\n" + 
+				"	protected Person person_10_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_10_2()\n" + 
+				"	protected Person buildPerson_10_2()\n" + 
 				"	{\n" + 
-				"		dad_10_2 = new Person();\n" + 
-				"		dad_10_2.setDad( buildDad_11_3() );\n" + 
-				"		dad_10_2.setName( \"dad2\" );\n" + 
-				"		return dad_10_2;\n" + 
+				"		person_10_2 = new Person();\n" + 
+				"		person_10_2.setDad( buildPerson_11_3() );\n" + 
+				"		person_10_2.setName( \"dad2\" );\n" + 
+				"		return person_10_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_11_3;\n" + 
+				"	protected Person person_11_3;\n" + 
 				"\n" + 
-				"	protected Person buildDad_11_3()\n" + 
+				"	protected Person buildPerson_11_3()\n" + 
 				"	{\n" + 
-				"		dad_11_3 = new Person();\n" + 
-				"		dad_11_3.setName( \"grandpa\" );\n" + 
-				"		return dad_11_3;\n" + 
+				"		person_11_3 = new Person();\n" + 
+				"		person_11_3.setName( \"grandpa\" );\n" + 
+				"		return person_11_3;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_13_2;\n" + 
+				"	protected Person person_13_2;\n" + 
 				"\n" + 
-				"	protected Person buildMom_13_2()\n" + 
+				"	protected Person buildPerson_13_2()\n" + 
 				"	{\n" + 
-				"		mom_13_2 = new Person();\n" + 
-				"		mom_13_2.setName( \"mom2\" );\n" + 
-				"		return mom_13_2;\n" + 
+				"		person_13_2 = new Person();\n" + 
+				"		person_13_2.setName( \"mom2\" );\n" + 
+				"		return person_13_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 	
 	public void testArray_3()
@@ -302,7 +303,7 @@ public class ArrayTest extends AbstractRecorderTest
 				"		}\n" + 
 				"		personArray = new Person[2];\n" + 
 				"		personArray[0] = buildPerson_1_1();\n" + 
-				"		personArray[1] = dad_2_2;\n" + 
+				"		personArray[1] = person_2_2;\n" + 
 				"		return personArray;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -311,21 +312,22 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
 				"		person_1_1.setName( \"joe\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setName( \"dad\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setName( \"dad\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n" );
+				"}\n" + 
+				"" );
 	}
 	
 	public void testArray_recursion()
@@ -357,7 +359,7 @@ public class ArrayTest extends AbstractRecorderTest
 				"		}\n" + 
 				"		personArray = new Person[2];\n" + 
 				"		personArray[0] = buildPerson_1_1();\n" + 
-				"		personArray[1] = dad_2_2;\n" + 
+				"		personArray[1] = person_2_2;\n" + 
 				"		return personArray;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -366,22 +368,23 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
 				"		person_1_1.setName( \"joe\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setDad( person_1_1 );\n" + 
-				"		dad_2_2.setName( \"dad\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setDad( person_1_1 );\n" + 
+				"		person_2_2.setName( \"dad\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 	
 	public void testArray_imports()
@@ -397,8 +400,8 @@ public class ArrayTest extends AbstractRecorderTest
 		recorder.record( fams );
 		assertResult( "package com.advancedpwr.record.examples.generated;\n" + 
 				"\n" + 
-				"import com.advancedpwr.record.examples.Family;\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
+				"import com.advancedpwr.record.examples.Family;\n" + 
+				"import com.advancedpwr.record.examples.Person;\n" + 
 				"\n" + 
 				"public class FamilyArrayFactory\n" + 
 				"{\n" + 
@@ -422,37 +425,37 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Family buildFamily_1_1()\n" + 
 				"	{\n" + 
 				"		family_1_1 = new Family();\n" + 
-				"		family_1_1.setDad( buildDad_2_2() );\n" + 
-				"		family_1_1.setMom( buildMom_6_2() );\n" + 
+				"		family_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		family_1_1.setMom( buildPerson_6_2() );\n" + 
 				"		return family_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setDad( buildDad_3_3() );\n" + 
-				"		dad_2_2.setName( \"dad\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setDad( buildPerson_3_3() );\n" + 
+				"		person_2_2.setName( \"dad\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_3_3;\n" + 
+				"	protected Person person_3_3;\n" + 
 				"\n" + 
-				"	protected Person buildDad_3_3()\n" + 
+				"	protected Person buildPerson_3_3()\n" + 
 				"	{\n" + 
-				"		dad_3_3 = new Person();\n" + 
-				"		dad_3_3.setName( \"grandpa\" );\n" + 
-				"		return dad_3_3;\n" + 
+				"		person_3_3 = new Person();\n" + 
+				"		person_3_3.setName( \"grandpa\" );\n" + 
+				"		return person_3_3;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_6_2;\n" + 
+				"	protected Person person_6_2;\n" + 
 				"\n" + 
-				"	protected Person buildMom_6_2()\n" + 
+				"	protected Person buildPerson_6_2()\n" + 
 				"	{\n" + 
-				"		mom_6_2 = new Person();\n" + 
-				"		mom_6_2.setName( \"mom\" );\n" + 
-				"		return mom_6_2;\n" + 
+				"		person_6_2 = new Person();\n" + 
+				"		person_6_2.setName( \"mom\" );\n" + 
+				"		return person_6_2;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"	protected Family family_8_1;\n" + 
@@ -460,11 +463,12 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Family buildFamily_8_1()\n" + 
 				"	{\n" + 
 				"		family_8_1 = new Family();\n" + 
-				"		family_8_1.setDad( dad_3_3 );\n" + 
+				"		family_8_1.setDad( person_3_3 );\n" + 
 				"		return family_8_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 	
 	public void testArray_5()
@@ -553,7 +557,7 @@ public class ArrayTest extends AbstractRecorderTest
 				"		}\n" + 
 				"		personArray = new Person[2];\n" + 
 				"		personArray[0] = buildPerson_1_1();\n" + 
-				"		personArray[1] = dad_2_2;\n" + 
+				"		personArray[1] = person_2_2;\n" + 
 				"		return personArray;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -562,29 +566,30 @@ public class ArrayTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1() throws Exception\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
 				"		person_1_1.setName( \"joe\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2() throws Exception\n" + 
+				"	protected Person buildPerson_2_2() throws Exception\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setAnniversary( buildAnniversary_3_3() );\n" + 
-				"		dad_2_2.setName( \"dad\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setAnniversary( buildDate_3_3() );\n" + 
+				"		person_2_2.setName( \"dad\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Date anniversary_3_3;\n" + 
+				"	protected Date date_3_3;\n" + 
 				"\n" + 
-				"	protected Date buildAnniversary_3_3()\n" + 
+				"	protected Date buildDate_3_3()\n" + 
 				"	{\n" + 
-				"		anniversary_3_3 = new Date( 975906000000l );\n" + 
-				"		return anniversary_3_3;\n" + 
+				"		date_3_3 = new Date( 975906000000l );\n" + 
+				"		return date_3_3;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n" );
+				"}\n" + 
+				"" );
 	}
 }

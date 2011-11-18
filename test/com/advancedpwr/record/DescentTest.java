@@ -43,41 +43,42 @@ public class DescentTest extends AbstractRecorderTest
 				"	public Person buildPerson()\n" + 
 				"	{\n" + 
 				"		person = new Person();\n" + 
-				"		person.setDad( buildDad_1_1() );\n" + 
-				"		person.setMom( buildMom_5_1() );\n" + 
+				"		person.setDad( buildPerson_1_1() );\n" + 
+				"		person.setMom( buildPerson_5_1() );\n" + 
 				"		person.setName( \"son\" );\n" + 
 				"		return person;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_1_1;\n" + 
+				"	protected Person person_1_1;\n" + 
 				"\n" + 
-				"	protected Person buildDad_1_1()\n" + 
+				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
-				"		dad_1_1 = new Person();\n" + 
-				"		dad_1_1.setDad( buildDad_2_2() );\n" + 
-				"		dad_1_1.setName( \"dad\" );\n" + 
-				"		return dad_1_1;\n" + 
+				"		person_1_1 = new Person();\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		person_1_1.setName( \"dad\" );\n" + 
+				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_5_1;\n" + 
+				"	protected Person person_5_1;\n" + 
 				"\n" + 
-				"	protected Person buildMom_5_1()\n" + 
+				"	protected Person buildPerson_5_1()\n" + 
 				"	{\n" + 
-				"		mom_5_1 = new Person();\n" + 
-				"		mom_5_1.setName( \"mom\" );\n" + 
-				"		return mom_5_1;\n" + 
+				"		person_5_1 = new Person();\n" + 
+				"		person_5_1.setName( \"mom\" );\n" + 
+				"		return person_5_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 	
 	public void testRecursion()
@@ -101,32 +102,33 @@ public class DescentTest extends AbstractRecorderTest
 				"	public Person buildPerson()\n" + 
 				"	{\n" + 
 				"		person = new Person();\n" + 
-				"		person.setDad( buildDad_1_1() );\n" + 
+				"		person.setDad( buildPerson_1_1() );\n" + 
 				"		person.setName( \"son\" );\n" + 
 				"		return person;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_1_1;\n" + 
+				"	protected Person person_1_1;\n" + 
 				"\n" + 
-				"	protected Person buildDad_1_1()\n" + 
+				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
-				"		dad_1_1 = new Person();\n" + 
-				"		dad_1_1.setDad( buildDad_2_2() );\n" + 
-				"		dad_1_1.setName( \"dad\" );\n" + 
-				"		return dad_1_1;\n" + 
+				"		person_1_1 = new Person();\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		person_1_1.setName( \"dad\" );\n" + 
+				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setDad( person );\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setDad( person );\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 	
 	public void testRecursion_2()
@@ -151,31 +153,32 @@ public class DescentTest extends AbstractRecorderTest
 				"	public Person buildPerson()\n" + 
 				"	{\n" + 
 				"		person = new Person();\n" + 
-				"		person.setDad( buildDad_1_1() );\n" + 
+				"		person.setDad( buildPerson_1_1() );\n" + 
 				"		person.setName( \"son\" );\n" + 
 				"		return person;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_1_1;\n" + 
+				"	protected Person person_1_1;\n" + 
 				"\n" + 
-				"	protected Person buildDad_1_1()\n" + 
+				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
-				"		dad_1_1 = new Person();\n" + 
-				"		dad_1_1.setDad( buildDad_2_2() );\n" + 
-				"		dad_1_1.setName( \"dad\" );\n" + 
-				"		return dad_1_1;\n" + 
+				"		person_1_1 = new Person();\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		person_1_1.setName( \"dad\" );\n" + 
+				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setDad( person );\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setDad( person );\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 }

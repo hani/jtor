@@ -48,29 +48,29 @@ public class FamilyTest extends AbstractRecorderTest
 				"	public Family buildFamily()\n" + 
 				"	{\n" + 
 				"		family = new Family();\n" + 
-				"		family.setDad( buildDad_1_1() );\n" + 
+				"		family.setDad( buildPerson_1_1() );\n" + 
 				"		family.setLocale( buildLocale_5_1() );\n" + 
-				"		family.setMom( buildMom_6_1() );\n" + 
+				"		family.setMom( buildPerson_6_1() );\n" + 
 				"		return family;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_1_1;\n" + 
+				"	protected Person person_1_1;\n" + 
 				"\n" + 
-				"	protected Person buildDad_1_1()\n" + 
+				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
-				"		dad_1_1 = new Person();\n" + 
-				"		dad_1_1.setDad( buildDad_2_2() );\n" + 
-				"		dad_1_1.setName( \"dad\" );\n" + 
-				"		return dad_1_1;\n" + 
+				"		person_1_1 = new Person();\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		person_1_1.setName( \"dad\" );\n" + 
+				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setName( \"grandpa\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setName( \"grandpa\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"	protected Locale locale_5_1;\n" + 
@@ -85,15 +85,15 @@ public class FamilyTest extends AbstractRecorderTest
 				"		return locale_5_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_6_1;\n" + 
+				"	protected Person person_6_1;\n" + 
 				"\n" + 
-				"	protected Person buildMom_6_1()\n" + 
+				"	protected Person buildPerson_6_1()\n" + 
 				"	{\n" + 
-				"		mom_6_1 = new Person();\n" + 
-				"		mom_6_1.setName( \"mom\" );\n" + 
-				"		return mom_6_1;\n" + 
+				"		person_6_1 = new Person();\n" + 
+				"		person_6_1.setName( \"mom\" );\n" + 
+				"		return person_6_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n" );
+				"}\n"  );
 	}
 }

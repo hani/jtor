@@ -26,8 +26,9 @@ public class AllTests
 		TestSuite suite = new TestSuite( "Test for com.advancedpwr.record.methods" );
 		//$JUnit-BEGIN$
 		suite.addTestSuite( PrimitivesTest.class );
-		suite.addTestSuite( MethodBuilderTest.class );
 		suite.addTestSuite( AbstractDefaultFactoryTest.class );
+		suite.addTestSuite( MethodBuilderTest.class );
+		suite.addTestSuite( DateBuilderTest.class );
 		//$JUnit-END$
 		return suite;
 	}

@@ -63,7 +63,7 @@ public class MapTest extends AbstractRecorderTest
 				"	{\n" + 
 				"		mapcontainer = new MapContainer();\n" + 
 				"		mapcontainer.setPerson( buildPerson_1_1() );\n" + 
-				"		mapcontainer.setMap( buildMap_9_1() );\n" + 
+				"		mapcontainer.setMap( buildLinkedHashMap_9_1() );\n" + 
 				"		return mapcontainer;\n" + 
 				"	}\n" + 
 				"\n" + 
@@ -72,50 +72,50 @@ public class MapTest extends AbstractRecorderTest
 				"	protected Person buildPerson_1_1()\n" + 
 				"	{\n" + 
 				"		person_1_1 = new Person();\n" + 
-				"		person_1_1.setDad( buildDad_2_2() );\n" + 
-				"		person_1_1.setMom( buildMom_6_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_2_2() );\n" + 
+				"		person_1_1.setMom( buildPerson_6_2() );\n" + 
 				"		person_1_1.setName( \"son\" );\n" + 
 				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_2_2;\n" + 
+				"	protected Person person_2_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_2_2()\n" + 
+				"	protected Person buildPerson_2_2()\n" + 
 				"	{\n" + 
-				"		dad_2_2 = new Person();\n" + 
-				"		dad_2_2.setDad( buildDad_3_3() );\n" + 
-				"		dad_2_2.setName( \"dad\" );\n" + 
-				"		return dad_2_2;\n" + 
+				"		person_2_2 = new Person();\n" + 
+				"		person_2_2.setDad( buildPerson_3_3() );\n" + 
+				"		person_2_2.setName( \"dad\" );\n" + 
+				"		return person_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_3_3;\n" + 
+				"	protected Person person_3_3;\n" + 
 				"\n" + 
-				"	protected Person buildDad_3_3()\n" + 
+				"	protected Person buildPerson_3_3()\n" + 
 				"	{\n" + 
-				"		dad_3_3 = new Person();\n" + 
-				"		dad_3_3.setName( \"grandpa\" );\n" + 
-				"		return dad_3_3;\n" + 
+				"		person_3_3 = new Person();\n" + 
+				"		person_3_3.setName( \"grandpa\" );\n" + 
+				"		return person_3_3;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_6_2;\n" + 
+				"	protected Person person_6_2;\n" + 
 				"\n" + 
-				"	protected Person buildMom_6_2()\n" + 
+				"	protected Person buildPerson_6_2()\n" + 
 				"	{\n" + 
-				"		mom_6_2 = new Person();\n" + 
-				"		mom_6_2.setName( \"mom\" );\n" + 
-				"		return mom_6_2;\n" + 
+				"		person_6_2 = new Person();\n" + 
+				"		person_6_2.setName( \"mom\" );\n" + 
+				"		return person_6_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected LinkedHashMap map_9_1;\n" + 
+				"	protected LinkedHashMap linkedhashmap_9_1;\n" + 
 				"\n" + 
-				"	protected Map buildMap_9_1()\n" + 
+				"	protected Map buildLinkedHashMap_9_1()\n" + 
 				"	{\n" + 
-				"		map_9_1 = new LinkedHashMap();\n" + 
-				"		map_9_1.put( \"son\", person_1_1 );\n" + 
-				"		map_9_1.put( \"dad\", dad_2_2 );\n" + 
-				"		map_9_1.put( \"mom\", mom_6_2 );\n" + 
-				"		map_9_1.put( person_1_1, buildMap_1_10_2() );\n" + 
-				"		return map_9_1;\n" + 
+				"		linkedhashmap_9_1 = new LinkedHashMap();\n" + 
+				"		linkedhashmap_9_1.put( \"son\", person_1_1 );\n" + 
+				"		linkedhashmap_9_1.put( \"dad\", person_2_2 );\n" + 
+				"		linkedhashmap_9_1.put( \"mom\", person_6_2 );\n" + 
+				"		linkedhashmap_9_1.put( person_1_1, buildMap_1_10_2() );\n" + 
+				"		return linkedhashmap_9_1;\n" + 
 				"	}\n" + 
 				"\n" + 
 				"	protected Person map_1_10_2;\n" + 
@@ -159,7 +159,7 @@ public class MapTest extends AbstractRecorderTest
 				"	{\n" + 
 				"		linkedhashmap = new LinkedHashMap();\n" + 
 				"		linkedhashmap.put( \"son\", buildLinkedHashMap_2_1() );\n" + 
-				"		linkedhashmap.put( \"dad\", dad_3_2 );\n" + 
+				"		linkedhashmap.put( \"dad\", person_3_2 );\n" + 
 				"		linkedhashmap.put( \"alias\", linkedhashmap_2_1 );\n" + 
 				"		return linkedhashmap;\n" + 
 				"	}\n" + 
@@ -169,42 +169,41 @@ public class MapTest extends AbstractRecorderTest
 				"	protected Person buildLinkedHashMap_2_1()\n" + 
 				"	{\n" + 
 				"		linkedhashmap_2_1 = new Person();\n" + 
-				"		linkedhashmap_2_1.setDad( buildDad_3_2() );\n" + 
-				"		linkedhashmap_2_1.setMom( buildMom_7_2() );\n" + 
+				"		linkedhashmap_2_1.setDad( buildPerson_3_2() );\n" + 
+				"		linkedhashmap_2_1.setMom( buildPerson_7_2() );\n" + 
 				"		linkedhashmap_2_1.setName( \"son\" );\n" + 
 				"		return linkedhashmap_2_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_3_2;\n" + 
+				"	protected Person person_3_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_3_2()\n" + 
+				"	protected Person buildPerson_3_2()\n" + 
 				"	{\n" + 
-				"		dad_3_2 = new Person();\n" + 
-				"		dad_3_2.setDad( buildDad_4_3() );\n" + 
-				"		dad_3_2.setName( \"dad\" );\n" + 
-				"		return dad_3_2;\n" + 
+				"		person_3_2 = new Person();\n" + 
+				"		person_3_2.setDad( buildPerson_4_3() );\n" + 
+				"		person_3_2.setName( \"dad\" );\n" + 
+				"		return person_3_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_4_3;\n" + 
+				"	protected Person person_4_3;\n" + 
 				"\n" + 
-				"	protected Person buildDad_4_3()\n" + 
+				"	protected Person buildPerson_4_3()\n" + 
 				"	{\n" + 
-				"		dad_4_3 = new Person();\n" + 
-				"		dad_4_3.setName( \"grandpa\" );\n" + 
-				"		return dad_4_3;\n" + 
+				"		person_4_3 = new Person();\n" + 
+				"		person_4_3.setName( \"grandpa\" );\n" + 
+				"		return person_4_3;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_7_2;\n" + 
+				"	protected Person person_7_2;\n" + 
 				"\n" + 
-				"	protected Person buildMom_7_2()\n" + 
+				"	protected Person buildPerson_7_2()\n" + 
 				"	{\n" + 
-				"		mom_7_2 = new Person();\n" + 
-				"		mom_7_2.setName( \"mom\" );\n" + 
-				"		return mom_7_2;\n" + 
+				"		person_7_2 = new Person();\n" + 
+				"		person_7_2.setName( \"mom\" );\n" + 
+				"		return person_7_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n" + 
-				"");
+				"}\n" );
 		
 	}
 }

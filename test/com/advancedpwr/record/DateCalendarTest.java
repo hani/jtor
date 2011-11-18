@@ -59,59 +59,60 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"	public Person buildPerson() throws Exception, BirthdayException\n" + 
 				"	{\n" + 
 				"		person = new Person();\n" + 
-				"		person.setDad( buildDad_1_1() );\n" + 
-				"		person.setMom( buildMom_30_1() );\n" + 
+				"		person.setDad( buildPerson_1_1() );\n" + 
+				"		person.setMom( buildPerson_30_1() );\n" + 
 				"		person.setName( \"son\" );\n" + 
 				"		return person;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_1_1;\n" + 
+				"	protected Person person_1_1;\n" + 
 				"\n" + 
-				"	protected Person buildDad_1_1() throws Exception, BirthdayException\n" + 
+				"	protected Person buildPerson_1_1() throws Exception, BirthdayException\n" + 
 				"	{\n" + 
-				"		dad_1_1 = new Person();\n" + 
-				"		dad_1_1.setAnniversary( buildAnniversary_2_2() );\n" + 
-				"		dad_1_1.setBirthday( buildBirthday_10_2() );\n" + 
-				"		dad_1_1.setDad( buildDad_27_2() );\n" + 
-				"		dad_1_1.setName( \"dad\" );\n" + 
-				"		return dad_1_1;\n" + 
+				"		person_1_1 = new Person();\n" + 
+				"		person_1_1.setAnniversary( buildDate_2_2() );\n" + 
+				"		person_1_1.setBirthday( buildGregorianCalendar_10_2() );\n" + 
+				"		person_1_1.setDad( buildPerson_27_2() );\n" + 
+				"		person_1_1.setName( \"dad\" );\n" + 
+				"		return person_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Date anniversary_2_2;\n" + 
+				"	protected Date date_2_2;\n" + 
 				"\n" + 
-				"	protected Date buildAnniversary_2_2()\n" + 
+				"	protected Date buildDate_2_2()\n" + 
 				"	{\n" + 
-				"		anniversary_2_2 = new Date( 987654321l );\n" + 
-				"		return anniversary_2_2;\n" + 
+				"		date_2_2 = new Date( 987654321l );\n" + 
+				"		return date_2_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Calendar birthday_10_2;\n" + 
+				"	protected Calendar gregoriancalendar_10_2;\n" + 
 				"\n" + 
-				"	protected Calendar buildBirthday_10_2()\n" + 
+				"	protected Calendar buildGregorianCalendar_10_2()\n" + 
 				"	{\n" + 
-				"		birthday_10_2 = GregorianCalendar.getInstance();\n" + 
-				"		birthday_10_2.setTimeInMillis( new Long( 123456789 ) );\n" + 
-				"		return birthday_10_2;\n" + 
+				"		gregoriancalendar_10_2 = GregorianCalendar.getInstance();\n" + 
+				"		gregoriancalendar_10_2.setTimeInMillis( new Long( 123456789 ) );\n" + 
+				"		return gregoriancalendar_10_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person dad_27_2;\n" + 
+				"	protected Person person_27_2;\n" + 
 				"\n" + 
-				"	protected Person buildDad_27_2()\n" + 
+				"	protected Person buildPerson_27_2()\n" + 
 				"	{\n" + 
-				"		dad_27_2 = new Person();\n" + 
-				"		dad_27_2.setName( \"grandpa\" );\n" + 
-				"		return dad_27_2;\n" + 
+				"		person_27_2 = new Person();\n" + 
+				"		person_27_2.setName( \"grandpa\" );\n" + 
+				"		return person_27_2;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Person mom_30_1;\n" + 
+				"	protected Person person_30_1;\n" + 
 				"\n" + 
-				"	protected Person buildMom_30_1()\n" + 
+				"	protected Person buildPerson_30_1()\n" + 
 				"	{\n" + 
-				"		mom_30_1 = new Person();\n" + 
-				"		mom_30_1.setName( \"mom\" );\n" + 
-				"		return mom_30_1;\n" + 
+				"		person_30_1 = new Person();\n" + 
+				"		person_30_1.setName( \"mom\" );\n" + 
+				"		return person_30_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 }

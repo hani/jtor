@@ -54,20 +54,21 @@ public class ListRecorderTest extends AbstractRecorderTest
 				"	public ListExample buildListExample()\n" + 
 				"	{\n" + 
 				"		listexample = new ListExample();\n" + 
-				"		listexample.setList( buildList_1_1() );\n" + 
+				"		listexample.setList( buildVector_1_1() );\n" + 
 				"		return listexample;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"	protected Vector list_1_1;\n" + 
+				"	protected Vector vector_1_1;\n" + 
 				"\n" + 
-				"	protected List buildList_1_1()\n" + 
+				"	protected List buildVector_1_1()\n" + 
 				"	{\n" + 
-				"		list_1_1 = new Vector();\n" + 
-				"		list_1_1.add( \"entry 1\" );\n" + 
-				"		list_1_1.add( \"entry 2\" );\n" + 
-				"		return list_1_1;\n" + 
+				"		vector_1_1 = new Vector();\n" + 
+				"		vector_1_1.add( \"entry 1\" );\n" + 
+				"		vector_1_1.add( \"entry 2\" );\n" + 
+				"		return vector_1_1;\n" + 
 				"	}\n" + 
 				"\n" + 
-				"}\n");
+				"}\n" + 
+				"");
 	}
 }
