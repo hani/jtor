@@ -53,11 +53,6 @@ public class AccessorMethodPath extends AccessPath
 	{
 		return getSetter().getParameterTypes()[0];
 	}
-	
-	public String nameRoot()
-	{
-		return pathName().replaceFirst( "set", "" ) + suffix();
-	}
 
 	public Set<Class> getExceptions()
 	{
