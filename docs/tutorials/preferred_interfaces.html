@@ -6,10 +6,7 @@ than the concrete class.</p>
 record an interaction with an instance of Person as a factory that returns a Person object:</p>
 
 <p>
-<div class="java"><code class="java"><span class="java10">SimpleClassDescriptor descriptor = </span><span class="java4">new </span><span class="java10">SimpleClassDescriptor</span><span class="java8">()</span><span class="java10">;<br />
-descriptor.setClassName</span><span class="java8">( </span><span class="java5">&#34;MockPersonFactory&#34; </span><span class="java8">)</span><span class="java10">;<br />
-descriptor.setPackageName</span><span class="java8">( </span><span class="java5">&#34;com.advancedpwr.record.mock.generated&#34; </span><span class="java8">)</span><span class="java10">;<br />
-recorder.setDescriptor</span><span class="java8">( </span><span class="java10">descriptor </span><span class="java8">)</span><span class="java10">;<br />
+<div class="java"><code class="java"><span class="java10">recorder.setClassName</span><span class="java8">( </span><span class="java5">&#34;com.advancedpwr.record.mock.generated.MockPersonFactory&#34;</span><span class="java8">)</span><span class="java10">;</span><br />
 <br />
 Person person = </span><span class="java4">new </span><span class="java10">Person</span><span class="java8">()</span><span class="java10">;<br />
 <br />
@@ -48,13 +45,10 @@ recorder.endRecording</span><span class="java8">()</span><span class="java10">;<
 }</span></code></div>
 </p>
 
-<p>We can use the addPreferredInterace() method to generate mocks from the Being interace instead:</p>
+<p>We can use the <span class="bold">addPreferredInterace()</span> method to generate mocks from the Being interface instead:</p>
 
 <p>
-<div class="java"><code class="java"><span class="java10">SimpleClassDescriptor descriptor = </span><span class="java4">new </span><span class="java10">SimpleClassDescriptor</span><span class="java8">()</span><span class="java10">;<br />
-descriptor.setClassName</span><span class="java8">( </span><span class="java5">&#34;MockBeingFactory&#34; </span><span class="java8">)</span><span class="java10">;<br />
-descriptor.setPackageName</span><span class="java8">( </span><span class="java5">&#34;com.advancedpwr.record.mock.generated&#34; </span><span class="java8">)</span><span class="java10">;<br />
-recorder.setDescriptor</span><span class="java8">( </span><span class="java10">descriptor </span><span class="java8">)</span><span class="java10">;<br /></span>
+<div class="java"><code class="java"><span class="java10">recorder.setClassName</span><span class="java8">( </span><span class="java5">&#34;com.advancedpwr.record.mock.generated.MockPersonFactory&#34;</span><span class="java8">)</span><span class="java10">;</span><br />
 <span class="bold">recorder.addPreferredInterface</span><span class="java8">( </span><span class="java10">Being.</span><span class="java4">class </span><span class="java8">)</span><span class="java10">;<br /></span>
 <br />
 Person person = </span><span class="java4">new </span><span class="java10">Person</span><span class="java8">()</span><span class="java10">;<br />

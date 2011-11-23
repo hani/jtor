@@ -18,11 +18,10 @@ generated factory class:</p>
 </span><span class="java3">//Set the output directory for generated source code<br />
 </span><span class="java10">recorder.setDestination</span><span class="java8">( </span><span class="java5">&#34;recordings&#34; </span><span class="java8">)</span><span class="java10">;<br />
 <br />
-</span><span class="java3">//Set a class descriptor, otherwise the recorder will default to &#34;java.sql.generated.ConnectionFactory&#34;<br />
-</span><span class="java10">SimpleClassDescriptor descriptor = </span><span class="java4">new </span><span class="java10">SimpleClassDescriptor</span><span class="java8">()</span><span class="java10">;<br />
-descriptor.setPackageName</span><span class="java8">( </span><span class="java5">&#34;com.tampalaptops.search.generated&#34; </span><span class="java8">)</span><span class="java10">;<br />
-descriptor.setClassName</span><span class="java8">( </span><span class="java5">&#34;SqlOrderSearchConnectionFactory&#34; </span><span class="java8">)</span><span class="java10">;<br />
-recorder.setDescriptor</span><span class="java8">( </span><span class="java10">descriptor </span><span class="java8">)</span><span class="java10">;</span></code></div>
+
+
+</span><span class="java3">//Set a class name for the recording, otherwise the recorder will default to &#34;java.sql.generated.ConnectionFactory&#34;<br />
+</span><span class="java10">recorder.setClassName</span><span class="java8">( </span><span class="java5">&#34;com.tampalaptops.search.generated.SqlOrderSearchConnectionFactory&#34;</span><span class="java8">)</span><span class="java10">;</span></code></div>
 </p>
 
 <p>Next we want to instrument the java.sql.Connection class, then use the <i>instrumented</i> Connection just like we would use the real Connection. </p>
