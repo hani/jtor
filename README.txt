@@ -40,5 +40,4 @@ and verify the expected behavior.  This recorder requires EasyMock-3.0.jar,
 cglib-nodep-2.2.jar and objenesis-1.2.jar.
 
 
-Documentation is on the way, but the best documentation is in the unit tests.  
-See the source code in the “test” directory.  Junit 3.x is required.
+User and API documentation can be found at http://jtor.sourceforge.net.
