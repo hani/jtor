@@ -1,6 +1,6 @@
-﻿***  Java Test Object Recorder ***
+﻿***  ThOR - Java Test Object Recorder ***
 
-The Java Test Object Recorder (JTOR) project provides three "object recorders" 
+The Java Test Object Recorder (ThOR) project provides three "object recorders" 
 to record live object trees or behavior for playback during unit testing.  
 
 Object recorders enable the recording of state or behavior so that data 
@@ -18,12 +18,15 @@ replicate the recorded behavior.
 
 State Recorders:
 
-com.advancedpwr.record.BeanRecorder – The first implementation, this recorder 
-is only marginally useful as it records an object tree that follows the Java 
-Bean conventions.  This method of recording does have the advantage that the 
-resulting factory class is entirely Java and will “follow” refactorings 
-such as method, class or package renaming.  No additional jar files are 
-necessary to use this recorder.
+com.advancedpwr.record.BeanRecorder – This recorder will records an object 
+tree that follows the Java Bean convention.  It is particularly useful for
+recording web service return structures since generated web service stubs
+normally follow this convention.  The BeanRecorder can be extended to support
+the construction of objects that require arguments in the constructor by 
+implementing a MethodWriterFactory and adding an instance to the recorder.
+This method of recording has the advantage that the resulting factory class 
+is entirely Java and will “follow” refactorings such as method, class or 
+package renaming.  No additional jar files are necessary to use this recorder.
 
 com.advancedpwr.record.xtream.XstreamRecorder – This implementation uses 
 Xstream to create a factory that stores the object tree in an XML file.  
