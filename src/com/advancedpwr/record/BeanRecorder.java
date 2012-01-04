@@ -27,11 +27,11 @@ import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 
 /**
- * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file.  The <code>BeanRecorder</code>
- * is limited in capability.  This recorder uses reflection to inspect an object tree for Java Bean style setter / getter
- * accessor methods, therefore it is only capable of reconstructing an object tree through that convention.  Many web service
- * return data structures adhere to the Java Bean accessor convention, so this class may be of use in recording a web service response
- * for use in unit testing.
+ * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file. This recorder uses 
+ * reflection to inspect an object tree for Java Bean style setter / getter accessor methods, therefore it is only 
+ * capable of reconstructing an object tree through that convention.  Many web service return data structures adhere
+ * to the Java Bean accessor convention, so this class may be of use in recording a web service response for use in 
+ * unit testing.
  * <p>
  * Recording example:
  * </p>
@@ -58,18 +58,18 @@ import com.advancedpwr.record.methods.MethodBuilderFactory;
 		public Person buildPerson()
 		{
 			person = new Person();
-			person.setDad( buildDad_1_1() );
+			person.setDad( buildPerson_1_1() );
 			person.setName( "Jim" );
 			return person;
 		}
 	
-		protected Person dad_1_1;
+		protected Person person_1_1;
 	
-		protected Person buildDad_1_1()
+		protected Person buildPerson_1_1()
 		{
 			dad_1_1 = new Person();
 			dad_1_1.setName( "John" );
-			return dad_1_1;
+			return person_1_1;
 		}
 	
 	}
