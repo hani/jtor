@@ -20,12 +20,12 @@ h2 {
 
 div.left {
 	float: left;
-	width: 22%;
+	width: 20%;
 }
 
 div.right {
 	float: left;
-	width: 74%;
+	width: 76%;
 	margin-left: 2%;
 }
 
@@ -51,18 +51,10 @@ a img {
 
 /* decorations */
 .bar {
-	background-color: #99FF00;
+	background-color: #99CCFF;
 	text-align: center;
 }
 
-.title {
-	background-color: #CCFF00;
-	font-size: 24px;
-	font-weight: bold;
-	padding: 10px;
-	padding-left: 25px;
-	margin: 5px;
-}
 .bold
 {
 	font-weight: bold;
