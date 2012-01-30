@@ -1,5 +1,6 @@
 package com.advancedpwr.record.inspect;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -9,10 +10,13 @@ import java.util.List;
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
 import com.advancedpwr.record.RecorderException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BeanInspector extends Inspector
 {
-	
+	private Logger log = LoggerFactory.getLogger(BeanInspector.class);
+
 	protected List<Method> sortedMethods()
 	{
 		Method[] methods = objectClass().getMethods();
@@ -23,7 +27,7 @@ public class BeanInspector extends Inspector
 		Collections.sort( list, new ArrayMethodComparator() );
 		return list;
 	}
-	
+
 	public void inspect( InstanceTree inTree )
 	{
 		setInstanceTree( inTree );
@@ -33,9 +37,9 @@ public class BeanInspector extends Inspector
 			setCurrentMethod( method );
 			addMethodAccessPath();
 		}
-		
+
 	}
-	
+
 	protected void addMethodAccessPath()
 	{
 		if ( isSetter() && hasGetterMethod() )
@@ -48,13 +52,13 @@ public class BeanInspector extends Inspector
 			}
 		}
 	}
-	
+
 	protected void addAccessPathForResult( Object result )
 	{
 		AccessPath path = createAccessorMethodPath( result );
 		addAccessPath( path );
 	}
-	
+
 	protected AccessPath createAccessorMethodPath( Object result )
 	{
 		AccessorMethodPath accessor = new AccessorMethodPath();
@@ -70,7 +74,7 @@ public class BeanInspector extends Inspector
 		Method method = getCurrentMethod();
 		return Modifier.isPublic( method.getModifiers() )  && method.getName().startsWith( "set" ) && method.getParameterTypes().length == 1;
 	}
-	
+
 	protected String getterName()
 	{
 		if( boolean.class.equals( getCurrentMethod().getParameterTypes()[0] ) )
@@ -79,7 +83,7 @@ public class BeanInspector extends Inspector
 		}
 		return getCurrentMethod().getName().replaceFirst( "set", "get" );
 	}
-	
+
 	protected Method getterMethod()
 	{
 		Method[] methods = objectClass().getMethods();
@@ -98,7 +102,7 @@ public class BeanInspector extends Inspector
 	{
 		return method.getName().equals( getterName() ) && method.getParameterTypes().length == 0 && !Modifier.isStatic( method.getModifiers() );
 	}
-	
+
 	protected boolean hasGetterMethod()
 	{
 		return getterMethod() != null;
@@ -113,17 +117,20 @@ public class BeanInspector extends Inspector
 	{
 		getInstanceTree().setCurrentMethod( currentMethod );
 	}
-	
+
 	protected Object invoke( Method getter )
 	{
 		try
 		{
 			 return getter.invoke( getObject() );
 		}
-		catch ( Exception e )
+		catch (InvocationTargetException e )
 		{
+      log.warn("Error invoking getter " + getter + ". Method will return null", e.getCause());
 			throw new RecorderException( e );
 		}
-		
+    catch(Exception ex) {
+      throw new RecorderException(ex);
+    }
 	}
 }
