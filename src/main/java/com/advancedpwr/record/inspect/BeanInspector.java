@@ -127,7 +127,7 @@ public class BeanInspector extends Inspector
 		catch (InvocationTargetException e )
 		{
       log.warn("Error invoking getter " + getter + ". Method will return null", e.getCause());
-			throw new RecorderException( e );
+      return null;
 		}
     catch(Exception ex) {
       throw new RecorderException(ex);
