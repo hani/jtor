@@ -60,7 +60,7 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"	{\n" +
 				"		person = new Person();\n" +
 				"		person.setDad( buildPerson_1_1() );\n" +
-				"		person.setMom( buildPerson_30_1() );\n" +
+				"		person.setMom( buildPerson_37_1() );\n" +
 				"		person.setName( \"son\" );\n" +
 				"		return person;\n" +
 				"	}\n" +
@@ -72,7 +72,7 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"		person_1_1 = new Person();\n" +
 				"		person_1_1.setAnniversary( buildDate_2_2() );\n" +
 				"		person_1_1.setBirthday( buildGregorianCalendar_10_2() );\n" +
-				"		person_1_1.setDad( buildPerson_27_2() );\n" +
+				"		person_1_1.setDad( buildPerson_34_2() );\n" +
 				"		person_1_1.setName( \"dad\" );\n" +
 				"		return person_1_1;\n" +
 				"	}\n" +
@@ -94,22 +94,22 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"		return gregoriancalendar_10_2;\n" +
 				"	}\n" +
 				"\n" +
-				"	protected Person person_27_2;\n" +
+				"	protected Person person_34_2;\n" +
 				"\n" +
-				"	protected Person buildPerson_27_2()\n" +
+				"	protected Person buildPerson_34_2()\n" +
 				"	{\n" +
-				"		person_27_2 = new Person();\n" +
-				"		person_27_2.setName( \"grandpa\" );\n" +
-				"		return person_27_2;\n" +
+				"		person_34_2 = new Person();\n" +
+				"		person_34_2.setName( \"grandpa\" );\n" +
+				"		return person_34_2;\n" +
 				"	}\n" +
 				"\n" +
-				"	protected Person person_30_1;\n" +
+				"	protected Person person_37_1;\n" +
 				"\n" +
-				"	protected Person buildPerson_30_1()\n" +
+				"	protected Person buildPerson_37_1()\n" +
 				"	{\n" +
-				"		person_30_1 = new Person();\n" +
-				"		person_30_1.setName( \"mom\" );\n" +
-				"		return person_30_1;\n" +
+				"		person_37_1 = new Person();\n" +
+				"		person_37_1.setName( \"mom\" );\n" +
+				"		return person_37_1;\n" +
 				"	}\n" +
 				"\n" +
 				"}\n" +
