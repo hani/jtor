@@ -11,6 +11,11 @@ repositories {
   mavenCentral()
 }
 
+task sourcesJar(type: Jar, dependsOn:classes) {
+     classifier = 'sources'
+     from sourceSets.main.allSource
+}
+
 dependencies {
   compile 'org.objenesis:objenesis:1.2'
   compile 'org.slf4j:slf4j-api:1.6.4'
