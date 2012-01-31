@@ -52,7 +52,11 @@ public class InstanceTreeFactory
 
 	public Set<Class> classes()
 	{
-		Set<Class> classes = new LinkedHashSet<Class>();
+		Set<Class> classes = new TreeSet<Class>(new Comparator<Class>() {
+      public int compare(Class o1, Class o2) {
+        return o1.getName().compareTo(o2.getName());
+      }
+    });
 		for ( Iterator iterator = getTrees().entrySet().iterator(); iterator.hasNext(); )
 		{
 			Map.Entry<Object, InstanceTree> entry = (Map.Entry<Object, InstanceTree>) iterator.next();
