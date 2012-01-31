@@ -69,6 +69,9 @@ public class AccessPath
     if(resultClass.getSimpleName().contains("$$EnhancerByCGLIB$")) {
       resultClass = resultClass.getSuperclass();
     }
+    if(resultClass.isArray()) {
+      resultClass = resultClass.getComponentType();
+    }
     return resultClass.getSimpleName() + suffix();
 	}
 
