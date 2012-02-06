@@ -57,70 +57,16 @@ public class ListInstanceTest extends AbstractRecorderTest
 
 		recorder.record( dad );
 
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
-        "import java.util.ArrayList;\n" +
-				"import java.util.List;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PersonFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Person person;\n" +
-				"\n" +
-				"	public Person buildPerson()\n" +
-				"	{\n" +
-				"		person = new Person();\n" +
-				"		person.setMom( buildPerson_1_1() );\n" +
-				"		person.setName( \"dad\" );\n" +
-				"		person.setChildren( buildArrayList_4_1() );\n" +
-				"		return person;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_1_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_1_1()\n" +
-				"	{\n" +
-				"		person_1_1 = new Person();\n" +
-				"		person_1_1.setDad( person );\n" +
-				"		person_1_1.setName( \"Jill\" );\n" +
-				"		return person_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected ArrayList arraylist_4_1;\n" +
-				"\n" +
-				"	protected List buildArrayList_4_1()\n" +
-				"	{\n" +
-				"		arraylist_4_1 = new ArrayList();\n" +
-				"		arraylist_4_1.add( buildChildren_1_5_2() );\n" +
-				"		arraylist_4_1.add( person_1_1 );\n" +
-				"		arraylist_4_1.add( buildChildren_1_7_2() );\n" +
-				"		return arraylist_4_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person children_1_5_2;\n" +
-				"\n" +
-				"	protected Person buildChildren_1_5_2()\n" +
-				"	{\n" +
-				"		children_1_5_2 = new Person();\n" +
-				"		children_1_5_2.setDad( person );\n" +
-				"		children_1_5_2.setName( \"jack\" );\n" +
-				"		return children_1_5_2;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person children_1_7_2;\n" +
-				"\n" +
-				"	protected Person buildChildren_1_7_2()\n" +
-				"	{\n" +
-				"		children_1_7_2 = new Person();\n" +
-				"		children_1_7_2.setDad( person );\n" +
-				"		children_1_7_2.setMom( person_1_1 );\n" +
-				"		children_1_7_2.setName( \"joe\" );\n" +
-				"		return children_1_7_2;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+    assertContains("	protected ArrayList arraylist_4_1;\n" +
+    				"\n" +
+    				"	protected List buildArrayList_4_1()\n" +
+    				"	{\n" +
+    				"		arraylist_4_1 = new ArrayList();\n" +
+    				"		arraylist_4_1.add( buildChildren_1_5_2() );\n" +
+    				"		arraylist_4_1.add( person_1_1 );\n" +
+    				"		arraylist_4_1.add( buildChildren_1_7_2() );\n" +
+    				"		return arraylist_4_1;\n" +
+    				"	}\n"
+    );
 	}
 }

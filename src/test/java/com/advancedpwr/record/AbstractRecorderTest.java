@@ -63,8 +63,17 @@ public abstract class AbstractRecorderTest extends TestCase
 		System.setProperty( WRITE_FILES, "true" );
 	}
 
+  public void assertContains(String... values) {
+    String res = result.toString();
+    for(String value : values) {
+      if(!res.contains(value)) {
+        assertResult(value);
+      }
+    }
+  }
+
 	public void assertResult( String inString )
 	{
-		assertEquals( inString.replaceAll( "\r\n", "\n" ).trim(), result.toString().replaceAll( "\r\n", "\n" ).trim());
+		assertEquals("Missing value", inString.replaceAll( "\r\n", "\n" ).trim(), result.toString().replaceAll( "\r\n", "\n" ).trim());
 	}
 }

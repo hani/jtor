@@ -39,37 +39,15 @@ public class ListRecorderTest extends AbstractRecorderTest
 		listHolder.setList( vector );
 
 		recorder.record( listHolder );
-
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.ListExample;\n" +
-				"import java.util.List;\n" +
-				"import java.util.Vector;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class ListExampleFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected ListExample listexample;\n" +
-				"\n" +
-				"	public ListExample buildListExample()\n" +
-				"	{\n" +
-				"		listexample = new ListExample();\n" +
-				"		listexample.setList( buildVector_1_1() );\n" +
-				"		return listexample;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Vector vector_1_1;\n" +
-				"\n" +
-				"	protected List buildVector_1_1()\n" +
-				"	{\n" +
-				"		vector_1_1 = new Vector();\n" +
-				"		vector_1_1.add( \"entry 1\" );\n" +
-				"		vector_1_1.add( \"entry 2\" );\n" +
-				"		return vector_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+    assertContains("	protected Vector vector_1_1;\n" +
+    				"\n" +
+    				"	protected List buildVector_1_1()\n" +
+    				"	{\n" +
+    				"		vector_1_1 = new Vector();\n" +
+    				"		vector_1_1.add( \"entry 1\" );\n" +
+    				"		vector_1_1.add( \"entry 2\" );\n" +
+    				"		return vector_1_1;\n" +
+    				"	}\n"
+    );
 	}
 }

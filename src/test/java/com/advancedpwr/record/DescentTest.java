@@ -31,55 +31,17 @@ public class DescentTest extends AbstractRecorderTest
 	{
 
 		recorder.record( Person.createExamplePerson() );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PersonFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Person person;\n" +
-				"\n" +
-				"	public Person buildPerson()\n" +
-				"	{\n" +
-				"		person = new Person();\n" +
-				"		person.setDad( buildPerson_1_1() );\n" +
-				"		person.setMom( buildPerson_5_1() );\n" +
-				"		person.setName( \"son\" );\n" +
-				"		return person;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_1_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_1_1()\n" +
-				"	{\n" +
-				"		person_1_1 = new Person();\n" +
-				"		person_1_1.setDad( buildPerson_2_2() );\n" +
-				"		person_1_1.setName( \"dad\" );\n" +
-				"		return person_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_2_2;\n" +
-				"\n" +
-				"	protected Person buildPerson_2_2()\n" +
-				"	{\n" +
-				"		person_2_2 = new Person();\n" +
-				"		person_2_2.setName( \"grandpa\" );\n" +
-				"		return person_2_2;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_5_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_5_1()\n" +
-				"	{\n" +
-				"		person_5_1 = new Person();\n" +
-				"		person_5_1.setName( \"mom\" );\n" +
-				"		return person_5_1;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+    assertContains("	protected Person person;\n" +
+    				"\n" +
+    				"	public Person buildPerson()\n" +
+    				"	{\n" +
+    				"		person = new Person();\n" +
+    				"		person.setDad( buildPerson_1_1() );\n" +
+    				"		person.setMom( buildPerson_5_1() );\n" +
+    				"		person.setName( \"son\" );\n" +
+    				"		return person;\n" +
+    				"	}\n"
+    );
 	}
 
 	public void testRecursion()
@@ -91,46 +53,36 @@ public class DescentTest extends AbstractRecorderTest
 		son.getDad().getDad().setDad( son );
 
 		recorder.record( son );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PersonFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Person person;\n" +
-				"\n" +
-				"	public Person buildPerson()\n" +
-				"	{\n" +
-				"		person = new Person();\n" +
-				"		person.setDad( buildPerson_1_1() );\n" +
-				"		person.setName( \"son\" );\n" +
-				"		return person;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_1_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_1_1()\n" +
-				"	{\n" +
-				"		person_1_1 = new Person();\n" +
-				"		person_1_1.setDad( buildPerson_2_2() );\n" +
-				"		person_1_1.setName( \"dad\" );\n" +
-				"		return person_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_2_2;\n" +
-				"\n" +
-				"	protected Person buildPerson_2_2()\n" +
-				"	{\n" +
-				"		person_2_2 = new Person();\n" +
-				"		person_2_2.setDad( person );\n" +
-				"		person_2_2.setName( \"grandpa\" );\n" +
-				"		return person_2_2;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+    assertContains("	protected Person person;\n" +
+    				"\n" +
+    				"	public Person buildPerson()\n" +
+    				"	{\n" +
+    				"		person = new Person();\n" +
+    				"		person.setDad( buildPerson_1_1() );\n" +
+    				"		person.setName( \"son\" );\n" +
+    				"		return person;\n" +
+    				"	}\n" +
+    				"\n" +
+    				"	protected Person person_1_1;\n" +
+    				"\n" +
+    				"	protected Person buildPerson_1_1()\n" +
+    				"	{\n" +
+    				"		person_1_1 = new Person();\n" +
+    				"		person_1_1.setDad( buildPerson_2_2() );\n" +
+    				"		person_1_1.setName( \"dad\" );\n" +
+    				"		return person_1_1;\n" +
+    				"	}\n" +
+    				"\n" +
+    				"	protected Person person_2_2;\n" +
+    				"\n" +
+    				"	protected Person buildPerson_2_2()\n" +
+    				"	{\n" +
+    				"		person_2_2 = new Person();\n" +
+    				"		person_2_2.setDad( person );\n" +
+    				"		person_2_2.setName( \"grandpa\" );\n" +
+    				"		return person_2_2;\n" +
+    				"	}\n"
+    );
 	}
 
 	public void testRecursion_2()
@@ -143,15 +95,7 @@ public class DescentTest extends AbstractRecorderTest
 		grandpa.setDad( son );
 
 		recorder.record( son );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PersonFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Person person;\n" +
+		assertContains("	protected Person person;\n" +
 				"\n" +
 				"	public Person buildPerson()\n" +
 				"	{\n" +
@@ -179,9 +123,7 @@ public class DescentTest extends AbstractRecorderTest
 				"		person_2_2.setDad( person );\n" +
 				"		person_2_2.setName( \"grandpa\" );\n" +
 				"		return person_2_2;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+				"	}\n"
+    );
 	}
 }

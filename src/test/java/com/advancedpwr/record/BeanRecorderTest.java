@@ -145,24 +145,9 @@ public class BeanRecorderTest extends AbstractRecorderTest
 		Object object = new Object();
 
 		recorder.record( object );
-
-		assertResult( "package java.lang.generated;\n" +
-				"\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class ObjectFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Object object;\n" +
-				"\n" +
-				"	public Object buildObject()\n" +
-				"	{\n" +
-				"		object = new Object();\n" +
-				"		return object;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" );
+    assertContains("protected Object object;", "object = new Object();", "public Object buildObject()");
 	}
+
 	public void XtestRecordPersonJavadocExample()
 	{
 		Person person = new Person();

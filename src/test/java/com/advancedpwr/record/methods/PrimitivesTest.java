@@ -43,14 +43,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 
 
 		recorder.record( primitives );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.Primitives;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PrimitivesFactory\n" +
-				"{\n" +
-				"\n" +
+		assertContains(
 				"	protected Primitives primitives;\n" +
 				"\n" +
 				"	public Primitives buildPrimitives()\n" +
@@ -66,9 +59,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 				"		primitives.setShort( new Short( (short)3) );\n" +
 				"		primitives.setString( \"astring\" );\n" +
 				"		return primitives;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n");
+				"	}\n");
 	}
 
 	public void testLangObjects()
@@ -85,17 +76,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 		langs.setClassArgument( Person.class );
 
 		recorder.record( langs );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.LangObjects;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class LangObjectsFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected LangObjects langobjects;\n" +
-				"\n" +
-				"	public LangObjects buildLangObjects()\n" +
+		assertContains("	public LangObjects buildLangObjects()\n" +
 				"	{\n" +
 				"		langobjects = new LangObjects();\n" +
 				"		langobjects.setBoolean(  Boolean.TRUE );\n" +
@@ -108,9 +89,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 				"		langobjects.setLong( new Long( 16 ) );\n" +
 				"		langobjects.setShort( new Short( (short)3) );\n" +
 				"		return langobjects;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n");
+				"	}");
 
 	}
 

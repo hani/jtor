@@ -35,25 +35,7 @@ public class StringRecorderTest extends AbstractRecorderTest
 								  "two lines long" );
 
 		recorder.record( stringExample );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-				"import com.advancedpwr.record.examples.StringExample;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class StringExampleFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected StringExample stringexample;\n" +
-				"\n" +
-				"	public StringExample buildStringExample()\n" +
-				"	{\n" +
-				"		stringexample = new StringExample();\n" +
-				"		stringexample.setString( \"a string\" );\n" +
-				"		stringexample.setString2( \"another string\\r\\ntwo lines long\" );\n" +
-				"		return stringexample;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n");
+    assertContains("new StringExample();", "stringexample.setString( \"a string\" );", "stringexample.setString2( \"another string\\r\\ntwo lines long\" );");
 	}
 
 }

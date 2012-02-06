@@ -41,79 +41,22 @@ public class DateCalendarTest extends AbstractRecorderTest
 		dad.setAnniversary( new Date( 987654321 ) );
 
 		recorder.record( person );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
-				"\n" +
-        "import com.advancedpwr.record.examples.BirthdayException;\n" +
-				"import com.advancedpwr.record.examples.Person;\n" +
-        "import java.util.Calendar;\n" +
-				"import java.util.Date;\n" +
-				"import java.util.GregorianCalendar;\n" +
-				"import java.util.TimeZone;\n" +
-				"import sun.util.calendar.ZoneInfo;\n" +
-				"\n" +
-        "@SuppressWarnings(\"all\")\n" +
-				"public class PersonFactory\n" +
-				"{\n" +
-				"\n" +
-				"	protected Person person;\n" +
-				"\n" +
-				"	public Person buildPerson() throws Exception, BirthdayException\n" +
-				"	{\n" +
-				"		person = new Person();\n" +
-				"		person.setDad( buildPerson_1_1() );\n" +
-				"		person.setMom( buildPerson_37_1() );\n" +
-				"		person.setName( \"son\" );\n" +
-				"		return person;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_1_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_1_1() throws Exception, BirthdayException\n" +
-				"	{\n" +
-				"		person_1_1 = new Person();\n" +
-				"		person_1_1.setAnniversary( buildDate_2_2() );\n" +
-				"		person_1_1.setBirthday( buildGregorianCalendar_10_2() );\n" +
-				"		person_1_1.setDad( buildPerson_34_2() );\n" +
-				"		person_1_1.setName( \"dad\" );\n" +
-				"		return person_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Date date_2_2;\n" +
-				"\n" +
-				"	protected Date buildDate_2_2()\n" +
-				"	{\n" +
-				"		date_2_2 = new Date( 987654321l );\n" +
-				"		return date_2_2;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Calendar gregoriancalendar_10_2;\n" +
-				"\n" +
-				"	protected Calendar buildGregorianCalendar_10_2()\n" +
-				"	{\n" +
-				"		gregoriancalendar_10_2 = GregorianCalendar.getInstance();\n" +
-				"		gregoriancalendar_10_2.setTimeInMillis( new Long( 123456789 ) );\n" +
-				"		return gregoriancalendar_10_2;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_34_2;\n" +
-				"\n" +
-				"	protected Person buildPerson_34_2()\n" +
-				"	{\n" +
-				"		person_34_2 = new Person();\n" +
-				"		person_34_2.setName( \"grandpa\" );\n" +
-				"		return person_34_2;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_37_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_37_1()\n" +
-				"	{\n" +
-				"		person_37_1 = new Person();\n" +
-				"		person_37_1.setName( \"mom\" );\n" +
-				"		return person_37_1;\n" +
-				"	}\n" +
-				"\n" +
-				"}\n" +
-				"");
+    assertContains("	protected Date date_2_2;\n" +
+    				"\n" +
+    				"	protected Date buildDate_2_2()\n" +
+    				"	{\n" +
+    				"		date_2_2 = new Date( 987654321l );\n" +
+    				"		return date_2_2;\n" +
+    				"	}\n" +
+    				"\n" +
+    				"	protected Calendar gregoriancalendar_10_2;\n" +
+    				"\n" +
+    				"	protected Calendar buildGregorianCalendar_10_2()\n" +
+    				"	{\n" +
+    				"		gregoriancalendar_10_2 = GregorianCalendar.getInstance();\n" +
+    				"		gregoriancalendar_10_2.setTimeInMillis( new Long( 123456789 ) );\n" +
+    				"		return gregoriancalendar_10_2;\n" +
+    				"	}\n"
+    );
 	}
 }
