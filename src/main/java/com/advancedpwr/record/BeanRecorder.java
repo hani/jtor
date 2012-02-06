@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,10 +27,10 @@ import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 
 /**
- * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file. This recorder uses 
- * reflection to inspect an object tree for Java Bean style setter / getter accessor methods, therefore it is only 
+ * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file. This recorder uses
+ * reflection to inspect an object tree for Java Bean style setter / getter accessor methods, therefore it is only
  * capable of reconstructing an object tree through that convention.  Many web service return data structures adhere
- * to the Java Bean accessor convention, so this class may be of use in recording a web service response for use in 
+ * to the Java Bean accessor convention, so this class may be of use in recording a web service response for use in
  * unit testing.
  * <p>
  * Recording example:
@@ -41,20 +41,20 @@ import com.advancedpwr.record.methods.MethodBuilderFactory;
 	Person dad = new Person();
 	dad.setName( "John" );
 	person.setDad( dad );
-	
+
 	BeanRecorder recorder = new BeanRecorder();
 	recorder.setDestination( "recordings" );
 	recorder.record( person );
  * </pre></blockquote><p>
- * 
+ *
  * The above example will record the object tree of the "person" instance as a Java class:
- * 
+ *
  * <p><blockquote><pre>
   	public class PersonFactory
 	{
-	
+
 		protected Person person;
-	
+
 		public Person buildPerson()
 		{
 			person = new Person();
@@ -62,27 +62,27 @@ import com.advancedpwr.record.methods.MethodBuilderFactory;
 			person.setName( "Jim" );
 			return person;
 		}
-	
+
 		protected Person person_1_1;
-	
+
 		protected Person buildPerson_1_1()
 		{
 			dad_1_1 = new Person();
 			dad_1_1.setName( "John" );
 			return person_1_1;
 		}
-	
+
 	}
  * </pre></blockquote><p>
- * 
+ *
  * To reconstruct the instance of "person" in a unit test:
- * 
+ *
  * <p><blockquote><pre>
   	Person person = new PersonFactory().buildPerson();
  * </pre></blockquote><p>
- * 
+ *
  * The BeanRecorder is "instance aware" and supports {@link Collection} and {@link Map} objects.
- * 
+ *
  * @author Matthew Avery, mavery@advancedpwr.com on Jun 22, 2010
  *
  */
@@ -90,7 +90,7 @@ public class BeanRecorder extends AbstractRecorder
 {
 	protected InstanceTree fieldInstanceTree;
 	protected MethodBuilderFactory fieldFactoryBuilder;
-	
+
 	protected void setObject( Object object )
 	{
 		if ( object == null )
@@ -123,7 +123,7 @@ public class BeanRecorder extends AbstractRecorder
 			close( getJavaFileWriter() );
 		}
 	}
-	
+
 
 	protected void writeObjectBuilderMethod()
 	{
@@ -140,7 +140,7 @@ public class BeanRecorder extends AbstractRecorder
 		builder.setClassWriter( this );
 		return builder;
 	}
-	
+
 	protected Object getObject()
 	{
 		return getInstanceTree().getObject();
@@ -155,13 +155,13 @@ public class BeanRecorder extends AbstractRecorder
 	{
 		return getInstanceTree().getFactory().classes();
 	}
-	
+
 	protected MethodBuilderFactory getFactoryBuilder()
 	{
 		if ( fieldFactoryBuilder == null )
 		{
 			fieldFactoryBuilder = createMethodBuilderFactory();
-			
+
 		}
 		return fieldFactoryBuilder;
 	}
@@ -173,12 +173,12 @@ public class BeanRecorder extends AbstractRecorder
 		factory.addBuilderFactory( new MapBuilderFactory() );
 		return factory;
 	}
-	
+
 	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
 		getFactoryBuilder().addBuilderFactory( inFactory );
 	}
-	
+
 	public PrintWriter getPrintWriter()
 	{
 		if ( fieldPrintWriter == null && getDestination() != null )

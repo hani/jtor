@@ -29,8 +29,9 @@ public class MethodBuilderFactory
 	protected List fieldFactories;
 
 	protected MethodWriterFactory fieldDefaultFactory;
+  private int addNewFactoriesIndex;
 
-	public BuildMethodWriter createMethodBuilder( AccessPath inAccessPath )
+  public BuildMethodWriter createMethodBuilder( AccessPath inAccessPath )
 	{
 		BuildMethodWriter builder = constructRegisteredBuilder( inAccessPath );
 		if ( contains( inAccessPath ) )
@@ -81,8 +82,11 @@ public class MethodBuilderFactory
 
 	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
-		getFactories().add( inFactory );
+    //we want to allow factories to handle custom collection classes, so we don't
+    //add it to the end of the list after those, but instead somewhere in the middle
+		getFactories().add(addNewFactoriesIndex, inFactory );
 	}
+
 	protected List<MethodWriterFactory> createFactories()
 	{
 		List<MethodWriterFactory> list = new ArrayList<MethodWriterFactory>();
@@ -110,8 +114,8 @@ public class MethodBuilderFactory
 		list.add( new CalendarBuilderFactory() );
 		list.add( new ClassBuilderFactory() );
 		list.add( new BigDecimalBuilder() );
-		list.add( new BigIntegerBuilder() );
-    list.add( new ConstructorWithArgsFactory() );
+		list.add(new BigIntegerBuilder());
+    this.addNewFactoriesIndex = list.size();
 		return list;
 	}
 
