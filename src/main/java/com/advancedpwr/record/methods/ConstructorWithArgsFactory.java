@@ -11,6 +11,7 @@ public class ConstructorWithArgsFactory implements MethodWriterFactory
 {
 	public boolean accept( Class inClass )
 	{
+    if(inClass.isInterface()) return false;
     try {
       inClass.getConstructor();
       return false;

@@ -103,7 +103,6 @@ public class MethodBuilderFactory
 		list.add( new FloatBuilder() );
 		list.add( new IntBuilder() );
 		list.add( new LongBuilder() );
-    list.add( new ConstructorWithArgsFactory() );
 		list.add( new ArrayBuilderFactory() );
 		list.add( new LocaleBuilderFactory() );
 		list.add( new URLBuilderFactory() );
@@ -112,6 +111,7 @@ public class MethodBuilderFactory
 		list.add( new ClassBuilderFactory() );
 		list.add( new BigDecimalBuilder() );
 		list.add( new BigIntegerBuilder() );
+    list.add( new ConstructorWithArgsFactory() );
 		return list;
 	}
 
