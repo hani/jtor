@@ -63,6 +63,7 @@ public class ListInstanceTest extends AbstractRecorderTest
         "import java.util.ArrayList;\n" +
 				"import java.util.List;\n" +
 				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
 				"public class PersonFactory\n" +
 				"{\n" +
 				"\n" +

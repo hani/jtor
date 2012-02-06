@@ -51,6 +51,7 @@ public class DateCalendarTest extends AbstractRecorderTest
 				"import java.util.TimeZone;\n" +
 				"import sun.util.calendar.ZoneInfo;\n" +
 				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
 				"public class PersonFactory\n" +
 				"{\n" +
 				"\n" +

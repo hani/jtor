@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,26 +33,27 @@ public class StringRecorderTest extends AbstractRecorderTest
 		stringExample.setString( "a string" );
 		stringExample.setString2( "another string\r\n" +
 								  "two lines long" );
-		
+
 		recorder.record( stringExample );
-		assertResult( "package com.advancedpwr.record.examples.generated;\n" + 
-				"\n" + 
+		assertResult( "package com.advancedpwr.record.examples.generated;\n" +
+				"\n" +
 				"import com.advancedpwr.record.examples.StringExample;\n" +
-				"\n" + 
-				"public class StringExampleFactory\n" + 
+				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
+				"public class StringExampleFactory\n" +
 				"{\n" +
-				"\n" + 
-				"	protected StringExample stringexample;\n" + 
-				"\n" + 
-				"	public StringExample buildStringExample()\n" + 
-				"	{\n" + 
-				"		stringexample = new StringExample();\n" + 
+				"\n" +
+				"	protected StringExample stringexample;\n" +
+				"\n" +
+				"	public StringExample buildStringExample()\n" +
+				"	{\n" +
+				"		stringexample = new StringExample();\n" +
 				"		stringexample.setString( \"a string\" );\n" +
-				"		stringexample.setString2( \"another string\\r\\ntwo lines long\" );\n" + 
-				"		return stringexample;\n" + 
+				"		stringexample.setString2( \"another string\\r\\ntwo lines long\" );\n" +
+				"		return stringexample;\n" +
 				"	}\n" +
-				"\n" + 
+				"\n" +
 				"}\n");
 	}
-	
+
 }

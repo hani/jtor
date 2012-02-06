@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  * <code>ClassWriter</code> wraps a {@link PrintWriter} with convenience methods for creating Java source code output.
- * 
+ *
  *  @author Matthew Avery, mavery@advancedpwr.com on Mar 26, 2010
  */
 public abstract class ClassWriter
@@ -33,7 +33,7 @@ public abstract class ClassWriter
 	public static final String PUBLIC = "public ";
 	public static final String PROTECTED = "protected ";
 	public static final String PRIVATE = "private ";
-	
+
 	protected PrintWriter fieldPrintWriter;
 	protected int tabDepth;
 	protected ClassDescriptor fieldDescriptor;
@@ -58,25 +58,25 @@ public abstract class ClassWriter
 	{
 		fieldPrintWriter = new PrintWriter( writer );
 	}
-	
+
 	public void writeLine( String inString )
 	{
 		tabs();
 		getPrintWriter().println( inString + ";" );
 	}
-	
+
 	public void write( String inString )
 	{
 		tabs();
 		getPrintWriter().println( inString );
 	}
-	
+
 	protected ClassWriter tab()
 	{
 		getPrintWriter().print( '\t' );
 		return this;
 	}
-	
+
 	protected ClassWriter tabs()
 	{
 		for ( int i = 0; i < tabDepth; i++ )
@@ -85,14 +85,14 @@ public abstract class ClassWriter
 		}
 		return this;
 	}
-	
+
 	public ClassWriter openBrace()
 	{
 		write( "{" );
 		tabDepth++;
 		return this;
 	}
-	
+
 	public ClassWriter closeBrace()
 	{
 		tabDepth--;
@@ -142,6 +142,7 @@ public abstract class ClassWriter
 
 	protected void writeClassDeclaration()
 	{
+    write("@SuppressWarnings(\"all\")");
 		write( PUBLIC + CLASS + getDescriptor().getClassName() );
 	}
 

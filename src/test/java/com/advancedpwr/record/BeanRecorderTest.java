@@ -149,6 +149,7 @@ public class BeanRecorderTest extends AbstractRecorderTest
 		assertResult( "package java.lang.generated;\n" +
 				"\n" +
 				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
 				"public class ObjectFactory\n" +
 				"{\n" +
 				"\n" +

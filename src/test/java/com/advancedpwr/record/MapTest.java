@@ -54,6 +54,7 @@ public class MapTest extends AbstractRecorderTest
         "import java.util.LinkedHashMap;\n" +
 				"import java.util.Map;\n" +
 				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
 				"public class MapContainerFactory\n" +
 				"{\n" +
 				"\n" +
@@ -150,6 +151,7 @@ public class MapTest extends AbstractRecorderTest
       "import com.advancedpwr.record.examples.Person;\n" +
 				"import java.util.LinkedHashMap;\n" +
 				"\n" +
+        "@SuppressWarnings(\"all\")\n" +
 				"public class LinkedHashMapFactory\n" +
 				"{\n" +
 				"\n" +
