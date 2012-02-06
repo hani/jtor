@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,7 +29,7 @@ public class MethodBuilderFactory
 	protected List fieldFactories;
 
 	protected MethodWriterFactory fieldDefaultFactory;
-	
+
 	public BuildMethodWriter createMethodBuilder( AccessPath inAccessPath )
 	{
 		BuildMethodWriter builder = constructRegisteredBuilder( inAccessPath );
@@ -91,7 +91,7 @@ public class MethodBuilderFactory
 			public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 			{
 				return getDefaultFactory().createMethodBuilder( inPath );
-			}	
+			}
 		});
 		list.add( new NullBuilderFactory() );
 		list.add( new StringBuilderFactory() );
@@ -103,6 +103,7 @@ public class MethodBuilderFactory
 		list.add( new FloatBuilder() );
 		list.add( new IntBuilder() );
 		list.add( new LongBuilder() );
+    list.add( new ConstructorWithArgsFactory() );
 		list.add( new ArrayBuilderFactory() );
 		list.add( new LocaleBuilderFactory() );
 		list.add( new URLBuilderFactory() );
@@ -113,7 +114,7 @@ public class MethodBuilderFactory
 		list.add( new BigIntegerBuilder() );
 		return list;
 	}
-	
+
 	protected BuildMethodWriter constructRegisteredBuilder( AccessPath inAccessPath )
 	{
 		MethodWriterFactory factory = findFactory( inAccessPath );
