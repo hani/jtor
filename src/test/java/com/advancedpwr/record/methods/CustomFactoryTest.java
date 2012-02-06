@@ -38,23 +38,7 @@ public class CustomFactoryTest extends BeanRecorderTest
     CustomList list = new CustomList(new ArrayList());
     list.add("bar");
 		recorder.record(list);
-		assertResult("package com.advancedpwr.record.examples.generated;\n" +
-      "\n" +
-      "import com.advancedpwr.record.examples.CustomList;\n" +
-      "\n" +
-      "public class CustomListFactory\n" +
-      "{\n" +
-      "\n" +
-      "\tprotected CustomList customlist;\n" +
-      "\n" +
-      "\tpublic CustomList buildCustomList()\n" +
-      "\t{\n" +
-      "\t\tcustomlist = new ArrayList();\n" +
-      "\t\tcustomlist.add( \"bar\" );\n" +
-      "\t\treturn customlist;\n" +
-      "\t}\n" +
-      "\n" +
-      "}");
+		assertContains("customlist = new ArrayList();", "customlist.add( \"bar\" );");
 
 	}
 }
