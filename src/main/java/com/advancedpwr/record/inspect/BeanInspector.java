@@ -46,7 +46,8 @@ public class BeanInspector extends Inspector
 		{
 			Method getter = getterMethod();
 			Object result = invoke( getter );
-			if ( result != null )
+      //handle the case where we have multiple getters with different parameter types but one setter
+			if ( result != null && (getCurrentMethod().getParameterTypes()[0].isPrimitive() || getCurrentMethod().getParameterTypes()[0].isAssignableFrom(result.getClass())))
 			{
 				addAccessPathForResult( result );
 			}
