@@ -54,7 +54,7 @@ public class DateCalendarTest extends AbstractRecorderTest
     				"	protected Calendar buildGregorianCalendar_10_2()\n" +
     				"	{\n" +
     				"		gregoriancalendar_10_2 = GregorianCalendar.getInstance();\n" +
-    				"		gregoriancalendar_10_2.setTimeInMillis( new Long( 123456789 ) );\n" +
+    				"		gregoriancalendar_10_2.setTimeInMillis( new Long( 123456789l ) );\n" +
     				"		return gregoriancalendar_10_2;\n" +
     				"	}\n"
     );

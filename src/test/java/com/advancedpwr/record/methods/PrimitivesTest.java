@@ -55,7 +55,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 				"		primitives.setDouble( new Double( 12.0) );\n" +
 				"		primitives.setFloat( new Float( 11.0) );\n" +
 				"		primitives.setInt( new Integer( 5 ) );\n" +
-				"		primitives.setLong( new Long( 16 ) );\n" +
+				"		primitives.setLong( new Long( 16l ) );\n" +
 				"		primitives.setShort( new Short( (short)3) );\n" +
 				"		primitives.setString( \"astring\" );\n" +
 				"		return primitives;\n" +
@@ -86,7 +86,7 @@ public class PrimitivesTest extends AbstractRecorderTest
 				"		langobjects.setDouble( new Double( 12.0) );\n" +
 				"		langobjects.setFloat( new Float( 11.0) );\n" +
 				"		langobjects.setInteger( new Integer( 5 ) );\n" +
-				"		langobjects.setLong( new Long( 16 ) );\n" +
+				"		langobjects.setLong( new Long( 16l ) );\n" +
 				"		langobjects.setShort( new Short( (short)3) );\n" +
 				"		return langobjects;\n" +
 				"	}");
