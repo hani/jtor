@@ -101,7 +101,15 @@ public class BeanInspector extends Inspector
 
 	protected boolean isGetter( Method method )
 	{
-		return method.getName().equals( getterName() ) && method.getParameterTypes().length == 0 && !Modifier.isStatic( method.getModifiers() );
+    String name = method.getName();
+    //trim out 'set'
+    String setterName = getCurrentMethod().getName().substring(3);
+    if(name.startsWith("is")) {
+      name = name.substring(2);
+    } else if(name.startsWith("get")) {
+      name = name.substring(3);
+    }
+    return name.equals(setterName) && method.getParameterTypes().length == 0 && !Modifier.isStatic( method.getModifiers() );
 	}
 
 	protected boolean hasGetterMethod()
