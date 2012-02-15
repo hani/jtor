@@ -49,14 +49,14 @@ public class PrimitivesTest extends AbstractRecorderTest
 				"	public Primitives buildPrimitives()\n" +
 				"	{\n" +
 				"		primitives = new Primitives();\n" +
-				"		primitives.setBoolean(  Boolean.TRUE );\n" +
-				"		primitives.setByte( new Byte( (byte)123) );\n" +
-				"		primitives.setChar( new Character('c') );\n" +
-				"		primitives.setDouble( new Double( 12.0) );\n" +
-				"		primitives.setFloat( new Float( 11.0) );\n" +
-				"		primitives.setInt( new Integer( 5 ) );\n" +
-				"		primitives.setLong( new Long( 16l ) );\n" +
-				"		primitives.setShort( new Short( (short)3) );\n" +
+				"		primitives.setBoolean( true );\n" +
+				"		primitives.setByte( (byte)123 );\n" +
+				"		primitives.setChar( 'c' );\n" +
+				"		primitives.setDouble( 12.0d );\n" +
+				"		primitives.setFloat( 11.0f );\n" +
+				"		primitives.setInt( 5 );\n" +
+				"		primitives.setLong( 16l );\n" +
+				"		primitives.setShort( (short)3 );\n" +
 				"		primitives.setString( \"astring\" );\n" +
 				"		return primitives;\n" +
 				"	}\n");
@@ -79,15 +79,15 @@ public class PrimitivesTest extends AbstractRecorderTest
 		assertContains("	public LangObjects buildLangObjects()\n" +
 				"	{\n" +
 				"		langobjects = new LangObjects();\n" +
-				"		langobjects.setBoolean(  Boolean.TRUE );\n" +
-				"		langobjects.setByte( new Byte( (byte)123) );\n" +
-				"		langobjects.setCharacter( new Character('c') );\n" +
+				"		langobjects.setBoolean( true );\n" +
+				"		langobjects.setByte( (byte)123 );\n" +
+				"		langobjects.setCharacter( 'c' );\n" +
 				"		langobjects.setClassArgument( com.advancedpwr.record.examples.Person.class );\n" +
-				"		langobjects.setDouble( new Double( 12.0) );\n" +
-				"		langobjects.setFloat( new Float( 11.0) );\n" +
-				"		langobjects.setInteger( new Integer( 5 ) );\n" +
-				"		langobjects.setLong( new Long( 16l ) );\n" +
-				"		langobjects.setShort( new Short( (short)3) );\n" +
+				"		langobjects.setDouble( 12.0d );\n" +
+				"		langobjects.setFloat( 11.0f );\n" +
+				"		langobjects.setInteger( 5 );\n" +
+				"		langobjects.setLong( 16l );\n" +
+				"		langobjects.setShort( (short)3 );\n" +
 				"		return langobjects;\n" +
 				"	}");
 
