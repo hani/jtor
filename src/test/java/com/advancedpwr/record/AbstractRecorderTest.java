@@ -64,16 +64,12 @@ public abstract class AbstractRecorderTest extends TestCase
 	}
 
   public void assertContains(String... values) {
-    String res = result.toString();
+    String expected = result.toString().replaceAll("\r\n", "\n").trim();
     for(String value : values) {
-      if(!res.contains(value)) {
-        assertResult(value);
+      String actual = value.replaceAll("\r\n", "\n").trim();
+      if(!expected.contains(actual)) {
+        assertEquals("Expected value not found", expected, actual);
       }
     }
   }
-
-	public void assertResult( String inString )
-	{
-		assertEquals("Missing value", inString.replaceAll( "\r\n", "\n" ).trim(), result.toString().replaceAll( "\r\n", "\n" ).trim());
-	}
 }

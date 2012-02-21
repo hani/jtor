@@ -40,6 +40,7 @@ public class AllTests
 		suite.addTestSuite( DateCalendarTest.class );
 		suite.addTestSuite( WrappedIOTest.class );
 		suite.addTestSuite( DescentTest.class );
+		suite.addTestSuite( InnerClassTest.class );
 		//$JUnit-END$
 		return suite;
 	}

@@ -161,7 +161,7 @@ public abstract class ClassWriter
     writeLine(IMPORT + Generated.class.getName());
 		for ( Class aClass : classes() )
 		{
-			writeLine( IMPORT + aClass.getName() );
+			writeLine( IMPORT + aClass.getName().replace('$', '.') );
 		}
 		newLine();
 	}
