@@ -28,6 +28,20 @@ public class PrimitivesTest extends AbstractRecorderTest
 		super.setUp();
 	}
 
+  public void testNaN() {
+    Primitives primitives = new Primitives();
+    primitives.setDouble(Double.NaN);
+    recorder.record(primitives);
+    assertContains("primitives.setDouble( Double.NaN )");
+  }
+
+  public void testNegativeInfinity() {
+    Primitives primitives = new Primitives();
+    primitives.setDouble(Double.NEGATIVE_INFINITY);
+    recorder.record(primitives);
+    assertContains("primitives.setDouble( Double.NEGATIVE_INFINITY )");
+  }
+
 	public void testPrimitives()
 	{
 		Primitives primitives = new Primitives();

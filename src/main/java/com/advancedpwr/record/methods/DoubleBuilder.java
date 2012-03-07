@@ -21,7 +21,15 @@ public class DoubleBuilder extends AbstractPrimitiveBuilder implements MethodWri
 {
 	public String resultBuilder()
 	{
-		return  result() + 'd';
+    String result = result();
+    if("NaN".equals(result)) {
+      return "Double.NaN";
+    } else if("-Infinity".equals(result)) {
+      return "Double.NEGATIVE_INFINITY";
+    }
+    else {
+  		return   result + 'd';
+    }
 	}
 
 	/* (non-Javadoc)
