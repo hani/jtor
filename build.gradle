@@ -1,9 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
-version = '1.4.1'
+version = '1.4.0'
 
-group = 'com.advancedpwr'
+group = 'net.formicary.jtor'
 
 defaultTasks 'build'
 
@@ -11,13 +12,22 @@ repositories {
   mavenCentral()
 }
 
-task sourcesJar(type: Jar, dependsOn:classes) {
-     classifier = 'sources'
-     from sourceSets.main.allSource
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
 }
 
 dependencies {
   compile 'org.slf4j:slf4j-api:1.6.4'
   runtime 'ch.qos.logback:logback-classic:1.0.4'
   testCompile 'junit:junit:3.8.2'
+}
+
+uploadArchives {
+  repositories.mavenDeployer {
+    repository(url: "file://localhost/tmp/myRepo/")
+    pom.whenConfigured { pom ->
+      pom.dependencies = pom.dependencies.findAll { dep -> dep.scope != 'runtime' } //remove logback
+    }
+  }
 }
