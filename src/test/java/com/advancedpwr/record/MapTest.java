@@ -15,6 +15,7 @@
  */
 package com.advancedpwr.record;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,6 +50,38 @@ public class MapTest extends AbstractRecorderTest
 		recorder.record( container );
     assertContains("mapcontainer = new MapContainer();", "linkedhashmap_9_1 = new LinkedHashMap();", "linkedhashmap_9_1.put( \"son\", person_1_1 );", ".setName( \"cousin\" );");
 	}
+
+  public void testComplexKey() {
+    Person person = new Person();
+    person.setName("foo");
+    Map self = new HashMap();
+    self.put(person, new Person());
+    recorder.record(self );
+    assertContains("protected Person hashmap_3_1;\n" +
+      "\n" +
+      "\tprotected Person buildHashMap_3_1()\n" +
+      "\t{\n" +
+      "\t\tif ( hashmap_3_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn hashmap_3_1;\n" +
+      "\t\t}\n" +
+      "\t\thashmap_3_1 = new Person();\n" +
+      "\t\treturn hashmap_3_1;\n" +
+      "\t}\n" +
+      "\n" +
+      "\tprotected Person person_1_1;\n" +
+      "\n" +
+      "\tprotected Person buildPerson_1_1()\n" +
+      "\t{\n" +
+      "\t\tif ( person_1_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person_1_1;\n" +
+      "\t\t}\n" +
+      "\t\tperson_1_1 = new Person();\n" +
+      "\t\tperson_1_1.setName( \"foo\" );\n" +
+      "\t\treturn person_1_1;\n" +
+      "\t}");
+  }
 
 	public void testMap_2()
 	{
