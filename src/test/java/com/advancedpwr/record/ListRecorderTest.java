@@ -39,15 +39,16 @@ public class ListRecorderTest extends AbstractRecorderTest
 		listHolder.setList( vector );
 
 		recorder.record( listHolder );
-    assertContains("	protected Vector vector_1_1;\n" +
-    				"\n" +
-    				"	protected List buildVector_1_1()\n" +
-    				"	{\n" +
-    				"		vector_1_1 = new Vector();\n" +
-    				"		vector_1_1.add( \"entry 1\" );\n" +
-    				"		vector_1_1.add( \"entry 2\" );\n" +
-    				"		return vector_1_1;\n" +
-    				"	}\n"
-    );
+    assertContains("\tprotected List buildVector_1_1()\n" +
+      "\t{\n" +
+      "\t\tif ( vector_1_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn vector_1_1;\n" +
+      "\t\t}\n" +
+      "\t\tvector_1_1 = new Vector();\n" +
+      "\t\tvector_1_1.add( \"entry 1\" );\n" +
+      "\t\tvector_1_1.add( \"entry 2\" );\n" +
+      "\t\treturn vector_1_1;\n" +
+      "\t}\n");
 	}
 }

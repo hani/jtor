@@ -49,13 +49,13 @@ public class DateCalendarTest extends AbstractRecorderTest
     				"		return date_2_2;\n" +
     				"	}\n" +
     				"\n" +
-    				"	protected Calendar gregoriancalendar_10_2;\n" +
+    				"	protected Calendar gregoriancalendar_3_2;\n" +
     				"\n" +
-    				"	protected Calendar buildGregorianCalendar_10_2()\n" +
+    				"	protected Calendar buildGregorianCalendar_3_2()\n" +
     				"	{\n" +
-    				"		gregoriancalendar_10_2 = GregorianCalendar.getInstance();\n" +
-    				"		gregoriancalendar_10_2.setTimeInMillis( 123456789l );\n" +
-    				"		return gregoriancalendar_10_2;\n" +
+    				"		gregoriancalendar_3_2 = GregorianCalendar.getInstance();\n" +
+    				"		gregoriancalendar_3_2.setTimeInMillis( 123456789l );\n" +
+    				"		return gregoriancalendar_3_2;\n" +
     				"	}\n"
     );
 	}

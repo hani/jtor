@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,17 +16,9 @@
 package com.advancedpwr.record;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import com.advancedpwr.record.inspect.ArrayInspector;
-import com.advancedpwr.record.inspect.BeanInspector;
-import com.advancedpwr.record.inspect.CollectionInspector;
-import com.advancedpwr.record.inspect.Inspector;
-import com.advancedpwr.record.inspect.InspectorList;
-import com.advancedpwr.record.inspect.MapInspector;
+import com.advancedpwr.record.inspect.*;
 
 public class InstanceTree
 {
@@ -37,9 +29,11 @@ public class InstanceTree
 	protected InstanceTree fieldParent;
 	protected InstanceTreeFactory fieldFactory;
 	protected InspectorList fieldInspectors;
-	
+
 	protected int fieldIndex;
-	
+
+	protected Set fieldStopClasses;
+
 	public InstanceTree getParent()
 	{
 		if ( fieldParent == null )
@@ -48,7 +42,7 @@ public class InstanceTree
 		}
 		return fieldParent;
 	}
-	
+
 	public int getDepth()
 	{
 		return depth;
@@ -63,7 +57,7 @@ public class InstanceTree
 	{
 		return getParent().equals( this );
 	}
-	
+
 	public void setParent( InstanceTree parent )
 	{
 		fieldParent = parent;
@@ -79,6 +73,15 @@ public class InstanceTree
 		fieldCurrentMethod = currentMethod;
 	}
 
+	public InstanceTree( Set<Class> stopClasses, Object object )
+	{
+		this( object, null );
+		setStopClasses( stopClasses );
+		getFactory().getTrees().put( object, this );
+		setIndex( getFactory().count++ );
+		inspectObject();
+	}
+
 	public InstanceTree( Object object )
 	{
 		this( object, null );
@@ -86,17 +89,18 @@ public class InstanceTree
 		setIndex( getFactory().count++ );
 		inspectObject();
 	}
-	
+
 	public InstanceTree( Object object, InstanceTree inTree )
 	{
 		setParent( inTree );
 		if ( inTree != null )
 		{
 			setFactory( inTree.getFactory() );
+			setStopClasses( inTree.getStopClasses() );
 		}
 		setObject( object );
 	}
-	
+
 	protected void inspectObject()
 	{
 		for ( Inspector inspector : getInspectors() )
@@ -104,7 +108,7 @@ public class InstanceTree
 			inspector.inspect( this );
 		}
 	}
-	
+
 	public InspectorList getInspectors()
 	{
 		if ( fieldInspectors == null )
@@ -123,7 +127,7 @@ public class InstanceTree
 		inspectors.add( new ArrayInspector() );
 		return inspectors;
 	}
-	
+
 	public void addInspector( Inspector inspector )
 	{
 		getInspectors().add( inspector );
@@ -152,7 +156,7 @@ public class InstanceTree
 	{
 		return new InstanceTree( result, this );
 	}
-	
+
 	public AccessPathList getAccessPaths()
 	{
 		if ( fieldAccessPaths == null )
@@ -163,8 +167,8 @@ public class InstanceTree
 	}
 
 
-	
-	
+
+
 	public Object getObject()
 	{
 		return fieldObject;
@@ -197,7 +201,7 @@ public class InstanceTree
 		}
 		return classes;
 	}
-	
+
 	protected void addClass( Set<Class> classes, Class inClass )
 	{
 		if ( ignoredClass( inClass ) )
@@ -214,7 +218,7 @@ public class InstanceTree
 	public boolean ignoredClass( Class param )
 	{
 		return param == null
-			|| short.class.isAssignableFrom( param ) 
+			|| short.class.isAssignableFrom( param )
 		    || int.class.isAssignableFrom( param )
 		    || long.class.isAssignableFrom( param )
 		    || float.class.isAssignableFrom( param )
@@ -225,7 +229,7 @@ public class InstanceTree
 		    || void.class.isAssignableFrom( param )
 		    || Null.class.isAssignableFrom( param )
 		    || param.getName().startsWith( "java.lang." );
-		
+
 	}
 
 	public int getIndex()
@@ -259,26 +263,51 @@ public class InstanceTree
 
 	public Set<Class> getExceptions()
 	{
-		List cache = new ArrayList();
-		cache.add( this );
+		Map<InstanceTree, Set<Class>> cache = new HashMap<InstanceTree, Set<Class>>();
+		cache.put( this, new LinkedHashSet<Class>() );
 		Set<Class> exceptions = getExceptions( cache );
+		cache.put( this, exceptions );
 		return exceptions;
 	}
 
-	protected Set<Class> getExceptions( List cache )
+	protected Set<Class> getExceptions( Map<InstanceTree, Set<Class>> cache )
 	{
 		Set<Class> exceptions = new LinkedHashSet<Class>();
 		for ( AccessPath path : getAccessPaths() )
 		{
-			if ( !cache.contains( path.getInstanceTree() ) )
+			Set<Class> cached = cache.get( path.getInstanceTree() );
+			if ( cached != null )
 			{
-				cache.add( path.getInstanceTree() );
+				exceptions.addAll( cached );
+			}
+			else
+			{
+				cache.put( path.getInstanceTree(), new LinkedHashSet<Class>() );
 				exceptions.addAll( path.getExceptions() );
 				exceptions.addAll( path.getInstanceTree().getExceptions( cache ) );
-				
+				cache.put( path.getInstanceTree(), exceptions );
 			}
 		}
 		return exceptions;
 	}
-	
+
+	public Set getStopClasses()
+	{
+		if ( fieldStopClasses == null )
+		{
+			fieldStopClasses = new HashSet<Class>();
+			}
+		return fieldStopClasses;
+		}
+
+	public boolean isStop()
+	{
+		return getStopClasses().contains( objectClass() );
+	}
+
+	public void setStopClasses( Set stopClasses )
+	{
+		fieldStopClasses = stopClasses;
+	}
+
 }

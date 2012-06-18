@@ -15,18 +15,20 @@
  */
 package com.advancedpwr.record.methods;
 
+import java.util.Locale;
+
 public class LocaleBuilder extends BuildMethodWriter
 {
 	
 	protected void writeInstance()
 	{
 		writeIfNotNullReturnInstance();
-		String[] parts = result().split( "_" );
-		writeLine( instanceName() + " = new " + instanceType() + "( \"" + parts[0] + "\", \"" + parts[1] + "\" )" );
+		writeLine( instanceName() + " = new " + instanceType() + "( \"" + locale().getLanguage()
+				+ "\", \"" + locale().getCountry() + "\" )" );
 	}
 
-	protected String result()
+	protected Locale locale()
 	{
-		return getAccessPath().getResult().toString();
+		return (Locale) getAccessPath().getResult();
 	}
 }

@@ -19,6 +19,10 @@ public class BeanInspector extends Inspector
 
 	protected List<Method> sortedMethods()
 	{
+		if ( getInstanceTree().isStop() )
+		{
+			return Collections.EMPTY_LIST;
+		}
 		Method[] methods = objectClass().getMethods();
 		List list = Arrays.asList( methods );
 		Collections.sort( list, new MethodNameComparator() );
@@ -49,21 +53,22 @@ public class BeanInspector extends Inspector
       //handle the case where we have multiple getters with different parameter types but one setter
 			if ( result != null && (getCurrentMethod().getParameterTypes()[0].isPrimitive() || getCurrentMethod().getParameterTypes()[0].isAssignableFrom(result.getClass())))
 			{
-				addAccessPathForResult( result );
+				addAccessPathForResult( getter, result );
 			}
 		}
 	}
 
-	protected void addAccessPathForResult( Object result )
+	protected void addAccessPathForResult( Method inGetter, Object result )
 	{
-		AccessPath path = createAccessorMethodPath( result );
+		AccessPath path = createAccessorMethodPath( inGetter, result );
 		addAccessPath( path );
 	}
 
-	protected AccessPath createAccessorMethodPath( Object result )
+	protected AccessPath createAccessorMethodPath( Method inGetter, Object result )
 	{
 		AccessorMethodPath accessor = new AccessorMethodPath();
 		accessor.setSetter( getCurrentMethod() );
+		accessor.setGetter( inGetter );
 		InstanceTree tree = createInstanceTree( result );
 		accessor.setTree( tree );
 		debug( "created accessor " + accessor + " for result " + result );
@@ -101,15 +106,7 @@ public class BeanInspector extends Inspector
 
 	protected boolean isGetter( Method method )
 	{
-    String name = method.getName();
-    //trim out 'set'
-    String setterName = getCurrentMethod().getName().substring(3);
-    if(name.startsWith("is")) {
-      name = name.substring(2);
-    } else if(name.startsWith("get")) {
-      name = name.substring(3);
-    }
-    return name.equals(setterName) && method.getParameterTypes().length == 0 && !Modifier.isStatic( method.getModifiers() );
+		return method.getName().equals( getterName() ) && method.getParameterTypes().length == 0 && !Modifier.isStatic( method.getModifiers() );
 	}
 
 	protected boolean hasGetterMethod()

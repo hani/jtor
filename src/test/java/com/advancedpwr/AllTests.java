@@ -26,7 +26,6 @@ public class AllTests
 		//$JUnit-BEGIN$
 		suite.addTest( com.advancedpwr.record.AllTests.suite() );
 		suite.addTest( com.advancedpwr.record.methods.AllTests.suite() );
-		suite.addTest( com.advancedpwr.record.xstream.AllTests.suite() );
 		//$JUnit-END$
 		return suite;
 	}

@@ -57,16 +57,18 @@ public class ListInstanceTest extends AbstractRecorderTest
 
 		recorder.record( dad );
 
-    assertContains("	protected ArrayList arraylist_4_1;\n" +
-    				"\n" +
-    				"	protected List buildArrayList_4_1()\n" +
-    				"	{\n" +
-    				"		arraylist_4_1 = new ArrayList();\n" +
-    				"		arraylist_4_1.add( buildChildren_1_5_2() );\n" +
-    				"		arraylist_4_1.add( person_1_1 );\n" +
-    				"		arraylist_4_1.add( buildChildren_1_7_2() );\n" +
-    				"		return arraylist_4_1;\n" +
-    				"	}\n"
+    assertContains("\tprotected List buildArrayList_4_1()\n" +
+      "\t{\n" +
+      "\t\tif ( arraylist_4_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn arraylist_4_1;\n" +
+      "\t\t}\n" +
+      "\t\tarraylist_4_1 = new ArrayList();\n" +
+      "\t\tarraylist_4_1.add( buildChildren_1_5_2() );\n" +
+      "\t\tarraylist_4_1.add( person_1_1 );\n" +
+      "\t\tarraylist_4_1.add( buildChildren_1_7_2() );\n" +
+      "\t\treturn arraylist_4_1;\n" +
+      "\t}\n"
     );
 	}
 }

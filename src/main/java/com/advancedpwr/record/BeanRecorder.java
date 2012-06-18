@@ -16,15 +16,9 @@
 package com.advancedpwr.record;
 
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import com.advancedpwr.record.methods.BuildMethodWriter;
-import com.advancedpwr.record.methods.CollectionBuilderFactory;
-import com.advancedpwr.record.methods.MethodWriterFactory;
-import com.advancedpwr.record.methods.MapBuilderFactory;
-import com.advancedpwr.record.methods.MethodBuilderFactory;
+import com.advancedpwr.record.methods.*;
 
 /**
  * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file. This recorder uses
@@ -90,6 +84,12 @@ public class BeanRecorder extends AbstractRecorder
 {
 	protected InstanceTree fieldInstanceTree;
 	protected MethodBuilderFactory fieldFactoryBuilder;
+	protected Set<Class> fieldStopClasses;
+
+	public BeanRecorder()
+	{
+		setSuperClass( null );
+	}
 
 	protected void setObject( Object object )
 	{
@@ -102,7 +102,7 @@ public class BeanRecorder extends AbstractRecorder
 
 	protected InstanceTree createInstanceTree( Object object )
 	{
-		return new InstanceTree( object );
+		return new InstanceTree( getStopClasses(), object );
 	}
 
 	/* (non-Javadoc)
@@ -153,7 +153,17 @@ public class BeanRecorder extends AbstractRecorder
 
 	protected Set<Class> classes()
 	{
-		return getInstanceTree().getFactory().classes();
+		Set<Class> classes = new LinkedHashSet<Class>();
+		if ( getSuperClass() != null )
+		{
+			classes.add( getSuperClass() );
+		}
+		classes.addAll( getInstanceTree().getFactory().classes() );
+		if ( classes.contains( java.util.Date.class ) && classes.contains( java.sql.Date.class ) )
+		{
+			classes.remove( java.sql.Date.class );
+		}
+		return classes;
 	}
 
 	protected MethodBuilderFactory getFactoryBuilder()
@@ -187,4 +197,23 @@ public class BeanRecorder extends AbstractRecorder
 		}
 		return fieldPrintWriter;
 	}
+
+	public void stopDescent( Class inClass )
+	{
+		getStopClasses().add( inClass );
+	}
+
+	public Set<Class> getStopClasses()
+	{
+		if ( fieldStopClasses == null )
+		{
+			fieldStopClasses = new HashSet<Class>();
+			fieldStopClasses.add( Date.class );
+			fieldStopClasses.add( java.sql.Date.class );
+			fieldStopClasses.add( Calendar.class );
+			fieldStopClasses.add( GregorianCalendar.class );
+		}
+		return fieldStopClasses;
+	}
+
 }

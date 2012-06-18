@@ -33,6 +33,8 @@ public class AccessorMethodPath extends AccessPath
 
 	protected Method fieldSetter;
 
+	protected Method fieldGetter;
+
 	public Method getSetter()
 	{
 		return fieldSetter;
@@ -60,6 +62,16 @@ public class AccessorMethodPath extends AccessPath
 		Class[] types = getSetter().getExceptionTypes();
 		exceptions.addAll( Arrays.asList( types ) );
 		return exceptions;
+	}
+
+	public Method getGetter()
+	{
+		return fieldGetter;
+	}
+
+	public void setGetter( Method getter )
+	{
+		fieldGetter = getter;
 	}
 
 }

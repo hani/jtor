@@ -47,15 +47,18 @@ public class MethodBuilderTest extends TestCase
 		result.setTree( new InstanceTree( person ) );
 		builder.setAccessPath( result );
 		builder.buildMethod();
-		assertEquals( "\n" +
-				"protected Person person;\n" +
-				"\n" +
-				"protected Person buildPerson()\n" +
-				"{\n" +
-				"	person = new Person();\n" +
-				"	person.setName( \"Joe\" );\n" +
-				"	return person;\n" +
-				"}\n", out.toString().replaceAll( "\r\n", "\n" ) );
+		assertEquals( "protected Person person;\n" +
+      "\n" +
+      "protected Person buildPerson()\n" +
+      "{\n" +
+      "\tif ( person != null ) \n" +
+      "\t{\n" +
+      "\t\treturn person;\n" +
+      "\t}\n" +
+      "\tperson = new Person();\n" +
+      "\tperson.setName( \"Joe\" );\n" +
+      "\treturn person;\n" +
+      "}", out.toString().trim().replaceAll( "\r\n", "\n" ) );
 	}
 
 	public void testSetScope()

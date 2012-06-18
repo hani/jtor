@@ -57,23 +57,26 @@ public class PrimitivesTest extends AbstractRecorderTest
 
 
 		recorder.record( primitives );
-		assertContains(
-				"	protected Primitives primitives;\n" +
-				"\n" +
-				"	public Primitives buildPrimitives()\n" +
-				"	{\n" +
-				"		primitives = new Primitives();\n" +
-				"		primitives.setBoolean( true );\n" +
-				"		primitives.setByte( (byte)123 );\n" +
-				"		primitives.setChar( 'c' );\n" +
-				"		primitives.setDouble( 12.0d );\n" +
-				"		primitives.setFloat( 11.0f );\n" +
-				"		primitives.setInt( 5 );\n" +
-				"		primitives.setLong( 16l );\n" +
-				"		primitives.setShort( (short)3 );\n" +
-				"		primitives.setString( \"astring\" );\n" +
-				"		return primitives;\n" +
-				"	}\n");
+		assertContains("\tprotected Primitives primitives;\n" +
+      "\n" +
+      "\tpublic Primitives buildPrimitives()\n" +
+      "\t{\n" +
+      "\t\tif ( primitives != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn primitives;\n" +
+      "\t\t}\n" +
+      "\t\tprimitives = new Primitives();\n" +
+      "\t\tprimitives.setBoolean( true );\n" +
+      "\t\tprimitives.setByte( (byte)123 );\n" +
+      "\t\tprimitives.setChar( 'c' );\n" +
+      "\t\tprimitives.setDouble( 12.0d );\n" +
+      "\t\tprimitives.setFloat( 11.0f );\n" +
+      "\t\tprimitives.setInt( 5 );\n" +
+      "\t\tprimitives.setLong( 16l );\n" +
+      "\t\tprimitives.setShort( (short)3 );\n" +
+      "\t\tprimitives.setString( \"astring\" );\n" +
+      "\t\treturn primitives;\n" +
+      "\t}");
 	}
 
 	public void testLangObjects()
@@ -90,20 +93,24 @@ public class PrimitivesTest extends AbstractRecorderTest
 		langs.setClassArgument( Person.class );
 
 		recorder.record( langs );
-		assertContains("	public LangObjects buildLangObjects()\n" +
-				"	{\n" +
-				"		langobjects = new LangObjects();\n" +
-				"		langobjects.setBoolean( true );\n" +
-				"		langobjects.setByte( (byte)123 );\n" +
-				"		langobjects.setCharacter( 'c' );\n" +
-				"		langobjects.setClassArgument( com.advancedpwr.record.examples.Person.class );\n" +
-				"		langobjects.setDouble( 12.0d );\n" +
-				"		langobjects.setFloat( 11.0f );\n" +
-				"		langobjects.setInteger( 5 );\n" +
-				"		langobjects.setLong( 16l );\n" +
-				"		langobjects.setShort( (short)3 );\n" +
-				"		return langobjects;\n" +
-				"	}");
+		assertContains("\tpublic LangObjects buildLangObjects()\n" +
+      "\t{\n" +
+      "\t\tif ( langobjects != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn langobjects;\n" +
+      "\t\t}\n" +
+      "\t\tlangobjects = new LangObjects();\n" +
+      "\t\tlangobjects.setBoolean( true );\n" +
+      "\t\tlangobjects.setByte( (byte)123 );\n" +
+      "\t\tlangobjects.setCharacter( 'c' );\n" +
+      "\t\tlangobjects.setClassArgument( com.advancedpwr.record.examples.Person.class );\n" +
+      "\t\tlangobjects.setDouble( 12.0d );\n" +
+      "\t\tlangobjects.setFloat( 11.0f );\n" +
+      "\t\tlangobjects.setInteger( 5 );\n" +
+      "\t\tlangobjects.setLong( 16l );\n" +
+      "\t\tlangobjects.setShort( (short)3 );\n" +
+      "\t\treturn langobjects;\n" +
+      "\t}");
 
 	}
 

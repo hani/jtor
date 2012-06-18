@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,16 +15,17 @@
  */
 package com.advancedpwr.record.methods;
 
-import static com.advancedpwr.record.ClassWriter.*;
-
+import java.lang.*;
+import java.lang.StringBuilder;
+import java.lang.reflect.Constructor;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.ClassWriter;
 import com.advancedpwr.record.InstanceTree;
+
+import static com.advancedpwr.record.ClassWriter.*;
 
 public class BuildMethodWriter
 {
@@ -33,7 +34,7 @@ public class BuildMethodWriter
 	protected ClassWriter fieldClassWriter;
 	protected String fieldScope;
 	protected MethodBuilderFactory fieldFactory;
-	
+
 	public MethodBuilderFactory getFactory()
 	{
 		return fieldFactory;
@@ -58,14 +59,14 @@ public class BuildMethodWriter
 		// This instance is built, so we can cache it
 		getFactory().storeBuilder( this );
 		writeBuilderMethods();
-		
+
 	}
 
 	protected void writeMethodSignature()
 	{
 		write( scope() + returnType() + SPACE + resultBuilder() + exceptions() );
 	}
-	
+
 	protected String exceptions()
 	{
 		if ( hasDeclaredException() )
@@ -74,11 +75,11 @@ public class BuildMethodWriter
 		}
 		return "";
 	}
-	
+
 
 	protected String formattedExceptionList()
 	{
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for ( Iterator iterator = declaredExceptions().iterator(); iterator.hasNext(); )
 		{
 			Class exception = (Class) iterator.next();
@@ -103,15 +104,36 @@ public class BuildMethodWriter
 
 	protected void writeInstance()
 	{
+		writeIfNotNullReturnInstance();
+		if ( hasDefaultConstructor() )
+		{
 		writeLine( instanceName() + " = new " + instanceType() + "()");
 	}
-	
+		else
+		{
+			writeLine( instanceName() + " = (" + instanceType() + ")newInstance( " + instanceType() + ".class )");
+		}
+	}
+
+	protected boolean hasDefaultConstructor()
+	{
+		Constructor[] constructors = getAccessPath().getResultClass().getConstructors();
+		for ( int i = 0; i < constructors.length; i++ )
+		{
+			if ( constructors[i].getParameterTypes().length == 0 )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	protected void writeField()
 	{
 		writeLine( PROTECTED + instanceType() + SPACE + instanceName() );
 		newLine();
 	}
-	
+
 	protected void writeBuilderMethods()
 	{
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
@@ -120,7 +142,7 @@ public class BuildMethodWriter
 			builder.buildMethod();
 		}
 	}
-	
+
 	protected String scope()
 	{
 		if ( fieldScope == null )
@@ -129,17 +151,17 @@ public class BuildMethodWriter
 		}
 		return fieldScope;
 	}
-	
+
 	public void setScopePublic()
 	{
 		fieldScope = PUBLIC;
 	}
-	
+
 	public void setScopeProtected()
 	{
 		fieldScope = PROTECTED;
 	}
-	
+
 	protected void writePopulators()
 	{
 		for ( AccessPath result : getInstanceTree().getAccessPaths() )
@@ -148,7 +170,7 @@ public class BuildMethodWriter
 			writeLine( builder.populator( instanceName() ) );
 		}
 	}
-	
+
 	protected String populator( String inInstanceName )
 	{
 		return inInstanceName + "." + getAccessPath().pathName() + "( " + resultBuilder() + " )";
@@ -158,7 +180,7 @@ public class BuildMethodWriter
 	{
 		return getAccessPath().getInstanceTree();
 	}
-	
+
 	protected BuildMethodWriter createMethodBuilder( AccessPath result )
 	{
 		BuildMethodWriter builder = getFactory().createMethodBuilder( result );
@@ -210,7 +232,7 @@ public class BuildMethodWriter
 	{
 		return "build" + getAccessPath().nameRoot() + depth() + "()";
 	}
-	
+
 	protected String depth()
 	{
 		int depth = getInstanceTree().getDepth();
@@ -235,7 +257,7 @@ public class BuildMethodWriter
 	{
 		return getAccessPath().getParameterClass().getSimpleName();
 	}
-	
+
 	protected void newLine()
 	{
 		getClassWriter().newLine();

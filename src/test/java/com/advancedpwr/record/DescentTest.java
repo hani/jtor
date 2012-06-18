@@ -31,17 +31,20 @@ public class DescentTest extends AbstractRecorderTest
 	{
 
 		recorder.record( Person.createExamplePerson() );
-    assertContains("	protected Person person;\n" +
-    				"\n" +
-    				"	public Person buildPerson()\n" +
-    				"	{\n" +
-    				"		person = new Person();\n" +
-    				"		person.setDad( buildPerson_1_1() );\n" +
-    				"		person.setMom( buildPerson_5_1() );\n" +
-    				"		person.setName( \"son\" );\n" +
-    				"		return person;\n" +
-    				"	}\n"
-    );
+    assertContains("\tprotected Person person;\n" +
+      "\n" +
+      "\tpublic Person buildPerson()\n" +
+      "\t{\n" +
+      "\t\tif ( person != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person;\n" +
+      "\t\t}\n" +
+      "\t\tperson = new Person();\n" +
+      "\t\tperson.setDad( buildPerson_1_1() );\n" +
+      "\t\tperson.setMom( buildPerson_5_1() );\n" +
+      "\t\tperson.setName( \"son\" );\n" +
+      "\t\treturn person;\n" +
+      "\t}");
 	}
 
 	public void testRecursion()
@@ -53,35 +56,47 @@ public class DescentTest extends AbstractRecorderTest
 		son.getDad().getDad().setDad( son );
 
 		recorder.record( son );
-    assertContains("	protected Person person;\n" +
-    				"\n" +
-    				"	public Person buildPerson()\n" +
-    				"	{\n" +
-    				"		person = new Person();\n" +
-    				"		person.setDad( buildPerson_1_1() );\n" +
-    				"		person.setName( \"son\" );\n" +
-    				"		return person;\n" +
-    				"	}\n" +
-    				"\n" +
-    				"	protected Person person_1_1;\n" +
-    				"\n" +
-    				"	protected Person buildPerson_1_1()\n" +
-    				"	{\n" +
-    				"		person_1_1 = new Person();\n" +
-    				"		person_1_1.setDad( buildPerson_2_2() );\n" +
-    				"		person_1_1.setName( \"dad\" );\n" +
-    				"		return person_1_1;\n" +
-    				"	}\n" +
-    				"\n" +
-    				"	protected Person person_2_2;\n" +
-    				"\n" +
-    				"	protected Person buildPerson_2_2()\n" +
-    				"	{\n" +
-    				"		person_2_2 = new Person();\n" +
-    				"		person_2_2.setDad( person );\n" +
-    				"		person_2_2.setName( \"grandpa\" );\n" +
-    				"		return person_2_2;\n" +
-    				"	}\n"
+    assertContains("\tprotected Person person;\n" +
+      "\n" +
+      "\tpublic Person buildPerson()\n" +
+      "\t{\n" +
+      "\t\tif ( person != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person;\n" +
+      "\t\t}\n" +
+      "\t\tperson = new Person();\n" +
+      "\t\tperson.setDad( buildPerson_1_1() );\n" +
+      "\t\tperson.setName( \"son\" );\n" +
+      "\t\treturn person;\n" +
+      "\t}\n" +
+      "\n" +
+      "\tprotected Person person_1_1;\n" +
+      "\n" +
+      "\tprotected Person buildPerson_1_1()\n" +
+      "\t{\n" +
+      "\t\tif ( person_1_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person_1_1;\n" +
+      "\t\t}\n" +
+      "\t\tperson_1_1 = new Person();\n" +
+      "\t\tperson_1_1.setDad( buildPerson_2_2() );\n" +
+      "\t\tperson_1_1.setName( \"dad\" );\n" +
+      "\t\treturn person_1_1;\n" +
+      "\t}\n" +
+      "\n" +
+      "\tprotected Person person_2_2;\n" +
+      "\n" +
+      "\tprotected Person buildPerson_2_2()\n" +
+      "\t{\n" +
+      "\t\tif ( person_2_2 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person_2_2;\n" +
+      "\t\t}\n" +
+      "\t\tperson_2_2 = new Person();\n" +
+      "\t\tperson_2_2.setDad( person );\n" +
+      "\t\tperson_2_2.setName( \"grandpa\" );\n" +
+      "\t\treturn person_2_2;\n" +
+      "\t}"
     );
 	}
 
@@ -95,35 +110,47 @@ public class DescentTest extends AbstractRecorderTest
 		grandpa.setDad( son );
 
 		recorder.record( son );
-		assertContains("	protected Person person;\n" +
-				"\n" +
-				"	public Person buildPerson()\n" +
-				"	{\n" +
-				"		person = new Person();\n" +
-				"		person.setDad( buildPerson_1_1() );\n" +
-				"		person.setName( \"son\" );\n" +
-				"		return person;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_1_1;\n" +
-				"\n" +
-				"	protected Person buildPerson_1_1()\n" +
-				"	{\n" +
-				"		person_1_1 = new Person();\n" +
-				"		person_1_1.setDad( buildPerson_2_2() );\n" +
-				"		person_1_1.setName( \"dad\" );\n" +
-				"		return person_1_1;\n" +
-				"	}\n" +
-				"\n" +
-				"	protected Person person_2_2;\n" +
-				"\n" +
-				"	protected Person buildPerson_2_2()\n" +
-				"	{\n" +
-				"		person_2_2 = new Person();\n" +
-				"		person_2_2.setDad( person );\n" +
-				"		person_2_2.setName( \"grandpa\" );\n" +
-				"		return person_2_2;\n" +
-				"	}\n"
+		assertContains("\tprotected Person person;\n" +
+      "\n" +
+      "\tpublic Person buildPerson()\n" +
+      "\t{\n" +
+      "\t\tif ( person != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person;\n" +
+      "\t\t}\n" +
+      "\t\tperson = new Person();\n" +
+      "\t\tperson.setDad( buildPerson_1_1() );\n" +
+      "\t\tperson.setName( \"son\" );\n" +
+      "\t\treturn person;\n" +
+      "\t}\n" +
+      "\n" +
+      "\tprotected Person person_1_1;\n" +
+      "\n" +
+      "\tprotected Person buildPerson_1_1()\n" +
+      "\t{\n" +
+      "\t\tif ( person_1_1 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person_1_1;\n" +
+      "\t\t}\n" +
+      "\t\tperson_1_1 = new Person();\n" +
+      "\t\tperson_1_1.setDad( buildPerson_2_2() );\n" +
+      "\t\tperson_1_1.setName( \"dad\" );\n" +
+      "\t\treturn person_1_1;\n" +
+      "\t}\n" +
+      "\n" +
+      "\tprotected Person person_2_2;\n" +
+      "\n" +
+      "\tprotected Person buildPerson_2_2()\n" +
+      "\t{\n" +
+      "\t\tif ( person_2_2 != null ) \n" +
+      "\t\t{\n" +
+      "\t\t\treturn person_2_2;\n" +
+      "\t\t}\n" +
+      "\t\tperson_2_2 = new Person();\n" +
+      "\t\tperson_2_2.setDad( person );\n" +
+      "\t\tperson_2_2.setName( \"grandpa\" );\n" +
+      "\t\treturn person_2_2;\n" +
+      "\t}"
     );
 	}
 }
